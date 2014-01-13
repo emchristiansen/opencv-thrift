@@ -7,9 +7,9 @@
 #ifndef mat_CONSTANTS_H
 #define mat_CONSTANTS_H
 
-#include "mat_types.h"
+#include "modules/core/gen-cpp/mat_types.h"
 
-namespace cv {
+
 
 class matConstants {
  public:
@@ -19,6 +19,6 @@ class matConstants {
 
 extern const matConstants g_mat_constants;
 
-} // namespace
+
 
 #endif

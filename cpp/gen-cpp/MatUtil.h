@@ -8,9 +8,9 @@
 #define MatUtil_H
 
 #include <thrift/TDispatchProcessor.h>
-#include "mat_types.h"
+#include "modules/core/gen-cpp/mat_types.h"
 
-namespace cv {
+
 
 class MatUtilIf {
  public:
@@ -406,6 +406,6 @@ class MatUtilMultiface : virtual public MatUtilIf {
 
 };
 
-} // namespace
+
 
 #endif

@@ -4,14 +4,14 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "mat_constants.h"
+#include "modules/core/gen-cpp/mat_constants.h"
 
-namespace cv {
+
 
 const matConstants g_mat_constants;
 
 matConstants::matConstants() {
 }
 
-} // namespace
+
 

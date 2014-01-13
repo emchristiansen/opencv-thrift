@@ -15,7 +15,7 @@
 #include <thrift/cxxfunctional.h>
 
 
-namespace cv {
+
 
 struct CVType {
   enum type {
@@ -194,6 +194,6 @@ class MatUnpacked {
 
 void swap(MatUnpacked &a, MatUnpacked &b);
 
-} // namespace
+
 
 #endif

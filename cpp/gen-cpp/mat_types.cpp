@@ -4,11 +4,11 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "mat_types.h"
+#include "modules/core/gen-cpp/mat_types.h"
 
 #include <algorithm>
 
-namespace cv {
+
 
 int _kCVTypeValues[] = {
   CVType::CV_8UC1,
@@ -307,4 +307,4 @@ void swap(MatUnpacked &a, MatUnpacked &b) {
   swap(a.__isset, b.__isset);
 }
 
-} // namespace
+

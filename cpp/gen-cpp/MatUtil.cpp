@@ -4,9 +4,9 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "MatUtil.h"
+#include "modules/core/gen-cpp/MatUtil.h"
 
-namespace cv {
+
 
 uint32_t MatUtil_pack_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -600,5 +600,5 @@ void MatUtilProcessor::process_unpack(int32_t seqid, ::apache::thrift::protocol:
   ::boost::shared_ptr< ::apache::thrift::TProcessor > processor(new MatUtilProcessor(handler));
   return processor;
 }
-} // namespace
+
 
