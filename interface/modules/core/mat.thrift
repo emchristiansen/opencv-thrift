@@ -1,5 +1,3 @@
-namespace cpp cv
-
 enum CVType {
   CV_8UC1
   CV_8UC2
