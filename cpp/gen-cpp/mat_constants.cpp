@@ -6,7 +6,7 @@
  */
 #include "mat_constants.h"
 
-namespace opencv {
+namespace cv {
 
 const matConstants g_mat_constants;
 

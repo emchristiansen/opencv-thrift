@@ -9,7 +9,7 @@
 
 #include "mat_types.h"
 
-namespace opencv {
+namespace cv {
 
 class matConstants {
  public:

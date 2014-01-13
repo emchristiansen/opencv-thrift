@@ -15,12 +15,48 @@
 #include <thrift/cxxfunctional.h>
 
 
-namespace opencv {
+namespace cv {
+
+struct CVType {
+  enum type {
+    CV_8UC1 = 0,
+    CV_8UC2 = 1,
+    CV_8UC3 = 2,
+    CV_8UC4 = 3,
+    CV_8SC1 = 4,
+    CV_8SC2 = 5,
+    CV_8SC3 = 6,
+    CV_8SC4 = 7,
+    CV_16UC1 = 8,
+    CV_16UC2 = 9,
+    CV_16UC3 = 10,
+    CV_16UC4 = 11,
+    CV_16SC1 = 12,
+    CV_16SC2 = 13,
+    CV_16SC3 = 14,
+    CV_16SC4 = 15,
+    CV_32SC1 = 16,
+    CV_32SC2 = 17,
+    CV_32SC3 = 18,
+    CV_32SC4 = 19,
+    CV_32FC1 = 20,
+    CV_32FC2 = 21,
+    CV_32FC3 = 22,
+    CV_32FC4 = 23,
+    CV_64FC1 = 24,
+    CV_64FC2 = 25,
+    CV_64FC3 = 26,
+    CV_64FC4 = 27
+  };
+};
+
+extern const std::map<int, const char*> _CVType_VALUES_TO_NAMES;
 
 typedef struct _Mat__isset {
-  _Mat__isset() : rows(false), cols(false), type(false), data(false) {}
+  _Mat__isset() : rows(false), cols(false), channels(false), type(false), data(false) {}
   bool rows;
   bool cols;
+  bool channels;
   bool type;
   bool data;
 } _Mat__isset;
@@ -28,16 +64,17 @@ typedef struct _Mat__isset {
 class Mat {
  public:
 
-  static const char* ascii_fingerprint; // = "4A712C500E54918CFBA57A70D875BC7B";
-  static const uint8_t binary_fingerprint[16]; // = {0x4A,0x71,0x2C,0x50,0x0E,0x54,0x91,0x8C,0xFB,0xA5,0x7A,0x70,0xD8,0x75,0xBC,0x7B};
+  static const char* ascii_fingerprint; // = "5042C1F503B1892AB5DAD106DC89C2DB";
+  static const uint8_t binary_fingerprint[16]; // = {0x50,0x42,0xC1,0xF5,0x03,0xB1,0x89,0x2A,0xB5,0xDA,0xD1,0x06,0xDC,0x89,0xC2,0xDB};
 
-  Mat() : rows(0), cols(0), type(0), data() {
+  Mat() : rows(0), cols(0), channels(0), type(0), data() {
   }
 
   virtual ~Mat() throw() {}
 
   int64_t rows;
   int64_t cols;
+  int64_t channels;
   int64_t type;
   std::string data;
 
@@ -49,6 +86,10 @@ class Mat {
 
   void __set_cols(const int64_t val) {
     cols = val;
+  }
+
+  void __set_channels(const int64_t val) {
+    channels = val;
   }
 
   void __set_type(const int64_t val) {
@@ -64,6 +105,8 @@ class Mat {
     if (!(rows == rhs.rows))
       return false;
     if (!(cols == rhs.cols))
+      return false;
+    if (!(channels == rhs.channels))
       return false;
     if (!(type == rhs.type))
       return false;
@@ -83,6 +126,73 @@ class Mat {
 };
 
 void swap(Mat &a, Mat &b);
+
+typedef struct _MatUnpacked__isset {
+  _MatUnpacked__isset() : rows(false), cols(false), channels(false), data(false) {}
+  bool rows;
+  bool cols;
+  bool channels;
+  bool data;
+} _MatUnpacked__isset;
+
+class MatUnpacked {
+ public:
+
+  static const char* ascii_fingerprint; // = "E973DC0A09071677FCA82C37E29EFD3E";
+  static const uint8_t binary_fingerprint[16]; // = {0xE9,0x73,0xDC,0x0A,0x09,0x07,0x16,0x77,0xFC,0xA8,0x2C,0x37,0xE2,0x9E,0xFD,0x3E};
+
+  MatUnpacked() : rows(0), cols(0), channels(0) {
+  }
+
+  virtual ~MatUnpacked() throw() {}
+
+  int64_t rows;
+  int64_t cols;
+  int64_t channels;
+  std::vector<double>  data;
+
+  _MatUnpacked__isset __isset;
+
+  void __set_rows(const int64_t val) {
+    rows = val;
+  }
+
+  void __set_cols(const int64_t val) {
+    cols = val;
+  }
+
+  void __set_channels(const int64_t val) {
+    channels = val;
+  }
+
+  void __set_data(const std::vector<double> & val) {
+    data = val;
+  }
+
+  bool operator == (const MatUnpacked & rhs) const
+  {
+    if (!(rows == rhs.rows))
+      return false;
+    if (!(cols == rhs.cols))
+      return false;
+    if (!(channels == rhs.channels))
+      return false;
+    if (!(data == rhs.data))
+      return false;
+    return true;
+  }
+  bool operator != (const MatUnpacked &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const MatUnpacked & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+void swap(MatUnpacked &a, MatUnpacked &b);
 
 } // namespace
 
