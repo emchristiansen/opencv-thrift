@@ -11,6 +11,8 @@ file(GLOB_RECURSE sources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "modules/**.cpp
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 message(STATUS ${sources})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
 add_library(CPPInterface ${sources})
 
 target_link_libraries(CPPInterface ${thrift_LIBRARIES})
