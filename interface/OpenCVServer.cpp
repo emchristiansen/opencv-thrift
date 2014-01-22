@@ -10,7 +10,8 @@
 #include <thrift/transport/TServerSocket.h>
 #include <thrift/transport/TBufferTransports.h>
 
-#include <memory>
+//#include <memory>
+#include <thread>
 
 using namespace ::apache::thrift;
 using namespace ::apache::thrift::protocol;
@@ -20,6 +21,9 @@ using namespace ::apache::thrift::server;
 //using namespace std;
 using std::make_shared;
 using std::string;
+using std::cout;
+using std::endl;
+using std::vector;
 
 //using boost::shared_ptr;
 //using boost::make_shared;
@@ -62,36 +66,59 @@ void addHandler(shared_ptr<TMultiplexedProcessor> multiplexedProcessor, const st
   multiplexedProcessor->registerProcessor(name, processor);
 }
 
-int main(int argc, char **argv) {
-  //auto processor = make_shared<TMultiplexedProcessor>();
-  shared_ptr<TMultiplexedProcessor> processor(new TMultiplexedProcessor());
+template <typename Handler, typename Processor>
+std::thread startServerThread(const string name, const int port) {
+  shared_ptr<Handler> handler(new Handler());
+  shared_ptr<Processor> processor(new Processor(handler));
 
-
-  //auto x = make_shared<MatUtilHandler>();
-
-  //auto a = make_shared<MatUtilProcessor>(x);
-
-  //processor->registerProcessor(
-    //"MatUtil",
-    //make_shared<MatUtilProcessor>(make_shared<MatUtilHandler>()));
-
-  //shared_ptr<MatUtilHandler> matUtilHandler(new MatUtilHandler());
-  //shared_ptr<MatUtilProcessor> matUtilProcessor(new MatUtilProcessor(matUtilHandler));
-  //processor->registerProcessor("MatUtil", matUtilProcessor);
-
-  addHandler<MatUtilHandler, MatUtilProcessor>(processor, "MatUtil");
-  addHandler<Features2DHandler, Features2DProcessor>(processor, "Features2D");
-
-  //shared_ptr<MatUtilHandler> handler(new MatUtilHandler());
-  //shared_ptr<TProcessor> processor(new MatUtilProcessor(handler));
-
-  const int port = 9090;
   shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
   shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
   shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
 
   TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
-  server.serve();
+  
+  //server.serve();
+  //std::thread serverThread(server.serve);
+  std::thread serverThread(&TSimpleServer::serve, server);
+
+  std::cout << "Spawned server " << name << " on port " << port << "." << std::endl;
+
+  return serverThread;
+}
+
+int main(int argc, char **argv) {
+  std::thread matUtil = 
+    startServerThread<MatUtilHandler, MatUtilProcessor>("MatUtil", 9090);
+  std::thread features2D = 
+    startServerThread<Features2DHandler, Features2DProcessor>("Features2D", 9091);
+
+  matUtil.join();
+  features2D.join();
+
+  //vector<std::thread> threads = { 
+  //vector<int> ints = {1, 2, 3};
+  //vector<std::thread> threads(1);
+  //threads.at(0) = x;
+
+  //vector<std::thread> threads;
+  //threads.at(0) = matUtil;
+  
+
+  //shared_ptr<TMultiplexedProcessor> processor(new TMultiplexedProcessor());
+  //addHandler<MatUtilHandler, MatUtilProcessor>(processor, "MatUtil");
+  //addHandler<Features2DHandler, Features2DProcessor>(processor, "Features2D");
+
+  //shared_ptr<MatUtilHandler> handler(new MatUtilHandler());
+  //shared_ptr<TProcessor> processor(new MatUtilProcessor(handler));
+
+  //const int port = 9090;
+  //shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
+  //shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
+  //shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
+
+  //TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
+  //server.serve();
+  //std::cout << "Hi" << std::endl;
   return 0;
 }
 
