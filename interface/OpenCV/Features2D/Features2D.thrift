@@ -1,8 +1,8 @@
-include "modules/core/mat.thrift"
+include "OpenCV/Core/Mat.thrift"
 
 struct KeyPoint {
 }
 
 service Features2D {
-  list<KeyPoint> detect(string detector, mat.Mat image)
+  list<KeyPoint> detect(string detector, Mat.Mat image)
 }
