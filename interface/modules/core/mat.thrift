@@ -36,21 +36,21 @@ enum CVType {
 }
 
 struct Mat {
-  i64 rows
-  i64 cols
-  i64 channels
-  i64 type
-  binary data
+  required i64 rows
+  required i64 cols
+  required i64 channels
+  required i64 type
+  required binary data
 }
 
 struct MatUnpacked {
-  i64 rows
-  i64 cols
-  i64 channels
-  list<double> data
+  required i64 rows
+  required i64 cols
+  required i64 channels
+  required list<double> data
 }
 
 service MatUtil {
-  Mat pack(CVType type, MatUnpacked matUnpacked)
-  MatUnpacked unpack(Mat mat)
+  Mat pack(required CVType type, required MatUnpacked matUnpacked)
+  MatUnpacked unpack(required Mat mat)
 }

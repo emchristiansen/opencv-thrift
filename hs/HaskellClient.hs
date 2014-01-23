@@ -17,12 +17,12 @@
 -- under the License.
 --
 
-{-import qualified Calculator-}
-{-import qualified Calculator_Client as Client-}
-{-import Tutorial_Types-}
-{-import SharedService_Iface-}
-{-import Shared_Types-}
-import qualified HelloSvc_Client as Client
+{-import qualified MatUtil_Client as MatUtil-}
+{-import qualified Features2D_Client as Features2D-}
+{-import Mat_Types-}
+
+import OpenCV
+import OpenCVTypes
 
 import Thrift
 import Thrift.Protocol.Binary
@@ -33,17 +33,38 @@ import Thrift.Server
 import Data.Maybe
 import Text.Printf
 import Network
+import Data.Vector
+
+{-data Service = MatUtil-}
+
+{-getService :: String -> PortID -> IO Int-}
+getService name port = do
+  putStrLn $ printf "Connecting to %s." name
+  transport  <- hOpen ("localhost", port)
+  let binProto = BinaryProtocol transport
+  return (binProto, binProto)
+
+cvType = CV_32FC1
+
+matUnpacked = MatUnpacked 
+  (Just 3) 
+  (Just 2) 
+  (Just 1) 
+  (Just $ fromList [1, 2, 3, 4, 5, 6])
 
 main = do
   putStrLn "HERE"
-  transport  <- hOpen ("localhost", PortNumber 9090)
-  let binProto = BinaryProtocol transport
-  let client = (binProto, binProto)
+  matUtilClient <- getService "MatUtil" $ PortNumber 9090 
+  packed <- OpenCV.pack cvType matUnpacked
+  putStrLn $ show packed
+  {-transport  <- hOpen ("localhost", PortNumber 9090)-}
+  {-let binProto = BinaryProtocol transport-}
+  {-let client = (binProto, binProto)-}
 
-  Client.hello_func client
+  {-Client.hello_func client-}
   
-  sum <- Client.add client 3 4
-  putStrLn $ show sum
+  {-sum <- Client.add client 3 4-}
+  {-putStrLn $ show sum-}
 
   {-Client.ping client-}
   {-print "ping()"-}
@@ -76,6 +97,6 @@ main = do
   {-printf "Check log: %s\n"  $ fromJust $ f_SharedStruct_value log-}
 
   -- Close!
-  tClose transport
-
+  {-tClose transport-}
+  putStrLn "Done"
 
