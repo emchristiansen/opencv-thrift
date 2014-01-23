@@ -50,7 +50,3 @@ struct MatUnpacked {
   required list<double> data
 }
 
-service MatUtil {
-  Mat pack(required CVType type, required MatUnpacked matUnpacked)
-  MatUnpacked unpack(required Mat mat)
-}

@@ -1,5 +1,0 @@
-include "modules/core/mat.thrift"
-include "modules/features2d/features2d.thrift"
-
-service OpenCV extends (MatUtil, Features2D)
-
