@@ -11,7 +11,8 @@ library
     lib/OpenCV/Features2D/gen-hs
 
   exposed-modules:
-    OpenCV
+    OpenCV.Core.MatUtil
+    --OpenCV
 
   Build-Depends:
     base >=4, 
