@@ -6,9 +6,8 @@ Build-Type:     Simple
 
 library 
   Hs-Source-Dirs:
-    gen-hs/OpenCV/Core, 
-    gen-hs/OpenCV/Features2D,
-    manualLib
+    lib/OpenCV/Core/gen-hs, 
+    lib/OpenCV/Features2D/gen-hs
 
   exposed-modules:
     OpenCV
