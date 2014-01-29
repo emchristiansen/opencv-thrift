@@ -21,8 +21,10 @@
 {-import qualified Features2D_Client as Features2D-}
 {-import Mat_Types-}
 
-import OpenCV
-import OpenCVTypes
+{-import OpenCV-}
+{-import OpenCVTypes-}
+import qualified OpenCV.Core.MatUtil
+import OpenCV.Core.MatUtil
 
 import Thrift
 import Thrift.Protocol.Binary
@@ -38,25 +40,42 @@ import Data.Vector
 {-data Service = MatUtil-}
 
 {-getService :: String -> PortID -> IO Int-}
+getService :: String -> PortID -> IO Client
 getService name port = do
   putStrLn $ printf "Connecting to %s." name
   transport  <- hOpen ("localhost", port)
   let binProto = BinaryProtocol transport
   return (binProto, binProto)
 
-cvType = CV_32FC1
+data OpenCVClient a = MatUtilClient a => OpenCVClient 
+  { matUtilClient :: a
+  }
 
-matUnpacked = MatUnpacked 
-  (Just 3) 
-  (Just 2) 
-  (Just 1) 
-  (Just $ fromList [1, 2, 3, 4, 5, 6])
+{-bar :: MatUtilClient a => OpenCVClient a -> a-}
+{-bar ocv = mU ocv-}
+
+{-bar2 :: OpenCVClient a -> Client-}
+{-bar2 (OpenCVClient ocv) = cast $ ocv-}
+
+instance OpenCV.Core.MatUtil.MatUtilClient (OpenCVClient a) where
+  cast OpenCVClient { matUtilClient = mU } = 
+    {-undefined-}
+    OpenCV.Core.MatUtil.cast mU
+
+{-cvType = CV_32FC1-}
+
+{-matUnpacked = MatUnpacked -}
+  {-(Just 3) -}
+  {-(Just 2) -}
+  {-(Just 1) -}
+  {-(Just $ fromList [1, 2, 3, 4, 5, 6])-}
 
 main = do
-  putStrLn "HERE"
-  matUtilClient <- getService "MatUtil" $ PortNumber 9090 
-  packed <- OpenCV.pack cvType matUnpacked
-  putStrLn $ show packed
+  {-putStrLn "HERE"-}
+  {-matUtilClient <- getService "MatUtil" $ PortNumber 9090 -}
+  {-packed <- OpenCV.pack cvType matUnpacked-}
+  {-putStrLn $ show packed-}
+
   {-transport  <- hOpen ("localhost", PortNumber 9090)-}
   {-let binProto = BinaryProtocol transport-}
   {-let client = (binProto, binProto)-}
