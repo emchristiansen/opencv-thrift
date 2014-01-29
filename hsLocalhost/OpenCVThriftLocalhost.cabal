@@ -1,4 +1,4 @@
-Name:           OpenCVThrift 
+Name:           OpenCVThriftLocalhost
 Version:        0.1.0
 Cabal-Version:  >= 1.16
 Category:       Foreign
@@ -6,13 +6,10 @@ Build-Type:     Simple
 
 library 
   Hs-Source-Dirs:
-    lib,
-    lib/OpenCV/Core/gen-hs, 
-    lib/OpenCV/Features2D/gen-hs
+    lib
 
   exposed-modules:
-    OpenCV.Core.MatUtil
-    OpenCV
+    OpenCVLocalhost
 
   Build-Depends:
     base >=4, 
@@ -24,13 +21,17 @@ library
     unordered-containers, 
     text, 
     hashable, 
-    bytestring
-  default-language: Haskell2010
+    bytestring,
+    OpenCVThrift
+
+  default-language: 
+    Haskell2010
+
   default-extensions:
     DeriveDataTypeable
     ExistentialQuantification
 
---Executable HaskellClient
+--Executable Client
   --Main-is: HaskellClient.hs
   --Hs-Source-Dirs:
     --bin

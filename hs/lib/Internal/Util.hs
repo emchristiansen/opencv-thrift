@@ -7,7 +7,7 @@ import Thrift.Protocol.Binary
 {-import Thrift.Server-}
 import qualified GHC.IO.Handle.Types
 
-type BinaryProtocolHandle = BinaryProtocol GHC.IO.Handle.Types.Handle
+{-type BinaryProtocolHandle = BinaryProtocol GHC.IO.Handle.Types.Handle-}
 
-type Protocol = (BinaryProtocolHandle, BinaryProtocolHandle)
+{-type Protocol = (BinaryProtocolHandle, BinaryProtocolHandle)-}
 
