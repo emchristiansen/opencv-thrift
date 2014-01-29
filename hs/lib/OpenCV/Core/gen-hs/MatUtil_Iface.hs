@@ -38,5 +38,5 @@ import qualified Mat_Types
 import MatUtil_Types
 
 class MatUtil_Iface a where
-  pack :: a -> Maybe CVType -> Maybe Mat_Types.MatUnpacked -> IO Mat_Types.Mat
+  pack :: a -> Maybe Mat_Types.CVType -> Maybe Mat_Types.MatUnpacked -> IO Mat_Types.Mat
   unpack :: a -> Maybe Mat_Types.Mat -> IO Mat_Types.MatUnpacked
