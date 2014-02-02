@@ -65,7 +65,7 @@ read_Detect_args_fields iprot record = do
           skip iprot _t8
           read_Detect_args_fields iprot record
       -2 -> if _t8 == T_STRUCT then do
-        s <- (read_Mat iprot)
+        s <- (Mat_Types.read_Mat iprot)
         read_Detect_args_fields iprot record{f_Detect_args_image=Just s}
         else do
           skip iprot _t8

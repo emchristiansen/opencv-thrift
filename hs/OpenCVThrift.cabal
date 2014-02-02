@@ -12,6 +12,7 @@ library
 
   exposed-modules:
     OpenCV.Core.MatUtil
+    OpenCV.Features2D.Features2D
     OpenCV
 
   Build-Depends:
@@ -29,6 +30,11 @@ library
   default-extensions:
     DeriveDataTypeable
     ExistentialQuantification
+    ConstraintKinds
+    UndecidableInstances
+    MultiParamTypeClasses
+    FunctionalDependencies
+    FlexibleInstances
 
 --Executable HaskellClient
   --Main-is: HaskellClient.hs
