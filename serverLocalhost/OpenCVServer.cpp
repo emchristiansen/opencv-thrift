@@ -25,47 +25,6 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-//using boost::shared_ptr;
-//using boost::make_shared;
-
-//using namespace  ::tutorial;
-
-//class CalculatorHandler : virtual public CalculatorIf {
- //public:
-  //CalculatorHandler() {
-    //// Your initialization goes here
-  //}
-
-  //void ping() {
-    //// Your implementation goes here
-    //printf("ping\n");
-  //}
-
-  //int32_t add(const int32_t num1, const int32_t num2) {
-    //// Your implementation goes here
-    //printf("add\n");
-  //}
-
-  //int32_t calculate(const int32_t logid, const Work& w) {
-    //// Your implementation goes here
-    //printf("calculate\n");
-  //}
-
-  //void zip() {
-    //// Your implementation goes here
-    //printf("zip\n");
-  //}
-
-//};
-
-template <typename Handler, typename Processor>
-void addHandler(shared_ptr<TMultiplexedProcessor> multiplexedProcessor, const string name) {
-  shared_ptr<Handler> handler(new Handler());
-  shared_ptr<Processor> processor(new Processor(handler));
-
-  multiplexedProcessor->registerProcessor(name, processor);
-}
-
 template <typename Handler, typename Processor>
 std::thread startServerThread(const string name, const int port) {
   shared_ptr<Handler> handler(new Handler());
@@ -77,8 +36,6 @@ std::thread startServerThread(const string name, const int port) {
 
   TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
   
-  //server.serve();
-  //std::thread serverThread(server.serve);
   std::thread serverThread(&TSimpleServer::serve, server);
 
   std::cout << "Spawned server " << name << " on port " << port << "." << std::endl;
@@ -86,39 +43,22 @@ std::thread startServerThread(const string name, const int port) {
   return serverThread;
 }
 
+const int matUtilPort = 9090;
+const int features2DPort = 9091;
+
 int main(int argc, char **argv) {
   std::thread matUtil = 
-    startServerThread<MatUtilHandler, MatUtilProcessor>("MatUtil", 9090);
+    startServerThread<MatUtilHandler, MatUtilProcessor>(
+      "MatUtil", 
+      matUtilPort);
   std::thread features2D = 
-    startServerThread<Features2DHandler, Features2DProcessor>("Features2D", 9091);
+    startServerThread<Features2DHandler, Features2DProcessor>(
+      "Features2D", 
+      features2DPort);
 
   matUtil.join();
   features2D.join();
 
-  //vector<std::thread> threads = { 
-  //vector<int> ints = {1, 2, 3};
-  //vector<std::thread> threads(1);
-  //threads.at(0) = x;
-
-  //vector<std::thread> threads;
-  //threads.at(0) = matUtil;
-  
-
-  //shared_ptr<TMultiplexedProcessor> processor(new TMultiplexedProcessor());
-  //addHandler<MatUtilHandler, MatUtilProcessor>(processor, "MatUtil");
-  //addHandler<Features2DHandler, Features2DProcessor>(processor, "Features2D");
-
-  //shared_ptr<MatUtilHandler> handler(new MatUtilHandler());
-  //shared_ptr<TProcessor> processor(new MatUtilProcessor(handler));
-
-  //const int port = 9090;
-  //shared_ptr<TServerTransport> serverTransport(new TServerSocket(port));
-  //shared_ptr<TTransportFactory> transportFactory(new TBufferedTransportFactory());
-  //shared_ptr<TProtocolFactory> protocolFactory(new TBinaryProtocolFactory());
-
-  //TSimpleServer server(processor, serverTransport, transportFactory, protocolFactory);
-  //server.serve();
-  //std::cout << "Hi" << std::endl;
   return 0;
 }
 
