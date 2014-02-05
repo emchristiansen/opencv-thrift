@@ -35,6 +35,8 @@ library
     MultiParamTypeClasses
     FunctionalDependencies
     FlexibleInstances
+  ghc-options:
+    -fglasgow-exts
 
 --Executable HaskellClient
   --Main-is: HaskellClient.hs

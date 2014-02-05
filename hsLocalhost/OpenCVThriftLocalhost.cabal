@@ -6,7 +6,10 @@ Build-Type:     Simple
 
 library 
   Hs-Source-Dirs:
-    lib
+    lib,
+    ../hs/lib
+    ../hs/lib/OpenCV/Core/gen-hs,
+    ../hs/lib/OpenCV/Features2D/gen-hs
 
   exposed-modules:
     OpenCVLocalhost
@@ -21,8 +24,8 @@ library
     unordered-containers, 
     text, 
     hashable, 
-    bytestring,
-    OpenCVThrift
+    bytestring
+    --OpenCVThrift
 
   default-language: 
     Haskell2010
@@ -30,28 +33,37 @@ library
   default-extensions:
     DeriveDataTypeable
     ExistentialQuantification
+  ghc-options:
+    -fglasgow-exts
 
---Executable Client
-  --Main-is: HaskellClient.hs
-  --Hs-Source-Dirs:
-    --bin
-    ----., 
-    ----modules/core,
-    ----modules/features2d
-  --Build-Depends:
+Executable Client
+  Main-is: HaskellClient.hs
+  Hs-Source-Dirs:
+    bin
+    lib
+    ../hs/lib
+    ../hs/lib/OpenCV/Core/gen-hs
+    ../hs/lib/OpenCV/Features2D/gen-hs
+    --., 
+    --modules/core,
+    --modules/features2d
+  Build-Depends:
     --OpenCVThrift,
-    --base >=4, 
-    --network, 
-    --ghc-prim, 
-    --containers, 
-    --thrift, 
-    --vector, 
-    --unordered-containers, 
-    --text, 
-    --hashable, 
-    --bytestring
-  --default-language: 
-    --Haskell2010
-  --default-extensions:
-    --DeriveDataTypeable
-    --ExistentialQuantification
+    --OpenCVThriftLocalhost,
+    base >=4, 
+    network, 
+    ghc-prim, 
+    containers, 
+    thrift, 
+    vector, 
+    unordered-containers, 
+    text, 
+    hashable, 
+    bytestring
+  default-language: 
+    Haskell2010
+  default-extensions:
+    DeriveDataTypeable
+    ExistentialQuantification
+  ghc-options:
+    -fglasgow-exts

@@ -43,15 +43,21 @@ getService name port = do
 
 {-matUtilService = OpenCV.Core.MatUtil.Client $ getService "MatUtil" $ PortNumber 9090-}
 
+matUtilPort :: PortID
+matUtilPort = PortNumber 9090
+
+features2DPort :: PortID
+features2DPort = PortNumber 9091
+
 matUtilClient :: IO (OpenCV.Core.MatUtil.Client BinaryProtocol Handle)
 matUtilClient = OpenCV.Core.MatUtil.Client <$> getService 
   "MatUtil" 
-  (PortNumber 9090)
+  matUtilPort
 
 features2DClient :: IO (OpenCV.Features2D.Features2D.Client BinaryProtocol Handle)
 features2DClient = OpenCV.Features2D.Features2D.Client <$> getService 
   "Features2D" 
-  (PortNumber 9090)
+  features2DPort
 
 openCVClient :: IO (OpenCV.Client BinaryProtocol Handle)
 openCVClient = OpenCV.Client 
