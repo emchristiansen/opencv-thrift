@@ -16,11 +16,30 @@ message(STATUS ${sources})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(CPPInterface ${sources})
+add_library(OpenCVThrift ${sources})
 
-target_link_libraries(CPPInterface ${thrift_LIBRARIES})
+target_link_libraries(OpenCVThrift ${thrift_LIBRARIES})
 
 #add_executable(Server "OpenCVServer.cpp")
 
 #target_link_libraries(Server CPPInterface ${thrift_LIBRARIES} "-lpthread -lc++ -lsupc++")
 
+################################
+# Install
+################################
+# Configure "make install".
+# In Linux this installs to /usr/local/include/salve/.
+#install(
+#  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/OpenCV/"
+#  DESTINATION include/OpenCVThrift
+#)
+
+install(
+  TARGETS OpenCVThrift DESTINATION lib
+)
+
+install(
+  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/OpenCV/"
+  DESTINATION include/OpenCV
+  PATTERN "*.cpp" EXCLUDE
+)
