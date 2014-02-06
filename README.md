@@ -43,3 +43,4 @@ This isn't fundamental to the protocol, but for now you need to start an OpenCV 
 
   * The installed version of the project should probably be renamed to OpenCVThrift to avoid naming conflicts with OpenCV itself.
   * Fix Thrift's Haskell generator so it generates more idiomatic code.
+  * Enhance Thrift so it doesn't _require_ RPC.
