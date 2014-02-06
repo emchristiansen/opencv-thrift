@@ -4,6 +4,8 @@ It was originally created to provide a Haskell interface, but it should make it 
 Like [Protocol Buffers](https://developers.google.com/protocol-buffers/), it allows any wrapped type to be serialized to an efficient format, for say disk storage.
 Finally it provides an RPC mechanism for making function calls across network connections.
 
+(Update: This isn't even alpha yet. Check back later.)
+
 ##How this is different from OpenCV's existing FFIs
 OpenCV already has foreign function interfaces (FFIs) to a number of languages besides C++, including Python, Java, Matlab.
 These interfaces tend to expose pointers to C++ objects, rather than copying and translating those objects into native types of the target language.
