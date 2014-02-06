@@ -1,5 +1,5 @@
 run() {
-  cabal clean &&
+  #cabal clean &&
   sh configure.sh &&
   cabal build
 }

@@ -39,88 +39,23 @@ import Text.Printf
 import Network
 import Data.Vector
 
-{-data Service = MatUtil-}
+import OpenCV.Core.MatUtil
+import OpenCV.Features2D.Features2D
 
-{-getService :: String -> PortID -> IO Int-}
-{-getService :: String -> PortID -> IO Client-}
-{-getService name port = do-}
-  {-putStrLn $ printf "Connecting to %s." name-}
-  {-transport  <- hOpen ("localhost", port)-}
-  {-let binProto = BinaryProtocol transport-}
-  {-return (binProto, binProto)-}
+cvType = CV_32FC1
 
-{-data OpenCVClient a = MatUtilClient a => OpenCVClient -}
-  {-{ matUtilClient :: a-}
-  {-}-}
-
-{-bar :: MatUtilClient a => OpenCVClient a -> a-}
-{-bar ocv = mU ocv-}
-
-{-bar2 :: OpenCVClient a -> Client-}
-{-bar2 (OpenCVClient ocv) = cast $ ocv-}
-
-{-instance OpenCV.Core.MatUtil.MatUtilClient (OpenCVClient a) where-}
-  {-cast OpenCVClient { matUtilClient = mU } = -}
-    {-undefined-}
-    {-OpenCV.Core.MatUtil.cast mU-}
-
-{-cvType = CV_32FC1-}
-
-{-matUnpacked = MatUnpacked -}
-  {-(Just 3) -}
-  {-(Just 2) -}
-  {-(Just 1) -}
-  {-(Just $ fromList [1, 2, 3, 4, 5, 6])-}
+matUnpacked = MatUnpacked 
+  (Just 3) 
+  (Just 2) 
+  (Just 1) 
+  (Just $ fromList [1, 2, 3, 4, 5, 6])
 
 main = do
-  putStrLn "HERE"
+  putStrLn "Start"
 
   client <- OpenCVLocalhost.openCVClient
 
-  {-matUtilClient <- getService "MatUtil" $ PortNumber 9090 -}
-  {-packed <- OpenCV.pack cvType matUnpacked-}
-  {-putStrLn $ show packed-}
+  packed <- pack client cvType matUnpacked
 
-  {-transport  <- hOpen ("localhost", PortNumber 9090)-}
-  {-let binProto = BinaryProtocol transport-}
-  {-let client = (binProto, binProto)-}
-
-  {-Client.hello_func client-}
-  
-  {-sum <- Client.add client 3 4-}
-  {-putStrLn $ show sum-}
-
-  {-Client.ping client-}
-  {-print "ping()"-}
-
-  {-sum <- Client.add client 1 1-}
-  {-printf "1+1=%d\n" sum-}
-
-
-  {-let work = Work { f_Work_op = Just DIVIDE,-}
-                    {-f_Work_num1 = Just 1,-}
-                    {-f_Work_num2 = Just 0,-}
-                    {-f_Work_comment = Nothing-}
-                  {-}-}
-
-  {--- TODO - get this one working-}
-  {---catch (Client.calculate client 1 work) (\except ->-}
-  {---     printf "InvalidOp %s" (show except))-}
-
-
-  {-let work = Work { f_Work_op = Just SUBTRACT,-}
-                    {-f_Work_num1 = Just 15,-}
-                    {-f_Work_num2 = Just 10,-}
-                    {-f_Work_comment = Nothing-}
-                  {-}-}
-
-  {-diff <- Client.calculate client 1 work-}
-  {-printf "15-10=%d\n" diff-}
-
-  {-log <- SClient.getStruct client 1-}
-  {-printf "Check log: %s\n"  $ fromJust $ f_SharedStruct_value log-}
-
-  -- Close!
-  {-tClose transport-}
   putStrLn "Done"
 
