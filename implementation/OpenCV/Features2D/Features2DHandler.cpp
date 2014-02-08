@@ -4,6 +4,7 @@
 #include <opencv2/features2d.hpp>
 
 #include "OpenCV/Features2D/Features2D.h"
+#include "Util/Conversion.hpp"
 
 using namespace std;
 
@@ -18,6 +19,6 @@ void Features2DHandler::detect(std::vector<KeyPoint> & _return, const std::strin
   const cv::Ptr<cv::FeatureDetector> detector = cv::FeatureDetector::create(detectorType);
   
   vector<cv::KeyPoint> keyPoints;
-  //detector.detect( 
+  detector->detect(matToCVMat(image), keyPoints);
 }
 
