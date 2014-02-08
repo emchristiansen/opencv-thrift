@@ -41,16 +41,8 @@ void MatUtilHandler::unpack( ::MatUnpacked& _return, const  ::Mat& mat) {
   // Your implementation goes here
   printf("unpack\n");
 
-  // The syntax is easier if we make a copy.
-  //Mat matCopy(mat);
-
   // Copy the Thrift type into an OpenCV type.
   cv::Mat cvMat = matToCVMat(mat);
-  //cv::Mat cvMat(
-    //mat.rows,
-    //mat.cols,
-    //cvTypeToCVMacro(mat.type),
-    //&matCopy.data[0]);
 
   // Unpack the OpenCV type (convert its elements to doubles).
   cv::Mat cvMatUnpacked;
