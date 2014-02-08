@@ -1,4 +1,4 @@
-include "OpenCV/Core/CVDef.thrift"
+include "OpenCVThrift/OpenCV/Core/CVDef.thrift"
 
 /**
  * A direct copy of a cv::Mat.
