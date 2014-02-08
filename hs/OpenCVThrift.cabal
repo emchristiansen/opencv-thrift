@@ -7,13 +7,13 @@ Build-Type:     Simple
 library 
   Hs-Source-Dirs:
     lib,
-    lib/OpenCV/Core/gen-hs, 
-    lib/OpenCV/Features2D/gen-hs
+    lib/OpenCVThrift/OpenCV/Core/gen-hs, 
+    lib/OpenCVThrift/OpenCV/Features2D/gen-hs
 
   exposed-modules:
-    OpenCV.Core.MatUtil
-    OpenCV.Features2D.Features2D
-    OpenCV
+    OpenCVThrift.OpenCV.Core.MatUtil
+    OpenCVThrift.OpenCV.Features2D.Features2D
+    OpenCVThrift.OpenCV
 
   Build-Depends:
     base >=4, 
@@ -35,30 +35,4 @@ library
     MultiParamTypeClasses
     FunctionalDependencies
     FlexibleInstances
-  ghc-options:
-    -fglasgow-exts
 
---Executable HaskellClient
-  --Main-is: HaskellClient.hs
-  --Hs-Source-Dirs:
-    --bin
-    ----., 
-    ----modules/core,
-    ----modules/features2d
-  --Build-Depends:
-    --OpenCVThrift,
-    --base >=4, 
-    --network, 
-    --ghc-prim, 
-    --containers, 
-    --thrift, 
-    --vector, 
-    --unordered-containers, 
-    --text, 
-    --hashable, 
-    --bytestring
-  --default-language: 
-    --Haskell2010
-  --default-extensions:
-    --DeriveDataTypeable
-    --ExistentialQuantification

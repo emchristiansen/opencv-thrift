@@ -39,7 +39,7 @@ library
 Executable Client
   Main-is: HaskellClient.hs
   Hs-Source-Dirs:
-    bin
+    examples 
     lib
     ../hs/lib
     ../hs/lib/OpenCV/Core/gen-hs
