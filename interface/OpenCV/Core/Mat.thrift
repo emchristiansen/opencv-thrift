@@ -1,45 +1,45 @@
 enum CVType {
-  CV_8UC1
-  CV_8UC2
-  CV_8UC3
-  CV_8UC4
+  T8UC1
+  T8UC2
+  T8UC3
+  T8UC4
 
-  CV_8SC1
-  CV_8SC2
-  CV_8SC3
-  CV_8SC4
+  T8SC1
+  T8SC2
+  T8SC3
+  T8SC4
 
-  CV_16UC1
-  CV_16UC2
-  CV_16UC3
-  CV_16UC4
+  T16UC1
+  T16UC2
+  T16UC3
+  T16UC4
 
-  CV_16SC1
-  CV_16SC2
-  CV_16SC3
-  CV_16SC4
+  T16SC1
+  T16SC2
+  T16SC3
+  T16SC4
 
-  CV_32SC1
-  CV_32SC2
-  CV_32SC3
-  CV_32SC4
+  T32SC1
+  T32SC2
+  T32SC3
+  T32SC4
 
-  CV_32FC1
-  CV_32FC2
-  CV_32FC3
-  CV_32FC4
+  T32FC1
+  T32FC2
+  T32FC3
+  T32FC4
 
-  CV_64FC1
-  CV_64FC2
-  CV_64FC3
-  CV_64FC4
+  T64FC1
+  T64FC2
+  T64FC3
+  T64FC4
 }
 
 struct Mat {
   required i64 rows
   required i64 cols
   required i64 channels
-  required i64 type
+  required CVType type
   required binary data
 }
 

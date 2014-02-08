@@ -56,10 +56,10 @@ extern const std::map<int, const char*> _CVType_VALUES_TO_NAMES;
 class Mat {
  public:
 
-  static const char* ascii_fingerprint; // = "5042C1F503B1892AB5DAD106DC89C2DB";
-  static const uint8_t binary_fingerprint[16]; // = {0x50,0x42,0xC1,0xF5,0x03,0xB1,0x89,0x2A,0xB5,0xDA,0xD1,0x06,0xDC,0x89,0xC2,0xDB};
+  static const char* ascii_fingerprint; // = "772183795D0AE04DE478A3B6211CD3AC";
+  static const uint8_t binary_fingerprint[16]; // = {0x77,0x21,0x83,0x79,0x5D,0x0A,0xE0,0x4D,0xE4,0x78,0xA3,0xB6,0x21,0x1C,0xD3,0xAC};
 
-  Mat() : rows(0), cols(0), channels(0), type(0), data() {
+  Mat() : rows(0), cols(0), channels(0), type((CVType::type)0), data() {
   }
 
   virtual ~Mat() throw() {}
@@ -67,7 +67,7 @@ class Mat {
   int64_t rows;
   int64_t cols;
   int64_t channels;
-  int64_t type;
+  CVType::type type;
   std::string data;
 
   void __set_rows(const int64_t val) {
@@ -82,7 +82,7 @@ class Mat {
     channels = val;
   }
 
-  void __set_type(const int64_t val) {
+  void __set_type(const CVType::type val) {
     type = val;
   }
 

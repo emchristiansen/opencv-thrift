@@ -11,69 +11,69 @@
 
 
 int _kCVTypeValues[] = {
-  CVType::CV_8UC1,
-  CVType::CV_8UC2,
-  CVType::CV_8UC3,
-  CVType::CV_8UC4,
-  CVType::CV_8SC1,
-  CVType::CV_8SC2,
-  CVType::CV_8SC3,
-  CVType::CV_8SC4,
-  CVType::CV_16UC1,
-  CVType::CV_16UC2,
-  CVType::CV_16UC3,
-  CVType::CV_16UC4,
-  CVType::CV_16SC1,
-  CVType::CV_16SC2,
-  CVType::CV_16SC3,
-  CVType::CV_16SC4,
-  CVType::CV_32SC1,
-  CVType::CV_32SC2,
-  CVType::CV_32SC3,
-  CVType::CV_32SC4,
-  CVType::CV_32FC1,
-  CVType::CV_32FC2,
-  CVType::CV_32FC3,
-  CVType::CV_32FC4,
-  CVType::CV_64FC1,
-  CVType::CV_64FC2,
-  CVType::CV_64FC3,
-  CVType::CV_64FC4
+  CVType::T8UC1,
+  CVType::T8UC2,
+  CVType::T8UC3,
+  CVType::T8UC4,
+  CVType::T8SC1,
+  CVType::T8SC2,
+  CVType::T8SC3,
+  CVType::T8SC4,
+  CVType::T16UC1,
+  CVType::T16UC2,
+  CVType::T16UC3,
+  CVType::T16UC4,
+  CVType::T16SC1,
+  CVType::T16SC2,
+  CVType::T16SC3,
+  CVType::T16SC4,
+  CVType::T32SC1,
+  CVType::T32SC2,
+  CVType::T32SC3,
+  CVType::T32SC4,
+  CVType::T32FC1,
+  CVType::T32FC2,
+  CVType::T32FC3,
+  CVType::T32FC4,
+  CVType::T64FC1,
+  CVType::T64FC2,
+  CVType::T64FC3,
+  CVType::T64FC4
 };
 const char* _kCVTypeNames[] = {
-  "CV_8UC1",
-  "CV_8UC2",
-  "CV_8UC3",
-  "CV_8UC4",
-  "CV_8SC1",
-  "CV_8SC2",
-  "CV_8SC3",
-  "CV_8SC4",
-  "CV_16UC1",
-  "CV_16UC2",
-  "CV_16UC3",
-  "CV_16UC4",
-  "CV_16SC1",
-  "CV_16SC2",
-  "CV_16SC3",
-  "CV_16SC4",
-  "CV_32SC1",
-  "CV_32SC2",
-  "CV_32SC3",
-  "CV_32SC4",
-  "CV_32FC1",
-  "CV_32FC2",
-  "CV_32FC3",
-  "CV_32FC4",
-  "CV_64FC1",
-  "CV_64FC2",
-  "CV_64FC3",
-  "CV_64FC4"
+  "T8UC1",
+  "T8UC2",
+  "T8UC3",
+  "T8UC4",
+  "T8SC1",
+  "T8SC2",
+  "T8SC3",
+  "T8SC4",
+  "T16UC1",
+  "T16UC2",
+  "T16UC3",
+  "T16UC4",
+  "T16SC1",
+  "T16SC2",
+  "T16SC3",
+  "T16SC4",
+  "T32SC1",
+  "T32SC2",
+  "T32SC3",
+  "T32SC4",
+  "T32FC1",
+  "T32FC2",
+  "T32FC3",
+  "T32FC4",
+  "T64FC1",
+  "T64FC2",
+  "T64FC3",
+  "T64FC4"
 };
 const std::map<int, const char*> _CVType_VALUES_TO_NAMES(::apache::thrift::TEnumIterator(28, _kCVTypeValues, _kCVTypeNames), ::apache::thrift::TEnumIterator(-1, NULL, NULL));
 
-const char* Mat::ascii_fingerprint = "5042C1F503B1892AB5DAD106DC89C2DB";
-const uint8_t Mat::binary_fingerprint[16] = {0x50,0x42,0xC1,0xF5,0x03,0xB1,0x89,0x2A,0xB5,0xDA,0xD1,0x06,0xDC,0x89,0xC2,0xDB};
+const char* Mat::ascii_fingerprint = "772183795D0AE04DE478A3B6211CD3AC";
+const uint8_t Mat::binary_fingerprint[16] = {0x77,0x21,0x83,0x79,0x5D,0x0A,0xE0,0x4D,0xE4,0x78,0xA3,0xB6,0x21,0x1C,0xD3,0xAC};
 
 uint32_t Mat::read(::apache::thrift::protocol::TProtocol* iprot) {
 
@@ -125,8 +125,10 @@ uint32_t Mat::read(::apache::thrift::protocol::TProtocol* iprot) {
         }
         break;
       case -4:
-        if (ftype == ::apache::thrift::protocol::T_I64) {
-          xfer += iprot->readI64(this->type);
+        if (ftype == ::apache::thrift::protocol::T_I32) {
+          int32_t ecast0;
+          xfer += iprot->readI32(ecast0);
+          this->type = (CVType::type)ecast0;
           isset_type = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -170,8 +172,8 @@ uint32_t Mat::write(::apache::thrift::protocol::TProtocol* oprot) const {
   xfer += oprot->writeBinary(this->data);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("type", ::apache::thrift::protocol::T_I64, -4);
-  xfer += oprot->writeI64(this->type);
+  xfer += oprot->writeFieldBegin("type", ::apache::thrift::protocol::T_I32, -4);
+  xfer += oprot->writeI32((int32_t)this->type);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("channels", ::apache::thrift::protocol::T_I64, -3);
@@ -255,14 +257,14 @@ uint32_t MatUnpacked::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->data.clear();
-            uint32_t _size0;
-            ::apache::thrift::protocol::TType _etype3;
-            xfer += iprot->readListBegin(_etype3, _size0);
-            this->data.resize(_size0);
-            uint32_t _i4;
-            for (_i4 = 0; _i4 < _size0; ++_i4)
+            uint32_t _size1;
+            ::apache::thrift::protocol::TType _etype4;
+            xfer += iprot->readListBegin(_etype4, _size1);
+            this->data.resize(_size1);
+            uint32_t _i5;
+            for (_i5 = 0; _i5 < _size1; ++_i5)
             {
-              xfer += iprot->readDouble(this->data[_i4]);
+              xfer += iprot->readDouble(this->data[_i5]);
             }
             xfer += iprot->readListEnd();
           }
@@ -298,10 +300,10 @@ uint32_t MatUnpacked::write(::apache::thrift::protocol::TProtocol* oprot) const 
   xfer += oprot->writeFieldBegin("data", ::apache::thrift::protocol::T_LIST, -4);
   {
     xfer += oprot->writeListBegin(::apache::thrift::protocol::T_DOUBLE, static_cast<uint32_t>(this->data.size()));
-    std::vector<double> ::const_iterator _iter5;
-    for (_iter5 = this->data.begin(); _iter5 != this->data.end(); ++_iter5)
+    std::vector<double> ::const_iterator _iter6;
+    for (_iter6 = this->data.begin(); _iter6 != this->data.end(); ++_iter6)
     {
-      xfer += oprot->writeDouble((*_iter5));
+      xfer += oprot->writeDouble((*_iter6));
     }
     xfer += oprot->writeListEnd();
   }
