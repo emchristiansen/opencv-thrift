@@ -1,4 +1,4 @@
-#include "Util/Conversion.hpp"
+#include "OpenCV/Core/Conversion.hpp"
 
 #include <opencv2/core.hpp>
 
@@ -180,4 +180,20 @@ Mat cvMatToMat(const cv::Mat& cvMat) {
   mat.data.assign(cvMat.begin<uchar>(), cvMat.end<uchar>());
 
   return mat;
+}
+
+KeyPoint cvKeyPointToKeyPoint(const cv::KeyPoint cvKeyPoint) {
+  Point2d point2d;
+  point2d.x = cvKeyPoint.pt.x;
+  point2d.y = cvKeyPoint.pt.y;
+
+  KeyPoint keyPoint;
+  keyPoint.pt = point2d;
+  keyPoint.size = cvKeyPoint.size;
+  keyPoint.angle = cvKeyPoint.angle;
+  keyPoint.response = cvKeyPoint.response;
+  keyPoint.octave = cvKeyPoint.octave;
+  keyPoint.class_id = cvKeyPoint.class_id;
+
+  return keyPoint;
 }

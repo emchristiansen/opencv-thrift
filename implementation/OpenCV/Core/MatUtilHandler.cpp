@@ -3,7 +3,7 @@
 #include <opencv2/core.hpp>
 
 #include "OpenCV/Core/MatUtil.h"
-#include "Util/Conversion.hpp"
+#include "OpenCV/Core/Conversion.hpp"
 
 MatUtilHandler::MatUtilHandler() {
   // Your initialization goes here
