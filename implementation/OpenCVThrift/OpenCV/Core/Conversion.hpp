@@ -1,10 +1,10 @@
-#ifndef _OpenCV_Core_Conversion_
-#define _OpenCV_Core_Conversion_
+#ifndef _OpenCVThrift_OpenCV_Core_Conversion_
+#define _OpenCVThrift_OpenCV_Core_Conversion_
 
 #include <opencv2/core.hpp>
 
-#include "OpenCV/Core/Mat_types.h"
-#include "OpenCV/Core/Types_types.h"
+#include "OpenCVThrift/OpenCV/Core/Mat_types.h"
+#include "OpenCVThrift/OpenCV/Core/Types_types.h"
 
 /**
  * Converts a Thrift type to its OpenCV macro-definition equivalent.

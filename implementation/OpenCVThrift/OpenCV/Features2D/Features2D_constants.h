@@ -7,7 +7,7 @@
 #ifndef Features2D_CONSTANTS_H
 #define Features2D_CONSTANTS_H
 
-#include "OpenCV/Features2D/Features2D_types.h"
+#include "OpenCVThrift/OpenCV/Features2D/Features2D_types.h"
 
 
 

@@ -1,9 +1,9 @@
-#include "OpenCV/Core/MatUtilHandler.hpp"
+#include "OpenCVThrift/OpenCV/Core/MatUtilHandler.hpp"
 
 #include <opencv2/core.hpp>
 
-#include "OpenCV/Core/MatUtil.h"
-#include "OpenCV/Core/Conversion.hpp"
+#include "OpenCVThrift/OpenCV/Core/MatUtil.h"
+#include "OpenCVThrift/OpenCV/Core/Conversion.hpp"
 
 MatUtilHandler::MatUtilHandler() {
   // Your initialization goes here

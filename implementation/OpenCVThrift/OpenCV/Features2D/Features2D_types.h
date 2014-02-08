@@ -13,8 +13,8 @@
 #include <thrift/transport/TTransport.h>
 
 #include <thrift/cxxfunctional.h>
-#include "OpenCV/Core/Mat_types.h"
-#include "OpenCV/Core/Types_types.h"
+#include "OpenCVThrift/OpenCV/Core/Mat_types.h"
+#include "OpenCVThrift/OpenCV/Core/Types_types.h"
 
 
 

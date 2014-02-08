@@ -8,7 +8,7 @@
 #define Features2D_H
 
 #include <thrift/TDispatchProcessor.h>
-#include "OpenCV/Features2D/Features2D_types.h"
+#include "OpenCVThrift/OpenCV/Features2D/Features2D_types.h"
 
 
 

@@ -7,7 +7,7 @@
 #ifndef CVDef_CONSTANTS_H
 #define CVDef_CONSTANTS_H
 
-#include "OpenCV/Core/CVDef_types.h"
+#include "OpenCVThrift/OpenCV/Core/CVDef_types.h"
 
 
 

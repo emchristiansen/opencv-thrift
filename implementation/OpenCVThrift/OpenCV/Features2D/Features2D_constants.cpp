@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "OpenCV/Features2D/Features2D_constants.h"
+#include "OpenCVThrift/OpenCV/Features2D/Features2D_constants.h"
 
 
 

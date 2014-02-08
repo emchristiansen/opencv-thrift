@@ -7,7 +7,7 @@
 #ifndef MatUtil_CONSTANTS_H
 #define MatUtil_CONSTANTS_H
 
-#include "OpenCV/Core/MatUtil_types.h"
+#include "OpenCVThrift/OpenCV/Core/MatUtil_types.h"
 
 
 

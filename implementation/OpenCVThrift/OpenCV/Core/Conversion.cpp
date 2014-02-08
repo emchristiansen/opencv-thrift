@@ -1,8 +1,8 @@
-#include "OpenCV/Core/Conversion.hpp"
+#include "OpenCVThrift/OpenCV/Core/Conversion.hpp"
 
 #include <opencv2/core.hpp>
 
-#include "OpenCV/Core/Mat_types.h"
+#include "OpenCVThrift/OpenCV/Core/Mat_types.h"
 
 using namespace std;
 

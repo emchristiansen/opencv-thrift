@@ -7,7 +7,7 @@
 #ifndef Types_CONSTANTS_H
 #define Types_CONSTANTS_H
 
-#include "OpenCV/Core/Types_types.h"
+#include "OpenCVThrift/OpenCV/Core/Types_types.h"
 
 
 

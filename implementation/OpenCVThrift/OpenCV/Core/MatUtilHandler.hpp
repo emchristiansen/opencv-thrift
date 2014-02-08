@@ -1,7 +1,7 @@
-#ifndef _OpenCV_Core_MatUtilHandler_
-#define _OpenCV_Core_MatUtilHandler_
+#ifndef _OpenCVThrift_OpenCV_Core_MatUtilHandler_
+#define _OpenCVThrift_OpenCV_Core_MatUtilHandler_
 
-#include "OpenCV/Core/MatUtil.h"
+#include "OpenCVThrift/OpenCV/Core/MatUtil.h"
 
 class MatUtilHandler : virtual public MatUtilIf {
  public:
@@ -13,4 +13,4 @@ class MatUtilHandler : virtual public MatUtilIf {
 };
 
 
-#endif // _OpenCV_Core_MatUtilHandler_
+#endif // _OpenCVThrift_OpenCV_Core_MatUtilHandler_

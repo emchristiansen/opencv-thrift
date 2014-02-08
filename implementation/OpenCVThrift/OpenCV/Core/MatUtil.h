@@ -8,7 +8,7 @@
 #define MatUtil_H
 
 #include <thrift/TDispatchProcessor.h>
-#include "OpenCV/Core/MatUtil_types.h"
+#include "OpenCVThrift/OpenCV/Core/MatUtil_types.h"
 
 
 

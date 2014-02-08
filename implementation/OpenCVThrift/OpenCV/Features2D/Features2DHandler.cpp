@@ -1,10 +1,10 @@
-#include "OpenCV/Features2D/Features2DHandler.hpp"
+#include "OpenCVThrift/OpenCV/Features2D/Features2DHandler.hpp"
 
 #include <opencv2/core.hpp>
 #include <opencv2/features2d.hpp>
 
-#include "OpenCV/Features2D/Features2D.h"
-#include "OpenCV/Core/Conversion.hpp"
+#include "OpenCVThrift/OpenCV/Features2D/Features2D.h"
+#include "OpenCVThrift/OpenCV/Core/Conversion.hpp"
 
 using namespace std;
 

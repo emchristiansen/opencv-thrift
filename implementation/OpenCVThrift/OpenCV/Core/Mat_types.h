@@ -13,7 +13,7 @@
 #include <thrift/transport/TTransport.h>
 
 #include <thrift/cxxfunctional.h>
-#include "OpenCV/Core/CVDef_types.h"
+#include "OpenCVThrift/OpenCV/Core/CVDef_types.h"
 
 
 

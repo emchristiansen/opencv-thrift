@@ -1,7 +1,7 @@
-#ifndef _OpenCV_Features2D_Features2DHandler_
-#define _OpenCV_Features2D_Features2DHandler_
+#ifndef _OpenCVThrift_OpenCV_Features2D_Features2DHandler_
+#define _OpenCVThrift_OpenCV_Features2D_Features2DHandler_
 
-#include "OpenCV/Features2D/Features2D.h"
+#include "OpenCVThrift/OpenCV/Features2D/Features2D.h"
 
 class Features2DHandler : virtual public Features2DIf {
  public:
@@ -11,4 +11,4 @@ class Features2DHandler : virtual public Features2DIf {
 };
 
 
-#endif // _OpenCV_Features2D_Features2DHandler_
+#endif // _OpenCVThrift_OpenCV_Features2D_Features2DHandler_

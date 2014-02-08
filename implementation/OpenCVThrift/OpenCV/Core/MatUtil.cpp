@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "OpenCV/Core/MatUtil.h"
+#include "OpenCVThrift/OpenCV/Core/MatUtil.h"
 
 
 
