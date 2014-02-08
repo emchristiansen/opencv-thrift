@@ -5,6 +5,10 @@ project(OpenCVThrift)
 include(FindPkgConfig)
 pkg_check_modules(thrift REQUIRED thrift)
 
+find_package(OpenCV)
+
+#We assume we're using Clang to build.
+
 ## SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++ -lpthread")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
 
@@ -18,7 +22,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(OpenCVThrift ${sources})
 
-target_link_libraries(OpenCVThrift ${thrift_LIBRARIES})
+target_link_libraries(OpenCVThrift ${thrift_LIBRARIES} ${OpenCV_LIBS})
 
 #add_executable(Server "OpenCVServer.cpp")
 
