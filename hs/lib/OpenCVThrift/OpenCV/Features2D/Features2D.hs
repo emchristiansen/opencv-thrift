@@ -1,11 +1,4 @@
-module OpenCVThrift.OpenCV.Features2D.Features2D
-  ( module Features2D_Consts
-  , module Features2D_Types
-  , Client (..)
-  , ToClient
-  , toClient
-  , detect
-  ) where
+module OpenCVThrift.OpenCV.Features2D.Features2D where
   
 import Thrift.Protocol
 import Thrift.Transport
@@ -14,9 +7,8 @@ import Data.Text.Lazy
 
 import Mat_Types
 
-import Features2D_Consts
-import Features2D_Types
-import Types_Types
+import OpenCVThrift.OpenCV.Core
+import OpenCVThrift.OpenCV.Features2D
 
 import qualified Features2D_Client
 

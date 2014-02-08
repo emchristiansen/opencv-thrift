@@ -1,18 +1,4 @@
-module OpenCVThrift.OpenCV.Core.MatUtil 
-  ( module Mat_Consts
-  , module Mat_Types
-  , module Types_Consts
-  , module Types_Types
-  , module CVDef_Consts
-  , module CVDef_Types
-  , module MatUtil_Consts
-  , module MatUtil_Types
-  , Client (..)
-  , ToClient
-  , toClient
-  , pack
-  ) where
-  
+module OpenCVThrift.OpenCV.Core.MatUtil where
 
 import Thrift.Protocol
 import Thrift.Transport
@@ -28,14 +14,7 @@ import Thrift.Transport
 
 {-import Internal.Util-}
 
-import Mat_Consts
-import Mat_Types
-import MatUtil_Consts
-import MatUtil_Types
-import Types_Consts
-import Types_Types
-import CVDef_Consts
-import CVDef_Types
+import OpenCVThrift.OpenCV.Core
 
 import qualified MatUtil_Client
 
