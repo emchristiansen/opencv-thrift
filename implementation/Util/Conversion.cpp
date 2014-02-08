@@ -77,6 +77,69 @@ CVType::type cvMacroToCVType(const int cvMacro) {
   switch(cvMacro) {
     case CV_8UC1:
       return CVType::type::T8UC1;
+    case CV_8UC2:
+      return CVType::type::T8UC2;
+    case CV_8UC3:
+      return CVType::type::T8UC3;
+    case CV_8UC4:
+      return CVType::type::T8UC4;
+
+    case CV_8SC1:
+      return CVType::type::T8SC1;
+    case CV_8SC2:
+      return CVType::type::T8SC2;
+    case CV_8SC3:
+      return CVType::type::T8SC3;
+    case CV_8SC4:
+      return CVType::type::T8SC4;
+
+    case CV_16UC1:
+      return CVType::type::T16UC1;
+    case CV_16UC2:
+      return CVType::type::T16UC2;
+    case CV_16UC3:
+      return CVType::type::T16UC3;
+    case CV_16UC4:
+      return CVType::type::T16UC4;
+
+    case CV_16SC1:
+      return CVType::type::T16SC1;
+    case CV_16SC2:
+      return CVType::type::T16SC2;
+    case CV_16SC3:
+      return CVType::type::T16SC3;
+    case CV_16SC4:
+      return CVType::type::T16SC4;
+
+    case CV_32SC1:
+      return CVType::type::T32SC1;
+    case CV_32SC2:
+      return CVType::type::T32SC2;
+    case CV_32SC3:
+      return CVType::type::T32SC3;
+    case CV_32SC4:
+      return CVType::type::T32SC4;
+
+    case CV_32FC1:
+      return CVType::type::T32FC1;
+    case CV_32FC2:
+      return CVType::type::T32FC2;
+    case CV_32FC3:
+      return CVType::type::T32FC3;
+    case CV_32FC4:
+      return CVType::type::T32FC4;
+
+    case CV_64FC1:
+      return CVType::type::T64FC1;
+    case CV_64FC2:
+      return CVType::type::T64FC2;
+    case CV_64FC3:
+      return CVType::type::T64FC3;
+    case CV_64FC4:
+      return CVType::type::T64FC4;
+
+    default:
+      assert(false);
   }
 }
 
