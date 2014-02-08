@@ -14,39 +14,10 @@
 
 #include <thrift/cxxfunctional.h>
 #include "OpenCV/Core/Mat_types.h"
+#include "OpenCV/Core/Types_types.h"
 
 
 
-
-
-class KeyPoint {
- public:
-
-  static const char* ascii_fingerprint; // = "99914B932BD37A50B983C5E7C90AE93B";
-  static const uint8_t binary_fingerprint[16]; // = {0x99,0x91,0x4B,0x93,0x2B,0xD3,0x7A,0x50,0xB9,0x83,0xC5,0xE7,0xC9,0x0A,0xE9,0x3B};
-
-  KeyPoint() {
-  }
-
-  virtual ~KeyPoint() throw() {}
-
-
-  bool operator == (const KeyPoint & /* rhs */) const
-  {
-    return true;
-  }
-  bool operator != (const KeyPoint &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const KeyPoint & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
-
-};
-
-void swap(KeyPoint &a, KeyPoint &b);
 
 
 

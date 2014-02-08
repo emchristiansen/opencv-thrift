@@ -152,7 +152,7 @@ uint32_t Features2D_detect_result::write(::apache::thrift::protocol::TProtocol* 
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
     {
       xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->success.size()));
-      std::vector<KeyPoint> ::const_iterator _iter5;
+      std::vector< ::KeyPoint> ::const_iterator _iter5;
       for (_iter5 = this->success.begin(); _iter5 != this->success.end(); ++_iter5)
       {
         xfer += (*_iter5).write(oprot);
@@ -218,7 +218,7 @@ uint32_t Features2D_detect_presult::read(::apache::thrift::protocol::TProtocol* 
   return xfer;
 }
 
-void Features2DClient::detect(std::vector<KeyPoint> & _return, const std::string& detector, const  ::Mat& image)
+void Features2DClient::detect(std::vector< ::KeyPoint> & _return, const std::string& detector, const  ::Mat& image)
 {
   send_detect(detector, image);
   recv_detect(_return);
@@ -239,7 +239,7 @@ void Features2DClient::send_detect(const std::string& detector, const  ::Mat& im
   oprot_->getTransport()->flush();
 }
 
-void Features2DClient::recv_detect(std::vector<KeyPoint> & _return)
+void Features2DClient::recv_detect(std::vector< ::KeyPoint> & _return)
 {
 
   int32_t rseqid = 0;

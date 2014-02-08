@@ -7,7 +7,7 @@ class Features2DHandler : virtual public Features2DIf {
  public:
   Features2DHandler();
 
-  void detect(std::vector<KeyPoint> & _return, const std::string& detector, const  ::Mat& image);
+  void detect(std::vector< ::KeyPoint> & _return, const std::string& detector, const  ::Mat& image);
 };
 
 

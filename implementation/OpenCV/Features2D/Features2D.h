@@ -15,7 +15,7 @@
 class Features2DIf {
  public:
   virtual ~Features2DIf() {}
-  virtual void detect(std::vector<KeyPoint> & _return, const std::string& detector, const  ::Mat& image) = 0;
+  virtual void detect(std::vector< ::KeyPoint> & _return, const std::string& detector, const  ::Mat& image) = 0;
 };
 
 class Features2DIfFactory {
@@ -45,7 +45,7 @@ class Features2DIfSingletonFactory : virtual public Features2DIfFactory {
 class Features2DNull : virtual public Features2DIf {
  public:
   virtual ~Features2DNull() {}
-  void detect(std::vector<KeyPoint> & /* _return */, const std::string& /* detector */, const  ::Mat& /* image */) {
+  void detect(std::vector< ::KeyPoint> & /* _return */, const std::string& /* detector */, const  ::Mat& /* image */) {
     return;
   }
 };
@@ -124,19 +124,19 @@ typedef struct _Features2D_detect_result__isset {
 class Features2D_detect_result {
  public:
 
-  static const char* ascii_fingerprint; // = "14741A9B0B08E061D8264D94A4A44792";
-  static const uint8_t binary_fingerprint[16]; // = {0x14,0x74,0x1A,0x9B,0x0B,0x08,0xE0,0x61,0xD8,0x26,0x4D,0x94,0xA4,0xA4,0x47,0x92};
+  static const char* ascii_fingerprint; // = "7204B800EC302039A020352D2E17125B";
+  static const uint8_t binary_fingerprint[16]; // = {0x72,0x04,0xB8,0x00,0xEC,0x30,0x20,0x39,0xA0,0x20,0x35,0x2D,0x2E,0x17,0x12,0x5B};
 
   Features2D_detect_result() {
   }
 
   virtual ~Features2D_detect_result() throw() {}
 
-  std::vector<KeyPoint>  success;
+  std::vector< ::KeyPoint>  success;
 
   _Features2D_detect_result__isset __isset;
 
-  void __set_success(const std::vector<KeyPoint> & val) {
+  void __set_success(const std::vector< ::KeyPoint> & val) {
     success = val;
   }
 
@@ -165,13 +165,13 @@ typedef struct _Features2D_detect_presult__isset {
 class Features2D_detect_presult {
  public:
 
-  static const char* ascii_fingerprint; // = "14741A9B0B08E061D8264D94A4A44792";
-  static const uint8_t binary_fingerprint[16]; // = {0x14,0x74,0x1A,0x9B,0x0B,0x08,0xE0,0x61,0xD8,0x26,0x4D,0x94,0xA4,0xA4,0x47,0x92};
+  static const char* ascii_fingerprint; // = "7204B800EC302039A020352D2E17125B";
+  static const uint8_t binary_fingerprint[16]; // = {0x72,0x04,0xB8,0x00,0xEC,0x30,0x20,0x39,0xA0,0x20,0x35,0x2D,0x2E,0x17,0x12,0x5B};
 
 
   virtual ~Features2D_detect_presult() throw() {}
 
-  std::vector<KeyPoint> * success;
+  std::vector< ::KeyPoint> * success;
 
   _Features2D_detect_presult__isset __isset;
 
@@ -204,9 +204,9 @@ class Features2DClient : virtual public Features2DIf {
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void detect(std::vector<KeyPoint> & _return, const std::string& detector, const  ::Mat& image);
+  void detect(std::vector< ::KeyPoint> & _return, const std::string& detector, const  ::Mat& image);
   void send_detect(const std::string& detector, const  ::Mat& image);
-  void recv_detect(std::vector<KeyPoint> & _return);
+  void recv_detect(std::vector< ::KeyPoint> & _return);
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -255,7 +255,7 @@ class Features2DMultiface : virtual public Features2DIf {
     ifaces_.push_back(iface);
   }
  public:
-  void detect(std::vector<KeyPoint> & _return, const std::string& detector, const  ::Mat& image) {
+  void detect(std::vector< ::KeyPoint> & _return, const std::string& detector, const  ::Mat& image) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {

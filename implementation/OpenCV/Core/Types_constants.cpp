@@ -4,10 +4,14 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "OpenCV/Features2D/Features2D_types.h"
+#include "OpenCV/Core/Types_constants.h"
 
-#include <algorithm>
 
+
+const TypesConstants g_Types_constants;
+
+TypesConstants::TypesConstants() {
+}
 
 
 

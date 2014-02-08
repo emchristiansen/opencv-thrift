@@ -9,7 +9,7 @@ struct KeyPoint {
   required double size
   required double angle
   required double response
-  required int octave
-  required int class_id
+  required i64 octave
+  required i64 class_id
 }
   
