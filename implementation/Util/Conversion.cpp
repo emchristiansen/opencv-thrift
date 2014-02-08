@@ -74,6 +74,10 @@ int cvTypeToCVMacro(const CVType::type cvType) {
 }
 
 CVType::type cvMacroToCVType(const int cvMacro) {
+  switch(cvMacro) {
+    case CV_8UC1:
+      return CVType::type::T8UC1;
+  }
 }
 
 CVType::type doubleTypeToCVType(const int numChannels) {
