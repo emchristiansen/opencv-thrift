@@ -1,48 +1,23 @@
-enum CVType {
-  T8UC1
-  T8UC2
-  T8UC3
-  T8UC4
+include "OpenCV/Core/CVDef.thrift"
 
-  T8SC1
-  T8SC2
-  T8SC3
-  T8SC4
-
-  T16UC1
-  T16UC2
-  T16UC3
-  T16UC4
-
-  T16SC1
-  T16SC2
-  T16SC3
-  T16SC4
-
-  T32SC1
-  T32SC2
-  T32SC3
-  T32SC4
-
-  T32FC1
-  T32FC2
-  T32FC3
-  T32FC4
-
-  T64FC1
-  T64FC2
-  T64FC3
-  T64FC4
-}
-
+/**
+ * A direct copy of a cv::Mat.
+ * Data is stored as a binary blob, just like it is in OpenCV.
+ */
 struct Mat {
   required i64 rows
   required i64 cols
   required i64 channels
-  required CVType type
+  required CVDef.CVType type
   required binary data
 }
 
+/**
+ * Like a `Mat`, but each element of the 3D array is represented as a double.
+ * This enables easy client-side manipulation of the data, at the cost of
+ * increased memory usage.
+ * Functions are provided to convert between a `MatUnpacked` and a `Mat`. 
+ */
 struct MatUnpacked {
   required i64 rows
   required i64 cols
