@@ -13,14 +13,15 @@ find_package(OpenCV)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
 
 # All cpp files.
-file(GLOB_RECURSE sources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "OpenCV/**.cpp")
+file(GLOB_RECURSE openCVSources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "OpenCV/**.cpp")
+file(GLOB_RECURSE utilSources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "Util/**.cpp")
 
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
-message(STATUS ${sources})
+message(STATUS ${openCVSources} ${utilSources})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(OpenCVThrift ${sources})
+add_library(OpenCVThrift ${openCVSources} ${utilSources})
 
 target_link_libraries(OpenCVThrift ${thrift_LIBRARIES} ${OpenCV_LIBS})
 

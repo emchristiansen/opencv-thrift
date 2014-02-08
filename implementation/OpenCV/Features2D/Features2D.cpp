@@ -30,8 +30,8 @@ uint32_t Features2D_detect_args::read(::apache::thrift::protocol::TProtocol* ipr
     {
       case -1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->detector);
-          this->__isset.detector = true;
+          xfer += iprot->readString(this->detectorType);
+          this->__isset.detectorType = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -64,8 +64,8 @@ uint32_t Features2D_detect_args::write(::apache::thrift::protocol::TProtocol* op
   xfer += this->image.write(oprot);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("detector", ::apache::thrift::protocol::T_STRING, -1);
-  xfer += oprot->writeString(this->detector);
+  xfer += oprot->writeFieldBegin("detectorType", ::apache::thrift::protocol::T_STRING, -1);
+  xfer += oprot->writeString(this->detectorType);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -81,8 +81,8 @@ uint32_t Features2D_detect_pargs::write(::apache::thrift::protocol::TProtocol* o
   xfer += (*(this->image)).write(oprot);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("detector", ::apache::thrift::protocol::T_STRING, -1);
-  xfer += oprot->writeString((*(this->detector)));
+  xfer += oprot->writeFieldBegin("detectorType", ::apache::thrift::protocol::T_STRING, -1);
+  xfer += oprot->writeString((*(this->detectorType)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -218,19 +218,19 @@ uint32_t Features2D_detect_presult::read(::apache::thrift::protocol::TProtocol* 
   return xfer;
 }
 
-void Features2DClient::detect(std::vector< ::KeyPoint> & _return, const std::string& detector, const  ::Mat& image)
+void Features2DClient::detect(std::vector< ::KeyPoint> & _return, const std::string& detectorType, const  ::Mat& image)
 {
-  send_detect(detector, image);
+  send_detect(detectorType, image);
   recv_detect(_return);
 }
 
-void Features2DClient::send_detect(const std::string& detector, const  ::Mat& image)
+void Features2DClient::send_detect(const std::string& detectorType, const  ::Mat& image)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("detect", ::apache::thrift::protocol::T_CALL, cseqid);
 
   Features2D_detect_pargs args;
-  args.detector = &detector;
+  args.detectorType = &detectorType;
   args.image = &image;
   args.write(oprot_);
 
@@ -319,7 +319,7 @@ void Features2DProcessor::process_detect(int32_t seqid, ::apache::thrift::protoc
 
   Features2D_detect_result result;
   try {
-    iface_->detect(result.success, args.detector, args.image);
+    iface_->detect(result.success, args.detectorType, args.image);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
