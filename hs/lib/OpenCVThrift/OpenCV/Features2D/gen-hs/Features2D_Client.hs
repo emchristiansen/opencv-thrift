@@ -34,19 +34,20 @@ import Thrift
 import Thrift.Types ()
 
 import qualified Mat_Types
+import qualified Types_Types
 
 
 import Features2D_Types
 import Features2D
 seqid = newIORef 0
-detect (ip,op) arg_detector arg_image = do
-  send_detect op arg_detector arg_image
+detect (ip,op) arg_detectorType arg_image = do
+  send_detect op arg_detectorType arg_image
   recv_detect ip
-send_detect op arg_detector arg_image = do
+send_detect op arg_detectorType arg_image = do
   seq <- seqid
   seqn <- readIORef seq
   writeMessageBegin op ("detect", M_CALL, seqn)
-  write_Detect_args op (Detect_args{f_Detect_args_detector=Just arg_detector,f_Detect_args_image=Just arg_image})
+  write_Detect_args op (Detect_args{f_Detect_args_detectorType=Just arg_detectorType,f_Detect_args_image=Just arg_image})
   writeMessageEnd op
   tFlush (getTransport op)
 recv_detect ip = do

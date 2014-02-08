@@ -32,14 +32,15 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
-import qualified Mat_Types
+import CVDef_Types
+import Mat_Types
 
 
 import MatUtil_Types
 import qualified MatUtil_Iface as Iface
 -- HELPER FUNCTIONS AND STRUCTURES --
 
-data Pack_args = Pack_args{f_Pack_args_type :: Maybe Mat_Types.CVType,f_Pack_args_matUnpacked :: Maybe Mat_Types.MatUnpacked} deriving (Show,Eq,Typeable)
+data Pack_args = Pack_args{f_Pack_args_type :: Maybe CVType,f_Pack_args_matUnpacked :: Maybe Mat_Types.MatUnpacked} deriving (Show,Eq,Typeable)
 instance Hashable Pack_args where
   hashWithSalt salt record = salt   `hashWithSalt` f_Pack_args_type record   `hashWithSalt` f_Pack_args_matUnpacked record  
 write_Pack_args oprot record = do
@@ -65,7 +66,7 @@ read_Pack_args_fields iprot record = do
           skip iprot _t3
           read_Pack_args_fields iprot record
       -2 -> if _t3 == T_STRUCT then do
-        s <- (Mat_Types.read_MatUnpacked iprot)
+        s <- (read_MatUnpacked iprot)
         read_Pack_args_fields iprot record{f_Pack_args_matUnpacked=Just s}
         else do
           skip iprot _t3
@@ -95,7 +96,7 @@ read_Pack_result_fields iprot record = do
   if _t8 == T_STOP then return record else
     case _id9 of 
       0 -> if _t8 == T_STRUCT then do
-        s <- (Mat_Types.read_Mat iprot)
+        s <- (read_Mat iprot)
         read_Pack_result_fields iprot record{f_Pack_result_success=Just s}
         else do
           skip iprot _t8
@@ -125,7 +126,7 @@ read_Unpack_args_fields iprot record = do
   if _t13 == T_STOP then return record else
     case _id14 of 
       -1 -> if _t13 == T_STRUCT then do
-        s <- (Mat_Types.read_Mat iprot)
+        s <- (read_Mat iprot)
         read_Unpack_args_fields iprot record{f_Unpack_args_mat=Just s}
         else do
           skip iprot _t13
@@ -155,7 +156,7 @@ read_Unpack_result_fields iprot record = do
   if _t18 == T_STOP then return record else
     case _id19 of 
       0 -> if _t18 == T_STRUCT then do
-        s <- (Mat_Types.read_MatUnpacked iprot)
+        s <- (read_MatUnpacked iprot)
         read_Unpack_result_fields iprot record{f_Unpack_result_success=Just s}
         else do
           skip iprot _t18

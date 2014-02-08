@@ -7,6 +7,7 @@ Build-Type:     Simple
 library 
   Hs-Source-Dirs:
     lib,
+    lib/OpenCVThrift/gen-hs,
     lib/OpenCVThrift/OpenCV/Core/gen-hs, 
     lib/OpenCVThrift/OpenCV/Features2D/gen-hs
 

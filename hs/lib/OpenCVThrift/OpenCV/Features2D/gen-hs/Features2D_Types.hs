@@ -33,25 +33,6 @@ import Thrift
 import Thrift.Types ()
 
 import qualified Mat_Types
+import qualified Types_Types
 
 
-data KeyPoint = KeyPoint deriving (Show,Eq,Typeable)
-instance Hashable KeyPoint where
-  hashWithSalt salt record = salt  
-write_KeyPoint oprot record = do
-  writeStructBegin oprot "KeyPoint"
-  writeFieldStop oprot
-  writeStructEnd oprot
-read_KeyPoint_fields iprot record = do
-  (_,_t3,_id4) <- readFieldBegin iprot
-  if _t3 == T_STOP then return record else
-    case _id4 of 
-      _ -> do
-        skip iprot _t3
-        readFieldEnd iprot
-        read_KeyPoint_fields iprot record
-read_KeyPoint iprot = do
-  _ <- readStructBegin iprot
-  record <- read_KeyPoint_fields iprot (KeyPoint{})
-  readStructEnd iprot
-  return record

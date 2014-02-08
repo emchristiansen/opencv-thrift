@@ -32,6 +32,7 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
+import qualified CVDef_Types
 import qualified Mat_Types
 
 

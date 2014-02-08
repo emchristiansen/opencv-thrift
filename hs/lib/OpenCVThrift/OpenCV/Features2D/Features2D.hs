@@ -1,4 +1,4 @@
-module OpenCV.Features2D.Features2D
+module OpenCVThrift.OpenCV.Features2D.Features2D
   ( module Features2D_Consts
   , module Features2D_Types
   , Client (..)
@@ -16,6 +16,7 @@ import Mat_Types
 
 import Features2D_Consts
 import Features2D_Types
+import Types_Types
 
 import qualified Features2D_Client
 

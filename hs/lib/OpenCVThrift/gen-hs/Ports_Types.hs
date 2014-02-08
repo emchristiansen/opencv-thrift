@@ -12,7 +12,7 @@
 -- DO NOT EDIT UNLESS YOU ARE SURE YOU KNOW WHAT YOU ARE DOING --
 -----------------------------------------------------------------
 
-module MatUtil_Consts where
+module Ports_Types where
 import Prelude ( Bool(..), Enum, Double, String, Maybe(..),
                  Eq, Show, Ord,
                  return, length, IO, fromIntegral, fromEnum, toEnum,
@@ -32,8 +32,4 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
-import qualified CVDef_Types
-import qualified Mat_Types
 
-
-import MatUtil_Types

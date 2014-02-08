@@ -32,71 +32,10 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
+import CVDef_Types
 
-data CVType = CV_8UC1|CV_8UC2|CV_8UC3|CV_8UC4|CV_8SC1|CV_8SC2|CV_8SC3|CV_8SC4|CV_16UC1|CV_16UC2|CV_16UC3|CV_16UC4|CV_16SC1|CV_16SC2|CV_16SC3|CV_16SC4|CV_32SC1|CV_32SC2|CV_32SC3|CV_32SC4|CV_32FC1|CV_32FC2|CV_32FC3|CV_32FC4|CV_64FC1|CV_64FC2|CV_64FC3|CV_64FC4  deriving (Show,Eq, Typeable, Ord)
-instance Enum CVType where
-  fromEnum t = case t of
-    CV_8UC1 -> 0
-    CV_8UC2 -> 1
-    CV_8UC3 -> 2
-    CV_8UC4 -> 3
-    CV_8SC1 -> 4
-    CV_8SC2 -> 5
-    CV_8SC3 -> 6
-    CV_8SC4 -> 7
-    CV_16UC1 -> 8
-    CV_16UC2 -> 9
-    CV_16UC3 -> 10
-    CV_16UC4 -> 11
-    CV_16SC1 -> 12
-    CV_16SC2 -> 13
-    CV_16SC3 -> 14
-    CV_16SC4 -> 15
-    CV_32SC1 -> 16
-    CV_32SC2 -> 17
-    CV_32SC3 -> 18
-    CV_32SC4 -> 19
-    CV_32FC1 -> 20
-    CV_32FC2 -> 21
-    CV_32FC3 -> 22
-    CV_32FC4 -> 23
-    CV_64FC1 -> 24
-    CV_64FC2 -> 25
-    CV_64FC3 -> 26
-    CV_64FC4 -> 27
-  toEnum t = case t of
-    0 -> CV_8UC1
-    1 -> CV_8UC2
-    2 -> CV_8UC3
-    3 -> CV_8UC4
-    4 -> CV_8SC1
-    5 -> CV_8SC2
-    6 -> CV_8SC3
-    7 -> CV_8SC4
-    8 -> CV_16UC1
-    9 -> CV_16UC2
-    10 -> CV_16UC3
-    11 -> CV_16UC4
-    12 -> CV_16SC1
-    13 -> CV_16SC2
-    14 -> CV_16SC3
-    15 -> CV_16SC4
-    16 -> CV_32SC1
-    17 -> CV_32SC2
-    18 -> CV_32SC3
-    19 -> CV_32SC4
-    20 -> CV_32FC1
-    21 -> CV_32FC2
-    22 -> CV_32FC3
-    23 -> CV_32FC4
-    24 -> CV_64FC1
-    25 -> CV_64FC2
-    26 -> CV_64FC3
-    27 -> CV_64FC4
-    _ -> throw ThriftException
-instance Hashable CVType where
-  hashWithSalt salt = hashWithSalt salt . fromEnum
-data Mat = Mat{f_Mat_rows :: Maybe Int64,f_Mat_cols :: Maybe Int64,f_Mat_channels :: Maybe Int64,f_Mat_type :: Maybe Int64,f_Mat_data :: Maybe ByteString} deriving (Show,Eq,Typeable)
+
+data Mat = Mat{f_Mat_rows :: Maybe Int64,f_Mat_cols :: Maybe Int64,f_Mat_channels :: Maybe Int64,f_Mat_type :: Maybe CVType,f_Mat_data :: Maybe ByteString} deriving (Show,Eq,Typeable)
 instance Hashable Mat where
   hashWithSalt salt record = salt   `hashWithSalt` f_Mat_rows record   `hashWithSalt` f_Mat_cols record   `hashWithSalt` f_Mat_channels record   `hashWithSalt` f_Mat_type record   `hashWithSalt` f_Mat_data record  
 write_Mat oprot record = do
@@ -106,8 +45,8 @@ write_Mat oprot record = do
     writeBinary oprot _v
     writeFieldEnd oprot}
   case f_Mat_type record of {Nothing -> return (); Just _v -> do
-    writeFieldBegin oprot ("type",T_I64,-4)
-    writeI64 oprot _v
+    writeFieldBegin oprot ("type",T_I32,-4)
+    writeI32 oprot (fromIntegral $ fromEnum _v)
     writeFieldEnd oprot}
   case f_Mat_channels record of {Nothing -> return (); Just _v -> do
     writeFieldBegin oprot ("channels",T_I64,-3)
@@ -145,8 +84,8 @@ read_Mat_fields iprot record = do
         else do
           skip iprot _t3
           read_Mat_fields iprot record
-      -4 -> if _t3 == T_I64 then do
-        s <- readI64 iprot
+      -4 -> if _t3 == T_I32 then do
+        s <- (do {i <- readI32 iprot; return $ toEnum $ fromIntegral i})
         read_Mat_fields iprot record{f_Mat_type=Just s}
         else do
           skip iprot _t3

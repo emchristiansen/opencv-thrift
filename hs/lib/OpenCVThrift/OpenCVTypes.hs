@@ -1,4 +1,4 @@
-module OpenCVTypes (
+module OpenCVThrift.OpenCVTypes (
   CVType (..),
   MatUnpacked (..),
   Mat (..),

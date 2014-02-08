@@ -12,7 +12,7 @@
 -- DO NOT EDIT UNLESS YOU ARE SURE YOU KNOW WHAT YOU ARE DOING --
 -----------------------------------------------------------------
 
-module MatUtil_Consts where
+module Ports_Consts where
 import Prelude ( Bool(..), Enum, Double, String, Maybe(..),
                  Eq, Show, Ord,
                  return, length, IO, fromIntegral, fromEnum, toEnum,
@@ -32,8 +32,14 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
-import qualified CVDef_Types
-import qualified Mat_Types
 
+import Ports_Types
+basePort :: Int64
+basePort = (9090 :: Int64)
 
-import MatUtil_Types
+matUtilPortOffset :: Int64
+matUtilPortOffset = (0 :: Int64)
+
+features2DPortOffset :: Int64
+features2DPortOffset = (1 :: Int64)
+

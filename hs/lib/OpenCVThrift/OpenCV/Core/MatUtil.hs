@@ -1,6 +1,10 @@
-module OpenCV.Core.MatUtil 
+module OpenCVThrift.OpenCV.Core.MatUtil 
   ( module Mat_Consts
   , module Mat_Types
+  , module Types_Consts
+  , module Types_Types
+  , module CVDef_Consts
+  , module CVDef_Types
   , module MatUtil_Consts
   , module MatUtil_Types
   , Client (..)
@@ -28,6 +32,10 @@ import Mat_Consts
 import Mat_Types
 import MatUtil_Consts
 import MatUtil_Types
+import Types_Consts
+import Types_Types
+import CVDef_Consts
+import CVDef_Types
 
 import qualified MatUtil_Client
 

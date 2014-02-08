@@ -33,6 +33,7 @@ import Thrift
 import Thrift.Types ()
 
 import qualified Mat_Types
+import qualified Types_Types
 
 
 import Features2D_Types

@@ -33,9 +33,10 @@ import Thrift
 import Thrift.Types ()
 
 import qualified Mat_Types
+import qualified Types_Types
 
 
 import Features2D_Types
 
 class Features2D_Iface a where
-  detect :: a -> Maybe Text -> Maybe Mat_Types.Mat -> IO (Vector.Vector KeyPoint)
+  detect :: a -> Maybe Text -> Maybe Mat_Types.Mat -> IO (Vector.Vector Types_Types.KeyPoint)
