@@ -76,9 +76,6 @@ int cvTypeToCVMacro(const CVType::type cvType) {
   }
 }
 
-//CVType::type cvMacroToCVType(const int cvMacro) {
-//}
-
 /**
  * Returns the Thrift type representing `numChannels` doubles.
  */
