@@ -4,8 +4,8 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#ifndef MatUtil_TYPES_H
-#define MatUtil_TYPES_H
+#ifndef Ports_TYPES_H
+#define Ports_TYPES_H
 
 #include <thrift/Thrift.h>
 #include <thrift/TApplicationException.h>
@@ -13,8 +13,6 @@
 #include <thrift/transport/TTransport.h>
 
 #include <thrift/cxxfunctional.h>
-#include "OpenCV/Core/CVDef_types.h"
-#include "OpenCV/Core/Mat_types.h"
 
 
 

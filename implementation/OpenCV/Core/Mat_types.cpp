@@ -10,68 +10,6 @@
 
 
 
-int _kCVTypeValues[] = {
-  CVType::T8UC1,
-  CVType::T8UC2,
-  CVType::T8UC3,
-  CVType::T8UC4,
-  CVType::T8SC1,
-  CVType::T8SC2,
-  CVType::T8SC3,
-  CVType::T8SC4,
-  CVType::T16UC1,
-  CVType::T16UC2,
-  CVType::T16UC3,
-  CVType::T16UC4,
-  CVType::T16SC1,
-  CVType::T16SC2,
-  CVType::T16SC3,
-  CVType::T16SC4,
-  CVType::T32SC1,
-  CVType::T32SC2,
-  CVType::T32SC3,
-  CVType::T32SC4,
-  CVType::T32FC1,
-  CVType::T32FC2,
-  CVType::T32FC3,
-  CVType::T32FC4,
-  CVType::T64FC1,
-  CVType::T64FC2,
-  CVType::T64FC3,
-  CVType::T64FC4
-};
-const char* _kCVTypeNames[] = {
-  "T8UC1",
-  "T8UC2",
-  "T8UC3",
-  "T8UC4",
-  "T8SC1",
-  "T8SC2",
-  "T8SC3",
-  "T8SC4",
-  "T16UC1",
-  "T16UC2",
-  "T16UC3",
-  "T16UC4",
-  "T16SC1",
-  "T16SC2",
-  "T16SC3",
-  "T16SC4",
-  "T32SC1",
-  "T32SC2",
-  "T32SC3",
-  "T32SC4",
-  "T32FC1",
-  "T32FC2",
-  "T32FC3",
-  "T32FC4",
-  "T64FC1",
-  "T64FC2",
-  "T64FC3",
-  "T64FC4"
-};
-const std::map<int, const char*> _CVType_VALUES_TO_NAMES(::apache::thrift::TEnumIterator(28, _kCVTypeValues, _kCVTypeNames), ::apache::thrift::TEnumIterator(-1, NULL, NULL));
-
 const char* Mat::ascii_fingerprint = "772183795D0AE04DE478A3B6211CD3AC";
 const uint8_t Mat::binary_fingerprint[16] = {0x77,0x21,0x83,0x79,0x5D,0x0A,0xE0,0x4D,0xE4,0x78,0xA3,0xB6,0x21,0x1C,0xD3,0xAC};
 
@@ -128,7 +66,7 @@ uint32_t Mat::read(::apache::thrift::protocol::TProtocol* iprot) {
         if (ftype == ::apache::thrift::protocol::T_I32) {
           int32_t ecast0;
           xfer += iprot->readI32(ecast0);
-          this->type = (CVType::type)ecast0;
+          this->type = ( ::CVType::type)ecast0;
           isset_type = true;
         } else {
           xfer += iprot->skip(ftype);

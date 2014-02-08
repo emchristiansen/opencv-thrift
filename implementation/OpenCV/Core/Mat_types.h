@@ -13,44 +13,10 @@
 #include <thrift/transport/TTransport.h>
 
 #include <thrift/cxxfunctional.h>
+#include "OpenCV/Core/CVDef_types.h"
 
 
 
-
-struct CVType {
-  enum type {
-    T8UC1 = 0,
-    T8UC2 = 1,
-    T8UC3 = 2,
-    T8UC4 = 3,
-    T8SC1 = 4,
-    T8SC2 = 5,
-    T8SC3 = 6,
-    T8SC4 = 7,
-    T16UC1 = 8,
-    T16UC2 = 9,
-    T16UC3 = 10,
-    T16UC4 = 11,
-    T16SC1 = 12,
-    T16SC2 = 13,
-    T16SC3 = 14,
-    T16SC4 = 15,
-    T32SC1 = 16,
-    T32SC2 = 17,
-    T32SC3 = 18,
-    T32SC4 = 19,
-    T32FC1 = 20,
-    T32FC2 = 21,
-    T32FC3 = 22,
-    T32FC4 = 23,
-    T64FC1 = 24,
-    T64FC2 = 25,
-    T64FC3 = 26,
-    T64FC4 = 27
-  };
-};
-
-extern const std::map<int, const char*> _CVType_VALUES_TO_NAMES;
 
 
 class Mat {
@@ -59,7 +25,7 @@ class Mat {
   static const char* ascii_fingerprint; // = "772183795D0AE04DE478A3B6211CD3AC";
   static const uint8_t binary_fingerprint[16]; // = {0x77,0x21,0x83,0x79,0x5D,0x0A,0xE0,0x4D,0xE4,0x78,0xA3,0xB6,0x21,0x1C,0xD3,0xAC};
 
-  Mat() : rows(0), cols(0), channels(0), type((CVType::type)0), data() {
+  Mat() : rows(0), cols(0), channels(0), type(( ::CVType::type)0), data() {
   }
 
   virtual ~Mat() throw() {}
@@ -67,7 +33,7 @@ class Mat {
   int64_t rows;
   int64_t cols;
   int64_t channels;
-  CVType::type type;
+   ::CVType::type type;
   std::string data;
 
   void __set_rows(const int64_t val) {
@@ -82,7 +48,7 @@ class Mat {
     channels = val;
   }
 
-  void __set_type(const CVType::type val) {
+  void __set_type(const  ::CVType::type val) {
     type = val;
   }
 
