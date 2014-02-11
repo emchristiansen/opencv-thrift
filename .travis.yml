@@ -10,6 +10,8 @@ before_install:
   #- sudo apt-get dist-upgrade
   - sudo apt-get install ghc cabal-install
   - cabal update
+  # Get the newer version of cabal.
+  - cabal install cabal-install
   - cabal -j$NUM_CPU install HTTP hashable network text unordered-containers vector
 
 install:
