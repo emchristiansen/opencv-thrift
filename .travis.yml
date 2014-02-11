@@ -1,0 +1,55 @@
+compiler:
+  - clang
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get dist-upgrade
+  - cabal update
+
+install:
+  # Install Apache Thrift.
+  - git clone https://github.com/apache/thrift
+  - cd thrift
+  - ./bootstrap.sh
+  - ./configure
+  - make
+  - sudo make install
+  - cd ..
+
+  # Install OpenCV.
+  - git clone https://github.com/Itseez/opencv.git
+  - cd opencv
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j4
+  - sudo make -j4 install
+  - cd ../..
+
+before_script:
+  - git clone https://github.com/emchristiansen/opencv-thrift
+  - cd opencv-thrift
+
+script:
+  # Build and install the C++ implementation of the interface.
+  - cd implementation
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j4
+  - sudo make install
+  - cd ../..
+
+  # Build the localhost server.
+  - cd serverLocalhost
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - cd ../..
+
+  # Build the Haskell client wrapper.
+  - cd hs
+  - ./configure.sh
+  - cabal build
+
