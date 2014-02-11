@@ -6,6 +6,8 @@ Finally it provides an RPC mechanism for making function calls across network co
 
 (Update: This isn't even alpha yet. Check back later.)
 
+[![Build Status](https://travis-ci.org/emchristiansen/opencv-thrift.png)](https://travis-ci.org/emchristiansen/opencv-thrift)
+
 ##How this is different from OpenCV's existing FFIs
 OpenCV already has foreign function interfaces (FFIs) to a number of languages besides C++, including Python, Java, Matlab.
 These interfaces tend to expose pointers to C++ objects, rather than copying and translating those objects into native types of the target language.
