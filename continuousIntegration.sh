@@ -44,7 +44,7 @@ configureSystem() {
 
   # Let's use clang and libc++ for everything.
   #sudo update-alternatives --set c++ /usr/bin/clang++-libc++
-  sudo update-alternatives --set c++ /usr/bin/clang++
+  #sudo update-alternatives --set c++ /usr/bin/clang++
 }
 
 installThrift() {
