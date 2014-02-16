@@ -91,7 +91,8 @@ installOpenCVThrift() {
 
   # Build the Haskell client wrapper.
   cd hs
-  ./configure.sh
+  #./configure.sh
+  cabal configure --enable-tests
   cabal build
 }
 
