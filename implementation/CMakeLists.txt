@@ -10,7 +10,7 @@ find_package(OpenCV)
 #We assume we're using Clang to build.
 
 ## SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++ -lpthread")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++ -Wall")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 
 # All cpp files.
