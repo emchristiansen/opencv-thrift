@@ -1,64 +1,14 @@
-language:
-  - cpp
-
-compiler:
-  - clang
-
 before_install:
-  - export NUM_CPU="`grep processor /proc/cpuinfo | wc -l`"; echo $NUM_CPU
-  - sudo apt-get update
-  #- sudo apt-get dist-upgrade
-  - sudo apt-get install ghc cabal-install
-  - cabal update
-  # Get the newer version of cabal.
-  #- cabal install cabal-install
-  #- cabal -j$NUM_CPU install HTTP hashable network text unordered-containers vector
-  - cabal install HTTP hashable network text unordered-containers vector
+  - source continuousIntegration.sh
+  - configureSystem
+  - installThrift
+  - installOpenCV 
 
 install:
-  # Install Apache Thrift.
-  - git clone https://github.com/apache/thrift
-  - cd thrift
-  - ./bootstrap.sh
-  - ./configure --without-ruby
-  - make -j$NUM_CPU
-  - sudo make install
-  - cd ..
-
-  # Install OpenCV.
-  - git clone https://github.com/Itseez/opencv.git
-  - cd opencv
-  - mkdir build
-  - cd build
-  - cmake ..
-  - make -j$NUM_CPU
-  - sudo make -j$NUM_CPU install
-  - cd ../..
+  - installOpenCVThrift
 
 before_script:
-  - git clone https://github.com/emchristiansen/opencv-thrift
-  - cd opencv-thrift
 
 script:
-  # Build and install the C++ implementation of the interface.
-  - cd implementation
-  - mkdir build
-  - cd build
-  - cmake ..
-  - make -j$NUM_CPU
-  - sudo make install
-  - cd ../..
 
-  # Build the localhost server.
-  - cd serverLocalhost
-  - mkdir build
-  - cd build
-  - cmake ..
-  - make -j$NUM_CPU
-  - cd ../..
-
-  # Build the Haskell client wrapper.
-  - cd hs
-  - ./configure.sh
-  - cabal build
 
