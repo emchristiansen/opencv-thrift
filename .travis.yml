@@ -8,7 +8,9 @@ install:
   #- installOpenCVThrift
 
 before_script:
+  - echo "Pass."
 
 script:
+  - echo "Pass."
 
 
