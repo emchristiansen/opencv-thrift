@@ -32,7 +32,7 @@ configureSystem() {
     flex \
     bison \
     pkg-config \
-    g++ \
+    g++-4.8 \
     libssl-dev \
     python-all \
     python-all-dev \
