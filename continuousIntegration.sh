@@ -4,7 +4,7 @@ export NUM_CPU="`grep processor /proc/cpuinfo | wc -l`"; echo $NUM_CPU
 
 configureSystem() {
   sudo apt-get update
-  sudo apt-get dist-upgrade
+  #sudo apt-get dist-upgrade
 
   # General build tools.
   sudo apt-get install -y \
