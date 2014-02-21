@@ -51,7 +51,22 @@ installThrift() {
   git clone https://github.com/apache/thrift
   cd thrift
   ./bootstrap.sh
-  ./configure --without-ruby
+  # TODO: Try to let it build all the languages.
+  ./configure \
+    --without-ruby \
+    --without-qt4 \
+    --without-c_glib \
+    --without-csharp \
+    --without-java \
+    --without-erlang \
+    --without-nodejs \
+    --without-python \
+    --without-perl \
+    --without-php \
+    --without-php_extension \
+    --without-ruby \
+    --without-go \
+    --without-d
   make -j$NUM_CPU
   sudo make install
   cd ..
