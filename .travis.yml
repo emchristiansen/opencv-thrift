@@ -2,6 +2,9 @@ language:
   - haskell
 
 before_install:
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update
+  - sudo apt-get install g++-4.8 
   - source continuousIntegration.sh
   - configureSystem
   - installThrift
