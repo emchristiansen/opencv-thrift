@@ -58,6 +58,7 @@ installThrift() {
     --without-c_glib \
     --without-csharp \
     --without-java \
+    --without-haskell \
     --without-erlang \
     --without-nodejs \
     --without-python \
