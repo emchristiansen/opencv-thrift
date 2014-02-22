@@ -35,7 +35,7 @@ configureSystem() {
     flex \
     bison \
     pkg-config \
-    g++-4.8 \
+    #g++-4.8 \
     libssl-dev \
     python-all \
     python-all-dev \
@@ -117,9 +117,9 @@ installOpenCVThrift() {
   cd ../..
 
   # Build the Haskell client wrapper.
-  cd hs
+  #cd hs
   #./configure.sh
-  cabal configure --enable-tests
-  cabal build
+  #cabal configure --enable-tests
+  #cabal build
 }
 
