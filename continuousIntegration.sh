@@ -88,16 +88,24 @@ installOpenCVThrift() {
   cd opencv-thrift
 
   # Build and install the C++ implementation of the interface.
-  cd implementation
+  #cd implementation
+  #mkdir build
+  #cd build
+  #cmake ..
+  #make -j$NUM_CPU
+  #sudo make install
+  #cd ../..
+
+  # Build the localhost server.
+  cd serverLocalhost
   mkdir build
   cd build
   cmake ..
   make -j$NUM_CPU
-  sudo make install
   cd ../..
 
-  # Build the localhost server.
-  cd serverLocalhost
+  # Build the cpp localhost client.
+  cd cppLocalhost
   mkdir build
   cd build
   cmake ..
