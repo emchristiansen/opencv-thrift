@@ -35,11 +35,12 @@ configureSystem() {
     flex \
     bison \
     pkg-config \
-    #g++-4.8 \
     libssl-dev \
     python-all \
     python-all-dev \
     python-all-dbg
+
+    #g++-4.8 \
 
   # Haskell prereqs.
   cabal update
