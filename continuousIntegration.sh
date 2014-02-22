@@ -2,6 +2,9 @@
 
 export NUM_CPU="`grep processor /proc/cpuinfo | wc -l`"; echo $NUM_CPU
 
+# Exit at the first error.
+set -e
+
 configureSystem() {
   sudo apt-get update
   #sudo apt-get dist-upgrade
