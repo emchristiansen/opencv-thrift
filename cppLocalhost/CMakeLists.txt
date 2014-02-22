@@ -7,45 +7,27 @@ pkg_check_modules(thrift REQUIRED thrift)
 
 find_package(OpenCV)
 
-#We assume we're using Clang to build.
-
 ## SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++ -lpthread")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+
+# Complain if we have undefined references when linking.
+# Otherwise we can get silently propagating link errors.
 set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 
-# All cpp files.
-file(GLOB_RECURSE sources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "OpenCVThrift/**.cpp")
+# We grab the client headers and sources from our sister directory.
+# It would probably be better if we did some kind of CMake multi-project
+# configuration instead.
+set(CLIENT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../cpp/OpenCVThrift/")
+message(STATUS $CLIENT_ROOT)
+include_directories(${CLIENT_ROOT})
+file(GLOB_RECURSE clientSources RELATIVE "${CLIENT_ROOT}" "**.cpp")
 
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
-message(STATUS ${sources})
+message(STATUS ${clientSources})
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+# Build the localhost library.
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/lib")
+file(GLOB_RECURSE libSources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "**.cpp")
+add_library(OpenCVThriftLocalhost SHARED ${clientSources} ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(OpenCVThriftLocalhost ${thrift_LIBRARIES} ${OpenCV_LIBS})
 
-add_library(OpenCVThrift SHARED ${sources})
-
-target_link_libraries(OpenCVThrift ${thrift_LIBRARIES} ${OpenCV_LIBS})
-#target_link_libraries(OpenCVThrift "-Wl")
-
-#add_executable(Server "OpenCVServer.cpp")
-
-#target_link_libraries(Server CPPInterface ${thrift_LIBRARIES} "-lpthread -lc++ -lsupc++")
-
-################################
-# Install
-################################
-# Configure "make install".
-# In Linux this installs to /usr/local/include/salve/.
-#install(
-#  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/OpenCV/"
-#  DESTINATION include/OpenCVThrift
-#)
-
-install(
-  TARGETS OpenCVThrift DESTINATION lib
-)
-
-install(
-  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/OpenCVThrift/"
-  DESTINATION include/OpenCVThrift
-  PATTERN "*.cpp" EXCLUDE
-)
