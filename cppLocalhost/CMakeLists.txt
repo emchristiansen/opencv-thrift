@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(OpenCVThrift)
+project(OpenCVThriftLocalhost)
 
 include(FindPkgConfig)
 pkg_check_modules(thrift REQUIRED thrift)
