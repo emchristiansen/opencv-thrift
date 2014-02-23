@@ -1,9 +1,9 @@
-#include "OpenCV/Core/CVDef_constants.h"
-#include "OpenCV/Core/CVDef_types.h"
-#include "OpenCV/Core/Types_constants.h"
-#include "OpenCV/Core/Types_types.h"
-#include "OpenCV/Core/Mat_constants.h"
-#include "OpenCV/Core/Mat_types.h"
+#include "OpenCVThrift/OpenCV/Core/CVDef_constants.h"
+#include "OpenCVThrift/OpenCV/Core/CVDef_types.h"
+#include "OpenCVThrift/OpenCV/Core/Types_constants.h"
+#include "OpenCVThrift/OpenCV/Core/Types_types.h"
+#include "OpenCVThrift/OpenCV/Core/Mat_constants.h"
+#include "OpenCVThrift/OpenCV/Core/Mat_types.h"
 
 #include "OpenCVLocalhost.hpp"
 

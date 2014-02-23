@@ -6,14 +6,14 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install gcc-4.8 g++-4.8 
   - g++ --version
-  #- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
-  #- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
   - source continuousIntegration.sh
   - configureSystem
   - installThrift
   - installOpenCV 
 
 install:
+  # It appears Thrift isn't compatible with newer g++, so we only update
+  # alternatives here.
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
   - g++ --version

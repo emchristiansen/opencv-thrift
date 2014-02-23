@@ -17,7 +17,7 @@ set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 # We grab the client headers and sources from our sister directory.
 # It would probably be better if we did some kind of CMake multi-project
 # configuration instead.
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../cpp/OpenCVThrift/")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../cpp/")
 file(GLOB_RECURSE clientSources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "../cpp/OpenCVThrift/**.cpp")
 message(STATUS ${clientSources})
 
