@@ -57,21 +57,21 @@ installThrift() {
   ./bootstrap.sh
   # TODO: Try to let it build all the languages.
   ./configure \
-    --without-ruby \
-    --without-qt4 \
-    --without-c_glib \
-    --without-csharp \
-    --without-java \
-    --without-haskell \
-    --without-erlang \
-    --without-nodejs \
-    --without-python \
-    --without-perl \
-    --without-php \
-    --without-php_extension \
-    --without-ruby \
-    --without-go \
-    --without-d
+    --with-ruby=no \
+    --with-qt4=no \
+    --with-c_glib=no \
+    --with-csharp=no \
+    --with-java=no \
+    --with-haskell=no \
+    --with-erlang=no \
+    --with-nodejs=no \
+    --with-python=yes \
+    --with-perl=no \
+    --with-php=no \
+    --with-php_extension=no \
+    --with-ruby=no \
+    --with-go=no \
+    --with-d=no
   make -j$NUM_CPU
   sudo make install
   cd ..
