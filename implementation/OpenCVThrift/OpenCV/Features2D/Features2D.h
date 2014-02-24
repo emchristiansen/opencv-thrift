@@ -16,6 +16,8 @@ class Features2DIf {
  public:
   virtual ~Features2DIf() {}
   virtual void detect(std::vector< ::KeyPoint> & _return, const std::string& detectorType, const  ::Mat& image) = 0;
+  virtual void extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) = 0;
+  virtual void match(std::vector< ::DMatch> & _return, const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors) = 0;
 };
 
 class Features2DIfFactory {
@@ -46,6 +48,12 @@ class Features2DNull : virtual public Features2DIf {
  public:
   virtual ~Features2DNull() {}
   void detect(std::vector< ::KeyPoint> & /* _return */, const std::string& /* detectorType */, const  ::Mat& /* image */) {
+    return;
+  }
+  void extract(std::vector<ExtractorResponse> & /* _return */, const std::string& /* descriptorExtractorType */, const  ::Mat& /* image */, const std::vector< ::KeyPoint> & /* keyPoints */) {
+    return;
+  }
+  void match(std::vector< ::DMatch> & /* _return */, const std::string& /* descriptorMatcherType */, const  ::Mat& /* queryDescriptors */, const  ::Mat& /* trainDescriptors */) {
     return;
   }
 };
@@ -179,6 +187,282 @@ class Features2D_detect_presult {
 
 };
 
+typedef struct _Features2D_extract_args__isset {
+  _Features2D_extract_args__isset() : descriptorExtractorType(false), image(false), keyPoints(false) {}
+  bool descriptorExtractorType;
+  bool image;
+  bool keyPoints;
+} _Features2D_extract_args__isset;
+
+class Features2D_extract_args {
+ public:
+
+  static const char* ascii_fingerprint; // = "56413650D6D655016D0A677DE3E08203";
+  static const uint8_t binary_fingerprint[16]; // = {0x56,0x41,0x36,0x50,0xD6,0xD6,0x55,0x01,0x6D,0x0A,0x67,0x7D,0xE3,0xE0,0x82,0x03};
+
+  Features2D_extract_args() : descriptorExtractorType() {
+  }
+
+  virtual ~Features2D_extract_args() throw() {}
+
+  std::string descriptorExtractorType;
+   ::Mat image;
+  std::vector< ::KeyPoint>  keyPoints;
+
+  _Features2D_extract_args__isset __isset;
+
+  void __set_descriptorExtractorType(const std::string& val) {
+    descriptorExtractorType = val;
+  }
+
+  void __set_image(const  ::Mat& val) {
+    image = val;
+  }
+
+  void __set_keyPoints(const std::vector< ::KeyPoint> & val) {
+    keyPoints = val;
+  }
+
+  bool operator == (const Features2D_extract_args & rhs) const
+  {
+    if (!(descriptorExtractorType == rhs.descriptorExtractorType))
+      return false;
+    if (!(image == rhs.image))
+      return false;
+    if (!(keyPoints == rhs.keyPoints))
+      return false;
+    return true;
+  }
+  bool operator != (const Features2D_extract_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Features2D_extract_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class Features2D_extract_pargs {
+ public:
+
+  static const char* ascii_fingerprint; // = "56413650D6D655016D0A677DE3E08203";
+  static const uint8_t binary_fingerprint[16]; // = {0x56,0x41,0x36,0x50,0xD6,0xD6,0x55,0x01,0x6D,0x0A,0x67,0x7D,0xE3,0xE0,0x82,0x03};
+
+
+  virtual ~Features2D_extract_pargs() throw() {}
+
+  const std::string* descriptorExtractorType;
+  const  ::Mat* image;
+  const std::vector< ::KeyPoint> * keyPoints;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Features2D_extract_result__isset {
+  _Features2D_extract_result__isset() : success(false) {}
+  bool success;
+} _Features2D_extract_result__isset;
+
+class Features2D_extract_result {
+ public:
+
+  static const char* ascii_fingerprint; // = "D9021558691AC7D37C249D7FECB43771";
+  static const uint8_t binary_fingerprint[16]; // = {0xD9,0x02,0x15,0x58,0x69,0x1A,0xC7,0xD3,0x7C,0x24,0x9D,0x7F,0xEC,0xB4,0x37,0x71};
+
+  Features2D_extract_result() {
+  }
+
+  virtual ~Features2D_extract_result() throw() {}
+
+  std::vector<ExtractorResponse>  success;
+
+  _Features2D_extract_result__isset __isset;
+
+  void __set_success(const std::vector<ExtractorResponse> & val) {
+    success = val;
+  }
+
+  bool operator == (const Features2D_extract_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const Features2D_extract_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Features2D_extract_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Features2D_extract_presult__isset {
+  _Features2D_extract_presult__isset() : success(false) {}
+  bool success;
+} _Features2D_extract_presult__isset;
+
+class Features2D_extract_presult {
+ public:
+
+  static const char* ascii_fingerprint; // = "D9021558691AC7D37C249D7FECB43771";
+  static const uint8_t binary_fingerprint[16]; // = {0xD9,0x02,0x15,0x58,0x69,0x1A,0xC7,0xD3,0x7C,0x24,0x9D,0x7F,0xEC,0xB4,0x37,0x71};
+
+
+  virtual ~Features2D_extract_presult() throw() {}
+
+  std::vector<ExtractorResponse> * success;
+
+  _Features2D_extract_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
+typedef struct _Features2D_match_args__isset {
+  _Features2D_match_args__isset() : descriptorMatcherType(false), queryDescriptors(false), trainDescriptors(false) {}
+  bool descriptorMatcherType;
+  bool queryDescriptors;
+  bool trainDescriptors;
+} _Features2D_match_args__isset;
+
+class Features2D_match_args {
+ public:
+
+  static const char* ascii_fingerprint; // = "D0E8A4F0880258180B282AA398C1AACE";
+  static const uint8_t binary_fingerprint[16]; // = {0xD0,0xE8,0xA4,0xF0,0x88,0x02,0x58,0x18,0x0B,0x28,0x2A,0xA3,0x98,0xC1,0xAA,0xCE};
+
+  Features2D_match_args() : descriptorMatcherType() {
+  }
+
+  virtual ~Features2D_match_args() throw() {}
+
+  std::string descriptorMatcherType;
+   ::Mat queryDescriptors;
+   ::Mat trainDescriptors;
+
+  _Features2D_match_args__isset __isset;
+
+  void __set_descriptorMatcherType(const std::string& val) {
+    descriptorMatcherType = val;
+  }
+
+  void __set_queryDescriptors(const  ::Mat& val) {
+    queryDescriptors = val;
+  }
+
+  void __set_trainDescriptors(const  ::Mat& val) {
+    trainDescriptors = val;
+  }
+
+  bool operator == (const Features2D_match_args & rhs) const
+  {
+    if (!(descriptorMatcherType == rhs.descriptorMatcherType))
+      return false;
+    if (!(queryDescriptors == rhs.queryDescriptors))
+      return false;
+    if (!(trainDescriptors == rhs.trainDescriptors))
+      return false;
+    return true;
+  }
+  bool operator != (const Features2D_match_args &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Features2D_match_args & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+
+class Features2D_match_pargs {
+ public:
+
+  static const char* ascii_fingerprint; // = "D0E8A4F0880258180B282AA398C1AACE";
+  static const uint8_t binary_fingerprint[16]; // = {0xD0,0xE8,0xA4,0xF0,0x88,0x02,0x58,0x18,0x0B,0x28,0x2A,0xA3,0x98,0xC1,0xAA,0xCE};
+
+
+  virtual ~Features2D_match_pargs() throw() {}
+
+  const std::string* descriptorMatcherType;
+  const  ::Mat* queryDescriptors;
+  const  ::Mat* trainDescriptors;
+
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Features2D_match_result__isset {
+  _Features2D_match_result__isset() : success(false) {}
+  bool success;
+} _Features2D_match_result__isset;
+
+class Features2D_match_result {
+ public:
+
+  static const char* ascii_fingerprint; // = "356F586CBB03B052EC0C1372800E5531";
+  static const uint8_t binary_fingerprint[16]; // = {0x35,0x6F,0x58,0x6C,0xBB,0x03,0xB0,0x52,0xEC,0x0C,0x13,0x72,0x80,0x0E,0x55,0x31};
+
+  Features2D_match_result() {
+  }
+
+  virtual ~Features2D_match_result() throw() {}
+
+  std::vector< ::DMatch>  success;
+
+  _Features2D_match_result__isset __isset;
+
+  void __set_success(const std::vector< ::DMatch> & val) {
+    success = val;
+  }
+
+  bool operator == (const Features2D_match_result & rhs) const
+  {
+    if (!(success == rhs.success))
+      return false;
+    return true;
+  }
+  bool operator != (const Features2D_match_result &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const Features2D_match_result & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+typedef struct _Features2D_match_presult__isset {
+  _Features2D_match_presult__isset() : success(false) {}
+  bool success;
+} _Features2D_match_presult__isset;
+
+class Features2D_match_presult {
+ public:
+
+  static const char* ascii_fingerprint; // = "356F586CBB03B052EC0C1372800E5531";
+  static const uint8_t binary_fingerprint[16]; // = {0x35,0x6F,0x58,0x6C,0xBB,0x03,0xB0,0x52,0xEC,0x0C,0x13,0x72,0x80,0x0E,0x55,0x31};
+
+
+  virtual ~Features2D_match_presult() throw() {}
+
+  std::vector< ::DMatch> * success;
+
+  _Features2D_match_presult__isset __isset;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+
+};
+
 class Features2DClient : virtual public Features2DIf {
  public:
   Features2DClient(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> prot) {
@@ -207,6 +491,12 @@ class Features2DClient : virtual public Features2DIf {
   void detect(std::vector< ::KeyPoint> & _return, const std::string& detectorType, const  ::Mat& image);
   void send_detect(const std::string& detectorType, const  ::Mat& image);
   void recv_detect(std::vector< ::KeyPoint> & _return);
+  void extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints);
+  void send_extract(const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints);
+  void recv_extract(std::vector<ExtractorResponse> & _return);
+  void match(std::vector< ::DMatch> & _return, const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors);
+  void send_match(const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors);
+  void recv_match(std::vector< ::DMatch> & _return);
  protected:
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
   boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
@@ -223,10 +513,14 @@ class Features2DProcessor : public ::apache::thrift::TDispatchProcessor {
   typedef std::map<std::string, ProcessFunction> ProcessMap;
   ProcessMap processMap_;
   void process_detect(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_extract(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
+  void process_match(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext);
  public:
   Features2DProcessor(boost::shared_ptr<Features2DIf> iface) :
     iface_(iface) {
     processMap_["detect"] = &Features2DProcessor::process_detect;
+    processMap_["extract"] = &Features2DProcessor::process_extract;
+    processMap_["match"] = &Features2DProcessor::process_match;
   }
 
   virtual ~Features2DProcessor() {}
@@ -262,6 +556,26 @@ class Features2DMultiface : virtual public Features2DIf {
       ifaces_[i]->detect(_return, detectorType, image);
     }
     ifaces_[i]->detect(_return, detectorType, image);
+    return;
+  }
+
+  void extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) {
+    size_t sz = ifaces_.size();
+    size_t i = 0;
+    for (; i < (sz - 1); ++i) {
+      ifaces_[i]->extract(_return, descriptorExtractorType, image, keyPoints);
+    }
+    ifaces_[i]->extract(_return, descriptorExtractorType, image, keyPoints);
+    return;
+  }
+
+  void match(std::vector< ::DMatch> & _return, const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors) {
+    size_t sz = ifaces_.size();
+    size_t i = 0;
+    for (; i < (sz - 1); ++i) {
+      ifaces_[i]->match(_return, descriptorMatcherType, queryDescriptors, trainDescriptors);
+    }
+    ifaces_[i]->match(_return, descriptorMatcherType, queryDescriptors, trainDescriptors);
     return;
   }
 

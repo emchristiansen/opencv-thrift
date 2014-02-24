@@ -8,6 +8,10 @@ class Features2DHandler : virtual public Features2DIf {
   Features2DHandler();
 
   void detect(std::vector< ::KeyPoint> & _return, const std::string& detectorType, const  ::Mat& image);
+
+  void extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints);
+
+  void match(std::vector< ::DMatch> & _return, const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors);
 };
 
 

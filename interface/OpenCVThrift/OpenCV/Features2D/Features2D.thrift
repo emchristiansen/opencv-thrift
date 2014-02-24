@@ -11,11 +11,20 @@ include "OpenCVThrift/OpenCV/Core/Types.thrift"
  */
 struct ExtractorResponse {
   required Mat.Mat descriptors
-  required vector<bool> keypointMask
+  required list<bool> keypointMask
 }
 
 service Features2D {
   list<Types.KeyPoint> detect(string detectorType, Mat.Mat image)
 
-  list<ExtractorResponse> extract(string descriptorExtractorType, Mat.Mat image, list<Types.KeyPoint> keyPoints)
+  list<ExtractorResponse> extract(
+    string descriptorExtractorType, 
+    Mat.Mat image, 
+    list<Types.KeyPoint> keyPoints)
+
+  list<Types.DMatch> match(
+    string descriptorMatcherType, 
+    Mat.Mat queryDescriptors, 
+    Mat.Mat trainDescriptors)
 }
+

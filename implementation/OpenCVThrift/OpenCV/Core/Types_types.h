@@ -134,5 +134,63 @@ class KeyPoint {
 void swap(KeyPoint &a, KeyPoint &b);
 
 
+class DMatch {
+ public:
+
+  static const char* ascii_fingerprint; // = "99C6A2DB7B76682794F5CE24E004CB5A";
+  static const uint8_t binary_fingerprint[16]; // = {0x99,0xC6,0xA2,0xDB,0x7B,0x76,0x68,0x27,0x94,0xF5,0xCE,0x24,0xE0,0x04,0xCB,0x5A};
+
+  DMatch() : queryIndex(0), trainIndex(0), imageIndex(0), distance(0) {
+  }
+
+  virtual ~DMatch() throw() {}
+
+  int64_t queryIndex;
+  int64_t trainIndex;
+  int64_t imageIndex;
+  double distance;
+
+  void __set_queryIndex(const int64_t val) {
+    queryIndex = val;
+  }
+
+  void __set_trainIndex(const int64_t val) {
+    trainIndex = val;
+  }
+
+  void __set_imageIndex(const int64_t val) {
+    imageIndex = val;
+  }
+
+  void __set_distance(const double val) {
+    distance = val;
+  }
+
+  bool operator == (const DMatch & rhs) const
+  {
+    if (!(queryIndex == rhs.queryIndex))
+      return false;
+    if (!(trainIndex == rhs.trainIndex))
+      return false;
+    if (!(imageIndex == rhs.imageIndex))
+      return false;
+    if (!(distance == rhs.distance))
+      return false;
+    return true;
+  }
+  bool operator != (const DMatch &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const DMatch & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+void swap(DMatch &a, DMatch &b);
+
+
 
 #endif

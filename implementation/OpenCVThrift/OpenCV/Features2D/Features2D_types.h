@@ -20,5 +20,49 @@
 
 
 
+class ExtractorResponse {
+ public:
+
+  static const char* ascii_fingerprint; // = "D8C9329C88DDFD2646031C21943CF553";
+  static const uint8_t binary_fingerprint[16]; // = {0xD8,0xC9,0x32,0x9C,0x88,0xDD,0xFD,0x26,0x46,0x03,0x1C,0x21,0x94,0x3C,0xF5,0x53};
+
+  ExtractorResponse() {
+  }
+
+  virtual ~ExtractorResponse() throw() {}
+
+   ::Mat descriptors;
+  std::vector<bool>  keypointMask;
+
+  void __set_descriptors(const  ::Mat& val) {
+    descriptors = val;
+  }
+
+  void __set_keypointMask(const std::vector<bool> & val) {
+    keypointMask = val;
+  }
+
+  bool operator == (const ExtractorResponse & rhs) const
+  {
+    if (!(descriptors == rhs.descriptors))
+      return false;
+    if (!(keypointMask == rhs.keypointMask))
+      return false;
+    return true;
+  }
+  bool operator != (const ExtractorResponse &rhs) const {
+    return !(*this == rhs);
+  }
+
+  bool operator < (const ExtractorResponse & ) const;
+
+  uint32_t read(::apache::thrift::protocol::TProtocol* iprot);
+  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
+
+};
+
+void swap(ExtractorResponse &a, ExtractorResponse &b);
+
+
 
 #endif

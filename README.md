@@ -42,6 +42,8 @@ Note, this will eventually be run in continuous integration mode, but currently 
 Apache Thrift requires a project's API be defined in terms of its own [interface definition language](http://thrift.apache.org/docs/idl/) (IDL).
 It can then generate language-specific server-side stubs and client interfaces.
 Those IDL files are in `interface/`.
+Note: I'm staying as close as possible to the original code structure in OpenCV; each interface file corresponds to a single header in OpenCV and shares its name.
+The only exception so far is `OpenCVThrift/OpenCV/Core/MatUtil.thrift`, which defines code for converting between OpenCV and Thrift types.
 
 The implementation of the interface, written using C++ and OpenCV, is in `implementation/`.
 

@@ -234,4 +234,116 @@ void swap(KeyPoint &a, KeyPoint &b) {
   swap(a.class_id, b.class_id);
 }
 
+const char* DMatch::ascii_fingerprint = "99C6A2DB7B76682794F5CE24E004CB5A";
+const uint8_t DMatch::binary_fingerprint[16] = {0x99,0xC6,0xA2,0xDB,0x7B,0x76,0x68,0x27,0x94,0xF5,0xCE,0x24,0xE0,0x04,0xCB,0x5A};
+
+uint32_t DMatch::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+  bool isset_queryIndex = false;
+  bool isset_trainIndex = false;
+  bool isset_imageIndex = false;
+  bool isset_distance = false;
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case -1:
+        if (ftype == ::apache::thrift::protocol::T_I64) {
+          xfer += iprot->readI64(this->queryIndex);
+          isset_queryIndex = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case -2:
+        if (ftype == ::apache::thrift::protocol::T_I64) {
+          xfer += iprot->readI64(this->trainIndex);
+          isset_trainIndex = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case -3:
+        if (ftype == ::apache::thrift::protocol::T_I64) {
+          xfer += iprot->readI64(this->imageIndex);
+          isset_imageIndex = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case -4:
+        if (ftype == ::apache::thrift::protocol::T_DOUBLE) {
+          xfer += iprot->readDouble(this->distance);
+          isset_distance = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  if (!isset_queryIndex)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_trainIndex)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_imageIndex)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_distance)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  return xfer;
+}
+
+uint32_t DMatch::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  xfer += oprot->writeStructBegin("DMatch");
+
+  xfer += oprot->writeFieldBegin("distance", ::apache::thrift::protocol::T_DOUBLE, -4);
+  xfer += oprot->writeDouble(this->distance);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("imageIndex", ::apache::thrift::protocol::T_I64, -3);
+  xfer += oprot->writeI64(this->imageIndex);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("trainIndex", ::apache::thrift::protocol::T_I64, -2);
+  xfer += oprot->writeI64(this->trainIndex);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("queryIndex", ::apache::thrift::protocol::T_I64, -1);
+  xfer += oprot->writeI64(this->queryIndex);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(DMatch &a, DMatch &b) {
+  using ::std::swap;
+  swap(a.queryIndex, b.queryIndex);
+  swap(a.trainIndex, b.trainIndex);
+  swap(a.imageIndex, b.imageIndex);
+  swap(a.distance, b.distance);
+}
+
 

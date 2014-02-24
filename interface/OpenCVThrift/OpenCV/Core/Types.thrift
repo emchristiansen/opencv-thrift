@@ -13,3 +13,9 @@ struct KeyPoint {
   required i64 class_id
 }
   
+struct DMatch {
+  required i64 queryIndex
+  required i64 trainIndex
+  required i64 imageIndex
+  required double distance
+}
