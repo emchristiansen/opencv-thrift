@@ -28,3 +28,11 @@ void Features2DHandler::detect(std::vector<KeyPoint> & _return, const std::strin
     cvKeyPointToKeyPoint);
 }
 
+void Features2DHandler::extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) {
+  // TODO
+}
+
+
+void Features2DHandler::match(std::vector< ::DMatch> & _return, const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors) {
+  // TODO
+}
