@@ -32,7 +32,7 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
-import CVDef_Types
+import qualified CVDef_Types
 
 
 data Mat = Mat{f_Mat_rows :: Maybe Int64,f_Mat_cols :: Maybe Int64,f_Mat_channels :: Maybe Int64,f_Mat_type :: Maybe CVType,f_Mat_data :: Maybe ByteString} deriving (Show,Eq,Typeable)

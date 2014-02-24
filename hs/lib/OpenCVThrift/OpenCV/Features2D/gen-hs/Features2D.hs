@@ -32,8 +32,8 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
-import Mat_Types
-import Types_Types
+import qualified Mat_Types
+import qualified Types_Types
 
 
 import Features2D_Types
