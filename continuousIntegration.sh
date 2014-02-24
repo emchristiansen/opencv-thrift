@@ -119,8 +119,15 @@ installOpenCVThrift() {
 
   # Build the Haskell client wrapper.
   #cd hs
-  #./configure.sh
+  #cabal install --only-dependencies
   #cabal configure --enable-tests
   #cabal build
+  #cd ..
+
+  # Start the localhost server in a background process.
+  serverLocalhost/build/OpenCVThriftServerLocalhost &
+
+  # Run the cppLocalhost example.
+  cppLocalhost/build/LocalhostClient
 }
 
