@@ -12,4 +12,5 @@ run bash -c "source continuousIntegration.sh; installThrift"
 run bash -c "source continuousIntegration.sh; installOpenCV"
 
 run bash -c "source continuousIntegration.sh; installOpenCVThrift"
+run bash -c "source continuousIntegration.sh; runExamples"
 

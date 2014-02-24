@@ -6,7 +6,7 @@ Finally it provides an RPC mechanism for making function calls across network co
 
 (Update: This isn't even alpha yet. Check back later.)
 
-[![Build Status](https://travis-ci.org/emchristiansen/opencv-thrift.png)](https://travis-ci.org/emchristiansen/opencv-thrift)
+<!--[![Build Status](https://travis-ci.org/emchristiansen/opencv-thrift.png)](https://travis-ci.org/emchristiansen/opencv-thrift)-->
 
 ##How this is different from OpenCV's existing FFIs
 OpenCV already has foreign function interfaces (FFIs) to a number of languages besides C++, including Python, Java, Matlab.
@@ -32,8 +32,11 @@ I'd like to use it, but I'll wait for it to officially support Haskell.
 This project has a few moving parts, but I've tried to make it as simple and easy to understand as possible.
 This section contains a brief guide for getting started as a developer (or as a user).
 
-If you get lost trying to build things, remember to check out the build files: `continuousIntegration.sh` and `.travis.yml`, in conjunction with the Travis CI history (build badge at the top).
+If you get lost trying to build things, remember to check out the build files: `continuousIntegration.sh` and `Dockerfile`.
 They will tell you everything you need to know to build the project.
+You can also test everything yourself, from installation to running examples, using [Docker](https://www.docker.io/).
+Install Docker using [the instructions here](https://www.docker.io/gettingstarted/), then go to the root of this project and run `sudo docker build .`.
+Note, this will eventually be run in continuous integration mode, but currently Travis CI does not support Docker.
 
 ##The interface and implementation
 Apache Thrift requires a project's API be defined in terms of its own [interface definition language](http://thrift.apache.org/docs/idl/) (IDL).
