@@ -56,23 +56,23 @@ write_Detect_args oprot record = do
   writeFieldStop oprot
   writeStructEnd oprot
 read_Detect_args_fields iprot record = do
-  (_,_t3,_id4) <- readFieldBegin iprot
-  if _t3 == T_STOP then return record else
-    case _id4 of 
-      -1 -> if _t3 == T_STRING then do
+  (_,_t14,_id15) <- readFieldBegin iprot
+  if _t14 == T_STOP then return record else
+    case _id15 of 
+      -1 -> if _t14 == T_STRING then do
         s <- readString iprot
         read_Detect_args_fields iprot record{f_Detect_args_detectorType=Just s}
         else do
-          skip iprot _t3
+          skip iprot _t14
           read_Detect_args_fields iprot record
-      -2 -> if _t3 == T_STRUCT then do
+      -2 -> if _t14 == T_STRUCT then do
         s <- (read_Mat iprot)
         read_Detect_args_fields iprot record{f_Detect_args_image=Just s}
         else do
-          skip iprot _t3
+          skip iprot _t14
           read_Detect_args_fields iprot record
       _ -> do
-        skip iprot _t3
+        skip iprot _t14
         readFieldEnd iprot
         read_Detect_args_fields iprot record
 read_Detect_args iprot = do
@@ -87,27 +87,187 @@ write_Detect_result oprot record = do
   writeStructBegin oprot "Detect_result"
   case f_Detect_result_success record of {Nothing -> return (); Just _v -> do
     writeFieldBegin oprot ("success",T_LIST,0)
-    (let f = Vector.mapM_ (\_viter7 -> Types_Types.write_KeyPoint oprot _viter7) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
+    (let f = Vector.mapM_ (\_viter18 -> Types_Types.write_KeyPoint oprot _viter18) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
     writeFieldEnd oprot}
   writeFieldStop oprot
   writeStructEnd oprot
 read_Detect_result_fields iprot record = do
-  (_,_t9,_id10) <- readFieldBegin iprot
-  if _t9 == T_STOP then return record else
-    case _id10 of 
-      0 -> if _t9 == T_LIST then do
-        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_KeyPoint iprot)) in do {(_etype14,_size11) <- readListBegin iprot; f _size11})
+  (_,_t20,_id21) <- readFieldBegin iprot
+  if _t20 == T_STOP then return record else
+    case _id21 of 
+      0 -> if _t20 == T_LIST then do
+        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_KeyPoint iprot)) in do {(_etype25,_size22) <- readListBegin iprot; f _size22})
         read_Detect_result_fields iprot record{f_Detect_result_success=Just s}
         else do
-          skip iprot _t9
+          skip iprot _t20
           read_Detect_result_fields iprot record
       _ -> do
-        skip iprot _t9
+        skip iprot _t20
         readFieldEnd iprot
         read_Detect_result_fields iprot record
 read_Detect_result iprot = do
   _ <- readStructBegin iprot
   record <- read_Detect_result_fields iprot (Detect_result{f_Detect_result_success=Nothing})
+  readStructEnd iprot
+  return record
+data Extract_args = Extract_args{f_Extract_args_descriptorExtractorType :: Maybe Text,f_Extract_args_image :: Maybe Mat_Types.Mat,f_Extract_args_keyPoints :: Maybe (Vector.Vector Types_Types.KeyPoint)} deriving (Show,Eq,Typeable)
+instance Hashable Extract_args where
+  hashWithSalt salt record = salt   `hashWithSalt` f_Extract_args_descriptorExtractorType record   `hashWithSalt` f_Extract_args_image record   `hashWithSalt` f_Extract_args_keyPoints record  
+write_Extract_args oprot record = do
+  writeStructBegin oprot "Extract_args"
+  case f_Extract_args_keyPoints record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("keyPoints",T_LIST,-3)
+    (let f = Vector.mapM_ (\_viter29 -> Types_Types.write_KeyPoint oprot _viter29) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
+    writeFieldEnd oprot}
+  case f_Extract_args_image record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("image",T_STRUCT,-2)
+    Mat_Types.write_Mat oprot _v
+    writeFieldEnd oprot}
+  case f_Extract_args_descriptorExtractorType record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("descriptorExtractorType",T_STRING,-1)
+    writeString oprot _v
+    writeFieldEnd oprot}
+  writeFieldStop oprot
+  writeStructEnd oprot
+read_Extract_args_fields iprot record = do
+  (_,_t31,_id32) <- readFieldBegin iprot
+  if _t31 == T_STOP then return record else
+    case _id32 of 
+      -1 -> if _t31 == T_STRING then do
+        s <- readString iprot
+        read_Extract_args_fields iprot record{f_Extract_args_descriptorExtractorType=Just s}
+        else do
+          skip iprot _t31
+          read_Extract_args_fields iprot record
+      -2 -> if _t31 == T_STRUCT then do
+        s <- (read_Mat iprot)
+        read_Extract_args_fields iprot record{f_Extract_args_image=Just s}
+        else do
+          skip iprot _t31
+          read_Extract_args_fields iprot record
+      -3 -> if _t31 == T_LIST then do
+        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_KeyPoint iprot)) in do {(_etype36,_size33) <- readListBegin iprot; f _size33})
+        read_Extract_args_fields iprot record{f_Extract_args_keyPoints=Just s}
+        else do
+          skip iprot _t31
+          read_Extract_args_fields iprot record
+      _ -> do
+        skip iprot _t31
+        readFieldEnd iprot
+        read_Extract_args_fields iprot record
+read_Extract_args iprot = do
+  _ <- readStructBegin iprot
+  record <- read_Extract_args_fields iprot (Extract_args{f_Extract_args_descriptorExtractorType=Nothing,f_Extract_args_image=Nothing,f_Extract_args_keyPoints=Nothing})
+  readStructEnd iprot
+  return record
+data Extract_result = Extract_result{f_Extract_result_success :: Maybe (Vector.Vector ExtractorResponse)} deriving (Show,Eq,Typeable)
+instance Hashable Extract_result where
+  hashWithSalt salt record = salt   `hashWithSalt` f_Extract_result_success record  
+write_Extract_result oprot record = do
+  writeStructBegin oprot "Extract_result"
+  case f_Extract_result_success record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("success",T_LIST,0)
+    (let f = Vector.mapM_ (\_viter40 -> write_ExtractorResponse oprot _viter40) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
+    writeFieldEnd oprot}
+  writeFieldStop oprot
+  writeStructEnd oprot
+read_Extract_result_fields iprot record = do
+  (_,_t42,_id43) <- readFieldBegin iprot
+  if _t42 == T_STOP then return record else
+    case _id43 of 
+      0 -> if _t42 == T_LIST then do
+        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_ExtractorResponse iprot)) in do {(_etype47,_size44) <- readListBegin iprot; f _size44})
+        read_Extract_result_fields iprot record{f_Extract_result_success=Just s}
+        else do
+          skip iprot _t42
+          read_Extract_result_fields iprot record
+      _ -> do
+        skip iprot _t42
+        readFieldEnd iprot
+        read_Extract_result_fields iprot record
+read_Extract_result iprot = do
+  _ <- readStructBegin iprot
+  record <- read_Extract_result_fields iprot (Extract_result{f_Extract_result_success=Nothing})
+  readStructEnd iprot
+  return record
+data Match_args = Match_args{f_Match_args_descriptorMatcherType :: Maybe Text,f_Match_args_queryDescriptors :: Maybe Mat_Types.Mat,f_Match_args_trainDescriptors :: Maybe Mat_Types.Mat} deriving (Show,Eq,Typeable)
+instance Hashable Match_args where
+  hashWithSalt salt record = salt   `hashWithSalt` f_Match_args_descriptorMatcherType record   `hashWithSalt` f_Match_args_queryDescriptors record   `hashWithSalt` f_Match_args_trainDescriptors record  
+write_Match_args oprot record = do
+  writeStructBegin oprot "Match_args"
+  case f_Match_args_trainDescriptors record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("trainDescriptors",T_STRUCT,-3)
+    Mat_Types.write_Mat oprot _v
+    writeFieldEnd oprot}
+  case f_Match_args_queryDescriptors record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("queryDescriptors",T_STRUCT,-2)
+    Mat_Types.write_Mat oprot _v
+    writeFieldEnd oprot}
+  case f_Match_args_descriptorMatcherType record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("descriptorMatcherType",T_STRING,-1)
+    writeString oprot _v
+    writeFieldEnd oprot}
+  writeFieldStop oprot
+  writeStructEnd oprot
+read_Match_args_fields iprot record = do
+  (_,_t52,_id53) <- readFieldBegin iprot
+  if _t52 == T_STOP then return record else
+    case _id53 of 
+      -1 -> if _t52 == T_STRING then do
+        s <- readString iprot
+        read_Match_args_fields iprot record{f_Match_args_descriptorMatcherType=Just s}
+        else do
+          skip iprot _t52
+          read_Match_args_fields iprot record
+      -2 -> if _t52 == T_STRUCT then do
+        s <- (read_Mat iprot)
+        read_Match_args_fields iprot record{f_Match_args_queryDescriptors=Just s}
+        else do
+          skip iprot _t52
+          read_Match_args_fields iprot record
+      -3 -> if _t52 == T_STRUCT then do
+        s <- (read_Mat iprot)
+        read_Match_args_fields iprot record{f_Match_args_trainDescriptors=Just s}
+        else do
+          skip iprot _t52
+          read_Match_args_fields iprot record
+      _ -> do
+        skip iprot _t52
+        readFieldEnd iprot
+        read_Match_args_fields iprot record
+read_Match_args iprot = do
+  _ <- readStructBegin iprot
+  record <- read_Match_args_fields iprot (Match_args{f_Match_args_descriptorMatcherType=Nothing,f_Match_args_queryDescriptors=Nothing,f_Match_args_trainDescriptors=Nothing})
+  readStructEnd iprot
+  return record
+data Match_result = Match_result{f_Match_result_success :: Maybe (Vector.Vector Types_Types.DMatch)} deriving (Show,Eq,Typeable)
+instance Hashable Match_result where
+  hashWithSalt salt record = salt   `hashWithSalt` f_Match_result_success record  
+write_Match_result oprot record = do
+  writeStructBegin oprot "Match_result"
+  case f_Match_result_success record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("success",T_LIST,0)
+    (let f = Vector.mapM_ (\_viter56 -> Types_Types.write_DMatch oprot _viter56) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
+    writeFieldEnd oprot}
+  writeFieldStop oprot
+  writeStructEnd oprot
+read_Match_result_fields iprot record = do
+  (_,_t58,_id59) <- readFieldBegin iprot
+  if _t58 == T_STOP then return record else
+    case _id59 of 
+      0 -> if _t58 == T_LIST then do
+        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_DMatch iprot)) in do {(_etype63,_size60) <- readListBegin iprot; f _size60})
+        read_Match_result_fields iprot record{f_Match_result_success=Just s}
+        else do
+          skip iprot _t58
+          read_Match_result_fields iprot record
+      _ -> do
+        skip iprot _t58
+        readFieldEnd iprot
+        read_Match_result_fields iprot record
+read_Match_result iprot = do
+  _ <- readStructBegin iprot
+  record <- read_Match_result_fields iprot (Match_result{f_Match_result_success=Nothing})
   readStructEnd iprot
   return record
 process_detect (seqid, iprot, oprot, handler) = do
@@ -121,8 +281,32 @@ process_detect (seqid, iprot, oprot, handler) = do
   write_Detect_result oprot res
   writeMessageEnd oprot
   tFlush (getTransport oprot)
+process_extract (seqid, iprot, oprot, handler) = do
+  args <- read_Extract_args iprot
+  readMessageEnd iprot
+  rs <- return (Extract_result Nothing)
+  res <- (do
+    res <- Iface.extract handler (f_Extract_args_descriptorExtractorType args) (f_Extract_args_image args) (f_Extract_args_keyPoints args)
+    return rs{f_Extract_result_success= Just res})
+  writeMessageBegin oprot ("extract", M_REPLY, seqid);
+  write_Extract_result oprot res
+  writeMessageEnd oprot
+  tFlush (getTransport oprot)
+process_match (seqid, iprot, oprot, handler) = do
+  args <- read_Match_args iprot
+  readMessageEnd iprot
+  rs <- return (Match_result Nothing)
+  res <- (do
+    res <- Iface.match handler (f_Match_args_descriptorMatcherType args) (f_Match_args_queryDescriptors args) (f_Match_args_trainDescriptors args)
+    return rs{f_Match_result_success= Just res})
+  writeMessageBegin oprot ("match", M_REPLY, seqid);
+  write_Match_result oprot res
+  writeMessageEnd oprot
+  tFlush (getTransport oprot)
 proc_ handler (iprot,oprot) (name,typ,seqid) = case name of
   "detect" -> process_detect (seqid,iprot,oprot,handler)
+  "extract" -> process_extract (seqid,iprot,oprot,handler)
+  "match" -> process_match (seqid,iprot,oprot,handler)
   _ -> do
     skip iprot T_STRUCT
     readMessageEnd iprot

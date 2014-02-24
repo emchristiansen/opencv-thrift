@@ -153,3 +153,63 @@ read_KeyPoint iprot = do
   record <- read_KeyPoint_fields iprot (KeyPoint{f_KeyPoint_pt=Nothing,f_KeyPoint_size=Nothing,f_KeyPoint_angle=Nothing,f_KeyPoint_response=Nothing,f_KeyPoint_octave=Nothing,f_KeyPoint_class_id=Nothing})
   readStructEnd iprot
   return record
+data DMatch = DMatch{f_DMatch_queryIndex :: Maybe Int64,f_DMatch_trainIndex :: Maybe Int64,f_DMatch_imageIndex :: Maybe Int64,f_DMatch_distance :: Maybe Double} deriving (Show,Eq,Typeable)
+instance Hashable DMatch where
+  hashWithSalt salt record = salt   `hashWithSalt` f_DMatch_queryIndex record   `hashWithSalt` f_DMatch_trainIndex record   `hashWithSalt` f_DMatch_imageIndex record   `hashWithSalt` f_DMatch_distance record  
+write_DMatch oprot record = do
+  writeStructBegin oprot "DMatch"
+  case f_DMatch_distance record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("distance",T_DOUBLE,-4)
+    writeDouble oprot _v
+    writeFieldEnd oprot}
+  case f_DMatch_imageIndex record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("imageIndex",T_I64,-3)
+    writeI64 oprot _v
+    writeFieldEnd oprot}
+  case f_DMatch_trainIndex record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("trainIndex",T_I64,-2)
+    writeI64 oprot _v
+    writeFieldEnd oprot}
+  case f_DMatch_queryIndex record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("queryIndex",T_I64,-1)
+    writeI64 oprot _v
+    writeFieldEnd oprot}
+  writeFieldStop oprot
+  writeStructEnd oprot
+read_DMatch_fields iprot record = do
+  (_,_t13,_id14) <- readFieldBegin iprot
+  if _t13 == T_STOP then return record else
+    case _id14 of 
+      -1 -> if _t13 == T_I64 then do
+        s <- readI64 iprot
+        read_DMatch_fields iprot record{f_DMatch_queryIndex=Just s}
+        else do
+          skip iprot _t13
+          read_DMatch_fields iprot record
+      -2 -> if _t13 == T_I64 then do
+        s <- readI64 iprot
+        read_DMatch_fields iprot record{f_DMatch_trainIndex=Just s}
+        else do
+          skip iprot _t13
+          read_DMatch_fields iprot record
+      -3 -> if _t13 == T_I64 then do
+        s <- readI64 iprot
+        read_DMatch_fields iprot record{f_DMatch_imageIndex=Just s}
+        else do
+          skip iprot _t13
+          read_DMatch_fields iprot record
+      -4 -> if _t13 == T_DOUBLE then do
+        s <- readDouble iprot
+        read_DMatch_fields iprot record{f_DMatch_distance=Just s}
+        else do
+          skip iprot _t13
+          read_DMatch_fields iprot record
+      _ -> do
+        skip iprot _t13
+        readFieldEnd iprot
+        read_DMatch_fields iprot record
+read_DMatch iprot = do
+  _ <- readStructBegin iprot
+  record <- read_DMatch_fields iprot (DMatch{f_DMatch_queryIndex=Nothing,f_DMatch_trainIndex=Nothing,f_DMatch_imageIndex=Nothing,f_DMatch_distance=Nothing})
+  readStructEnd iprot
+  return record

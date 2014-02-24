@@ -36,3 +36,43 @@ import qualified Mat_Types
 import qualified Types_Types
 
 
+data ExtractorResponse = ExtractorResponse{f_ExtractorResponse_descriptors :: Maybe Mat_Types.Mat,f_ExtractorResponse_keypointMask :: Maybe (Vector.Vector Bool)} deriving (Show,Eq,Typeable)
+instance Hashable ExtractorResponse where
+  hashWithSalt salt record = salt   `hashWithSalt` f_ExtractorResponse_descriptors record   `hashWithSalt` f_ExtractorResponse_keypointMask record  
+write_ExtractorResponse oprot record = do
+  writeStructBegin oprot "ExtractorResponse"
+  case f_ExtractorResponse_keypointMask record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("keypointMask",T_LIST,-2)
+    (let f = Vector.mapM_ (\_viter2 -> writeBool oprot _viter2) in do {writeListBegin oprot (T_BOOL,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
+    writeFieldEnd oprot}
+  case f_ExtractorResponse_descriptors record of {Nothing -> return (); Just _v -> do
+    writeFieldBegin oprot ("descriptors",T_STRUCT,-1)
+    Mat_Types.write_Mat oprot _v
+    writeFieldEnd oprot}
+  writeFieldStop oprot
+  writeStructEnd oprot
+read_ExtractorResponse_fields iprot record = do
+  (_,_t4,_id5) <- readFieldBegin iprot
+  if _t4 == T_STOP then return record else
+    case _id5 of 
+      -1 -> if _t4 == T_STRUCT then do
+        s <- (read_Mat iprot)
+        read_ExtractorResponse_fields iprot record{f_ExtractorResponse_descriptors=Just s}
+        else do
+          skip iprot _t4
+          read_ExtractorResponse_fields iprot record
+      -2 -> if _t4 == T_LIST then do
+        s <- (let f n = Vector.replicateM (fromIntegral n) (readBool iprot) in do {(_etype9,_size6) <- readListBegin iprot; f _size6})
+        read_ExtractorResponse_fields iprot record{f_ExtractorResponse_keypointMask=Just s}
+        else do
+          skip iprot _t4
+          read_ExtractorResponse_fields iprot record
+      _ -> do
+        skip iprot _t4
+        readFieldEnd iprot
+        read_ExtractorResponse_fields iprot record
+read_ExtractorResponse iprot = do
+  _ <- readStructBegin iprot
+  record <- read_ExtractorResponse_fields iprot (ExtractorResponse{f_ExtractorResponse_descriptors=Nothing,f_ExtractorResponse_keypointMask=Nothing})
+  readStructEnd iprot
+  return record

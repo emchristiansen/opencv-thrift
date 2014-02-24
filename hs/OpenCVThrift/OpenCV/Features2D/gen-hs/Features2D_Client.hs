@@ -12,7 +12,7 @@
 -- DO NOT EDIT UNLESS YOU ARE SURE YOU KNOW WHAT YOU ARE DOING --
 -----------------------------------------------------------------
 
-module Features2D_Client(detect) where
+module Features2D_Client(detect,extract,match) where
 import Data.IORef
 import Prelude ( Bool(..), Enum, Double, String, Maybe(..),
                  Eq, Show, Ord,
@@ -63,3 +63,49 @@ recv_detect ip = do
     Just v -> return v
     Nothing -> do
       throw (AppExn AE_MISSING_RESULT "detect failed: unknown result")
+extract (ip,op) arg_descriptorExtractorType arg_image arg_keyPoints = do
+  send_extract op arg_descriptorExtractorType arg_image arg_keyPoints
+  recv_extract ip
+send_extract op arg_descriptorExtractorType arg_image arg_keyPoints = do
+  seq <- seqid
+  seqn <- readIORef seq
+  writeMessageBegin op ("extract", M_CALL, seqn)
+  write_Extract_args op (Extract_args{f_Extract_args_descriptorExtractorType=Just arg_descriptorExtractorType,f_Extract_args_image=Just arg_image,f_Extract_args_keyPoints=Just arg_keyPoints})
+  writeMessageEnd op
+  tFlush (getTransport op)
+recv_extract ip = do
+  (fname, mtype, rseqid) <- readMessageBegin ip
+  if mtype == M_EXCEPTION then do
+    x <- readAppExn ip
+    readMessageEnd ip
+    throw x
+    else return ()
+  res <- read_Extract_result ip
+  readMessageEnd ip
+  case f_Extract_result_success res of
+    Just v -> return v
+    Nothing -> do
+      throw (AppExn AE_MISSING_RESULT "extract failed: unknown result")
+match (ip,op) arg_descriptorMatcherType arg_queryDescriptors arg_trainDescriptors = do
+  send_match op arg_descriptorMatcherType arg_queryDescriptors arg_trainDescriptors
+  recv_match ip
+send_match op arg_descriptorMatcherType arg_queryDescriptors arg_trainDescriptors = do
+  seq <- seqid
+  seqn <- readIORef seq
+  writeMessageBegin op ("match", M_CALL, seqn)
+  write_Match_args op (Match_args{f_Match_args_descriptorMatcherType=Just arg_descriptorMatcherType,f_Match_args_queryDescriptors=Just arg_queryDescriptors,f_Match_args_trainDescriptors=Just arg_trainDescriptors})
+  writeMessageEnd op
+  tFlush (getTransport op)
+recv_match ip = do
+  (fname, mtype, rseqid) <- readMessageBegin ip
+  if mtype == M_EXCEPTION then do
+    x <- readAppExn ip
+    readMessageEnd ip
+    throw x
+    else return ()
+  res <- read_Match_result ip
+  readMessageEnd ip
+  case f_Match_result_success res of
+    Just v -> return v
+    Nothing -> do
+      throw (AppExn AE_MISSING_RESULT "match failed: unknown result")
