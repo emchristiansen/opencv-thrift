@@ -134,3 +134,11 @@ runExamples() {
   # Run the cppLocalhost example.
   opencv-thrift/cppLocalhost/build/LocalhostClient
 }
+
+runAll() {
+  configureSystem
+  installThrift
+  installOpenCV
+  installOpenCVThrift
+  runExamples
+}
