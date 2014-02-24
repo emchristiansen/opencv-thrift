@@ -6,6 +6,7 @@ Finally it provides an RPC mechanism for making function calls across network co
 
 (Update: This isn't even alpha yet. Check back later.)
 
+[![Build Status](https://drone.io/github.com/emchristiansen/opencv-thrift/status.png)](https://drone.io/github.com/emchristiansen/opencv-thrift/latest)
 <!--[![Build Status](https://travis-ci.org/emchristiansen/opencv-thrift.png)](https://travis-ci.org/emchristiansen/opencv-thrift)-->
 
 ##How this is different from OpenCV's existing FFIs
