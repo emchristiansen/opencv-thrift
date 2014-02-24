@@ -10,4 +10,104 @@
 
 
 
+const char* ExtractorResponse::ascii_fingerprint = "D8C9329C88DDFD2646031C21943CF553";
+const uint8_t ExtractorResponse::binary_fingerprint[16] = {0xD8,0xC9,0x32,0x9C,0x88,0xDD,0xFD,0x26,0x46,0x03,0x1C,0x21,0x94,0x3C,0xF5,0x53};
+
+uint32_t ExtractorResponse::read(::apache::thrift::protocol::TProtocol* iprot) {
+
+  uint32_t xfer = 0;
+  std::string fname;
+  ::apache::thrift::protocol::TType ftype;
+  int16_t fid;
+
+  xfer += iprot->readStructBegin(fname);
+
+  using ::apache::thrift::protocol::TProtocolException;
+
+  bool isset_descriptors = false;
+  bool isset_keypointMask = false;
+
+  while (true)
+  {
+    xfer += iprot->readFieldBegin(fname, ftype, fid);
+    if (ftype == ::apache::thrift::protocol::T_STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case -1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->descriptors.read(iprot);
+          isset_descriptors = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case -2:
+        if (ftype == ::apache::thrift::protocol::T_LIST) {
+          {
+            this->keypointMask.clear();
+            uint32_t _size0;
+            ::apache::thrift::protocol::TType _etype3;
+            xfer += iprot->readListBegin(_etype3, _size0);
+            this->keypointMask.resize(_size0);
+            uint32_t _i4;
+            for (_i4 = 0; _i4 < _size0; ++_i4)
+            {
+              xfer += iprot->readBool(this->keypointMask[_i4]);
+            }
+            xfer += iprot->readListEnd();
+          }
+          isset_keypointMask = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
+    xfer += iprot->readFieldEnd();
+  }
+
+  xfer += iprot->readStructEnd();
+
+  if (!isset_descriptors)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  if (!isset_keypointMask)
+    throw TProtocolException(TProtocolException::INVALID_DATA);
+  return xfer;
+}
+
+uint32_t ExtractorResponse::write(::apache::thrift::protocol::TProtocol* oprot) const {
+  uint32_t xfer = 0;
+  xfer += oprot->writeStructBegin("ExtractorResponse");
+
+  xfer += oprot->writeFieldBegin("keypointMask", ::apache::thrift::protocol::T_LIST, -2);
+  {
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_BOOL, static_cast<uint32_t>(this->keypointMask.size()));
+    std::vector<bool> ::const_iterator _iter5;
+    for (_iter5 = this->keypointMask.begin(); _iter5 != this->keypointMask.end(); ++_iter5)
+    {
+      xfer += oprot->writeBool((*_iter5));
+    }
+    xfer += oprot->writeListEnd();
+  }
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("descriptors", ::apache::thrift::protocol::T_STRUCT, -1);
+  xfer += this->descriptors.write(oprot);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldStop();
+  xfer += oprot->writeStructEnd();
+  return xfer;
+}
+
+void swap(ExtractorResponse &a, ExtractorResponse &b) {
+  using ::std::swap;
+  swap(a.descriptors, b.descriptors);
+  swap(a.keypointMask, b.keypointMask);
+}
+
 
