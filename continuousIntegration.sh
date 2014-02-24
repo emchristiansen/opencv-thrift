@@ -124,10 +124,13 @@ installOpenCVThrift() {
   #cabal build
   #cd ..
 
-  # Start the localhost server in a background process.
-  serverLocalhost/build/OpenCVThriftServerLocalhost &
-
-  # Run the cppLocalhost example.
-  cppLocalhost/build/LocalhostClient
+  cd ..
 }
 
+runExamples() {
+  # Start the localhost server in a background process.
+  opencv-thrift/serverLocalhost/build/OpenCVThriftServerLocalhost &
+
+  # Run the cppLocalhost example.
+  opencv-thrift/cppLocalhost/build/LocalhostClient
+}

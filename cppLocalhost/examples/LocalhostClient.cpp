@@ -32,6 +32,8 @@ void printMat(const Mat& mat) {
 // Create a MatUnpacked, convert it to a Mat via a server call, then
 // convert it back with another call.
 int main() {
+  cout << "C++ client example." << endl;
+
   OpenCV openCV; 
 
   MatUnpacked matUnpacked;
@@ -55,4 +57,6 @@ int main() {
 
   // This should be the same as matUnpacked.
   printMatUnpacked(matUnpackedCopy);
+
+  cout << "Done." << endl;
 }
