@@ -33,6 +33,9 @@ void MatUtilHandler::pack( ::Mat& _return, const  ::CVType::type type, const  ::
   assert(cvMat.cols == matUnpacked.cols);
   assert(cvMat.channels() == matUnpacked.channels);
 
+  std::cout << cvMat << std::endl;
+  std::cout << matToCVMat(cvMatToMat(cvMat)) << std::endl;
+
   // Copy the converted Mat back into a Thrift type.
   _return = cvMatToMat(cvMat);
 }
@@ -43,6 +46,8 @@ void MatUtilHandler::unpack( ::MatUnpacked& _return, const  ::Mat& mat) {
 
   // Copy the Thrift type into an OpenCV type.
   cv::Mat cvMat = matToCVMat(mat);
+
+  std::cout << cvMat << std::endl;
 
   // Unpack the OpenCV type (convert its elements to doubles).
   cv::Mat cvMatUnpacked;

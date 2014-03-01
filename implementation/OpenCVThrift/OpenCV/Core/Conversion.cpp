@@ -159,14 +159,16 @@ CVType::type doubleTypeToCVType(const int numChannels) {
 }
 
 cv::Mat matToCVMat(const Mat& mat) {
-  // The syntax is easier with this copy.
-  Mat matCopy(mat);
-
   cv::Mat cvMat(
     mat.rows,
     mat.cols,
-    cvTypeToCVMacro(mat.type),
-    &matCopy.data[0]);
+    cvTypeToCVMacro(mat.type));
+
+  memcpy(
+    cvMat.data,
+    mat.data.data(),
+    mat.data.size() * sizeof(char));  
+  //std::copy(mat.data.begin(), mat.data.end(), cvMat.begin<char>());
 
   return cvMat;
 }
@@ -177,7 +179,9 @@ Mat cvMatToMat(const cv::Mat& cvMat) {
   mat.cols = cvMat.cols;
   mat.channels = cvMat.channels();
   mat.type = cvMacroToCVType(cvMat.type());
-  mat.data.assign(cvMat.begin<uchar>(), cvMat.end<uchar>());
+  //mat.data.assign(cvMat.begin<char>(), cvMat.end<char>());
+  //mat.data.assign(cvMat.datastart, cvMat.dataend);
+  mat.data.assign((char*)cvMat.datastart, (char*)cvMat.dataend);  
 
   return mat;
 }
