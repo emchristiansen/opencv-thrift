@@ -32,8 +32,8 @@ import qualified Data.Vector as Vector
 import Thrift
 import Thrift.Types ()
 
-import qualified Mat_Types
-import qualified Types_Types
+import Mat_Types
+import Types_Types
 
 
 data ExtractorResponse = ExtractorResponse{f_ExtractorResponse_descriptors :: Maybe Mat_Types.Mat,f_ExtractorResponse_keyPointMask :: Maybe (Vector.Vector Bool)} deriving (Show,Eq,Typeable)

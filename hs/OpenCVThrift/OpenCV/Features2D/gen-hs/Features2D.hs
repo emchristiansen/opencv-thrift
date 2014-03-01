@@ -37,6 +37,9 @@ import qualified Types_Types
 
 
 import Features2D_Types
+import Features2D_Iface
+import Mat_Types
+import Types_Types
 import qualified Features2D_Iface as Iface
 -- HELPER FUNCTIONS AND STRUCTURES --
 

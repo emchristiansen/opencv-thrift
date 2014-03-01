@@ -37,6 +37,8 @@ import qualified Mat_Types
 
 
 import MatUtil_Types
+import CVDef_Types
+import Mat_Types
 import qualified MatUtil_Iface as Iface
 -- HELPER FUNCTIONS AND STRUCTURES --
 
