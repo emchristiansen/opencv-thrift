@@ -1,22 +1,22 @@
-Name:           OpenCVThrift 
-Version:        0.1.0
-Cabal-Version:  >= 1.16
-Category:       Foreign
-Build-Type:     Simple
+name:           OpenCVThrift 
+version:        0.1.0
+cabal-version:  >= 1.16
+category:       Foreign
+build-Type:     Simple
 
 library 
-  Hs-Source-Dirs:
-    lib,
-    lib/OpenCVThrift/gen-hs,
-    lib/OpenCVThrift/OpenCV/Core/gen-hs, 
-    lib/OpenCVThrift/OpenCV/Features2D/gen-hs
+  hs-source-dirs:
+    ./
+    OpenCVThrift/gen-hs
+    OpenCVThrift/OpenCV/Core/gen-hs
+    OpenCVThrift/OpenCV/Features2D/gen-hs
 
   exposed-modules:
     OpenCVThrift.OpenCV.Core.MatUtil
     OpenCVThrift.OpenCV.Features2D.Features2D
     OpenCVThrift.OpenCV
 
-  Build-Depends:
+  build-depends:
     base >=4, 
     network, 
     ghc-prim, 
@@ -27,7 +27,10 @@ library
     text, 
     hashable, 
     bytestring
-  default-language: Haskell2010
+
+  default-language: 
+    Haskell2010
+
   default-extensions:
     DeriveDataTypeable
     ExistentialQuantification
