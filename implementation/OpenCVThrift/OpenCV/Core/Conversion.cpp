@@ -182,7 +182,7 @@ Mat cvMatToMat(const cv::Mat& cvMat) {
   return mat;
 }
 
-KeyPoint cvKeyPointToKeyPoint(const cv::KeyPoint cvKeyPoint) {
+KeyPoint cvKeyPointToKeyPoint(const cv::KeyPoint& cvKeyPoint) {
   Point2d point2d;
   point2d.x = cvKeyPoint.pt.x;
   point2d.y = cvKeyPoint.pt.y;
@@ -197,3 +197,15 @@ KeyPoint cvKeyPointToKeyPoint(const cv::KeyPoint cvKeyPoint) {
 
   return keyPoint;
 }
+
+cv::KeyPoint keyPointToCVKeyPoint(const KeyPoint& keyPoint) {
+  return cv::KeyPoint(
+    keyPoint.pt.x,
+    keyPoint.pt.y,
+    keyPoint.size,
+    keyPoint.angle,
+    keyPoint.response,
+    keyPoint.octave,
+    keyPoint.class_id);
+}
+

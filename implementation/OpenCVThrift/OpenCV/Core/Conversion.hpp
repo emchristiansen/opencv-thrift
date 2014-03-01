@@ -32,6 +32,8 @@ cv::Mat matToCVMat(const Mat& mat);
  */
 Mat cvMatToMat(const cv::Mat& cvMat);
 
-KeyPoint cvKeyPointToKeyPoint(const cv::KeyPoint cvKeyPoint);
+KeyPoint cvKeyPointToKeyPoint(const cv::KeyPoint& cvKeyPoint);
+
+cv::KeyPoint keyPointToCVKeyPoint(const KeyPoint& keyPoint);
 
 #endif

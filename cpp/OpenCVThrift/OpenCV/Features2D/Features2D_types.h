@@ -32,21 +32,21 @@ class ExtractorResponse {
   virtual ~ExtractorResponse() throw() {}
 
    ::Mat descriptors;
-  std::vector<bool>  keypointMask;
+  std::vector<bool>  keyPointMask;
 
   void __set_descriptors(const  ::Mat& val) {
     descriptors = val;
   }
 
-  void __set_keypointMask(const std::vector<bool> & val) {
-    keypointMask = val;
+  void __set_keyPointMask(const std::vector<bool> & val) {
+    keyPointMask = val;
   }
 
   bool operator == (const ExtractorResponse & rhs) const
   {
     if (!(descriptors == rhs.descriptors))
       return false;
-    if (!(keypointMask == rhs.keypointMask))
+    if (!(keyPointMask == rhs.keyPointMask))
       return false;
     return true;
   }

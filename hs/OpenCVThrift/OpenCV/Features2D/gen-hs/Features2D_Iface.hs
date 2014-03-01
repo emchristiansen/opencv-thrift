@@ -40,5 +40,5 @@ import Features2D_Types
 
 class Features2D_Iface a where
   detect :: a -> Maybe Text -> Maybe Mat_Types.Mat -> IO (Vector.Vector Types_Types.KeyPoint)
-  extract :: a -> Maybe Text -> Maybe Mat_Types.Mat -> Maybe (Vector.Vector Types_Types.KeyPoint) -> IO (Vector.Vector ExtractorResponse)
+  extract :: a -> Maybe Text -> Maybe Mat_Types.Mat -> Maybe (Vector.Vector Types_Types.KeyPoint) -> IO ExtractorResponse
   match :: a -> Maybe Text -> Maybe Mat_Types.Mat -> Maybe Mat_Types.Mat -> IO (Vector.Vector Types_Types.DMatch)

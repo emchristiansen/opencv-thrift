@@ -25,7 +25,7 @@ uint32_t ExtractorResponse::read(::apache::thrift::protocol::TProtocol* iprot) {
   using ::apache::thrift::protocol::TProtocolException;
 
   bool isset_descriptors = false;
-  bool isset_keypointMask = false;
+  bool isset_keyPointMask = false;
 
   while (true)
   {
@@ -46,19 +46,19 @@ uint32_t ExtractorResponse::read(::apache::thrift::protocol::TProtocol* iprot) {
       case -2:
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
-            this->keypointMask.clear();
+            this->keyPointMask.clear();
             uint32_t _size0;
             ::apache::thrift::protocol::TType _etype3;
             xfer += iprot->readListBegin(_etype3, _size0);
-            this->keypointMask.resize(_size0);
+            this->keyPointMask.resize(_size0);
             uint32_t _i4;
             for (_i4 = 0; _i4 < _size0; ++_i4)
             {
-              xfer += iprot->readBool(this->keypointMask[_i4]);
+              xfer += iprot->readBool(this->keyPointMask[_i4]);
             }
             xfer += iprot->readListEnd();
           }
-          isset_keypointMask = true;
+          isset_keyPointMask = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -74,7 +74,7 @@ uint32_t ExtractorResponse::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   if (!isset_descriptors)
     throw TProtocolException(TProtocolException::INVALID_DATA);
-  if (!isset_keypointMask)
+  if (!isset_keyPointMask)
     throw TProtocolException(TProtocolException::INVALID_DATA);
   return xfer;
 }
@@ -83,11 +83,11 @@ uint32_t ExtractorResponse::write(::apache::thrift::protocol::TProtocol* oprot) 
   uint32_t xfer = 0;
   xfer += oprot->writeStructBegin("ExtractorResponse");
 
-  xfer += oprot->writeFieldBegin("keypointMask", ::apache::thrift::protocol::T_LIST, -2);
+  xfer += oprot->writeFieldBegin("keyPointMask", ::apache::thrift::protocol::T_LIST, -2);
   {
-    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_BOOL, static_cast<uint32_t>(this->keypointMask.size()));
+    xfer += oprot->writeListBegin(::apache::thrift::protocol::T_BOOL, static_cast<uint32_t>(this->keyPointMask.size()));
     std::vector<bool> ::const_iterator _iter5;
-    for (_iter5 = this->keypointMask.begin(); _iter5 != this->keypointMask.end(); ++_iter5)
+    for (_iter5 = this->keyPointMask.begin(); _iter5 != this->keyPointMask.end(); ++_iter5)
     {
       xfer += oprot->writeBool((*_iter5));
     }
@@ -107,7 +107,7 @@ uint32_t ExtractorResponse::write(::apache::thrift::protocol::TProtocol* oprot) 
 void swap(ExtractorResponse &a, ExtractorResponse &b) {
   using ::std::swap;
   swap(a.descriptors, b.descriptors);
-  swap(a.keypointMask, b.keypointMask);
+  swap(a.keyPointMask, b.keyPointMask);
 }
 
 

@@ -160,29 +160,29 @@ read_Extract_args iprot = do
   record <- read_Extract_args_fields iprot (Extract_args{f_Extract_args_descriptorExtractorType=Nothing,f_Extract_args_image=Nothing,f_Extract_args_keyPoints=Nothing})
   readStructEnd iprot
   return record
-data Extract_result = Extract_result{f_Extract_result_success :: Maybe (Vector.Vector ExtractorResponse)} deriving (Show,Eq,Typeable)
+data Extract_result = Extract_result{f_Extract_result_success :: Maybe ExtractorResponse} deriving (Show,Eq,Typeable)
 instance Hashable Extract_result where
   hashWithSalt salt record = salt   `hashWithSalt` f_Extract_result_success record  
 write_Extract_result oprot record = do
   writeStructBegin oprot "Extract_result"
   case f_Extract_result_success record of {Nothing -> return (); Just _v -> do
-    writeFieldBegin oprot ("success",T_LIST,0)
-    (let f = Vector.mapM_ (\_viter40 -> write_ExtractorResponse oprot _viter40) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
+    writeFieldBegin oprot ("success",T_STRUCT,0)
+    write_ExtractorResponse oprot _v
     writeFieldEnd oprot}
   writeFieldStop oprot
   writeStructEnd oprot
 read_Extract_result_fields iprot record = do
-  (_,_t42,_id43) <- readFieldBegin iprot
-  if _t42 == T_STOP then return record else
-    case _id43 of 
-      0 -> if _t42 == T_LIST then do
-        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_ExtractorResponse iprot)) in do {(_etype47,_size44) <- readListBegin iprot; f _size44})
+  (_,_t41,_id42) <- readFieldBegin iprot
+  if _t41 == T_STOP then return record else
+    case _id42 of 
+      0 -> if _t41 == T_STRUCT then do
+        s <- (read_ExtractorResponse iprot)
         read_Extract_result_fields iprot record{f_Extract_result_success=Just s}
         else do
-          skip iprot _t42
+          skip iprot _t41
           read_Extract_result_fields iprot record
       _ -> do
-        skip iprot _t42
+        skip iprot _t41
         readFieldEnd iprot
         read_Extract_result_fields iprot record
 read_Extract_result iprot = do
@@ -210,29 +210,29 @@ write_Match_args oprot record = do
   writeFieldStop oprot
   writeStructEnd oprot
 read_Match_args_fields iprot record = do
-  (_,_t52,_id53) <- readFieldBegin iprot
-  if _t52 == T_STOP then return record else
-    case _id53 of 
-      -1 -> if _t52 == T_STRING then do
+  (_,_t46,_id47) <- readFieldBegin iprot
+  if _t46 == T_STOP then return record else
+    case _id47 of 
+      -1 -> if _t46 == T_STRING then do
         s <- readString iprot
         read_Match_args_fields iprot record{f_Match_args_descriptorMatcherType=Just s}
         else do
-          skip iprot _t52
+          skip iprot _t46
           read_Match_args_fields iprot record
-      -2 -> if _t52 == T_STRUCT then do
+      -2 -> if _t46 == T_STRUCT then do
         s <- (read_Mat iprot)
         read_Match_args_fields iprot record{f_Match_args_queryDescriptors=Just s}
         else do
-          skip iprot _t52
+          skip iprot _t46
           read_Match_args_fields iprot record
-      -3 -> if _t52 == T_STRUCT then do
+      -3 -> if _t46 == T_STRUCT then do
         s <- (read_Mat iprot)
         read_Match_args_fields iprot record{f_Match_args_trainDescriptors=Just s}
         else do
-          skip iprot _t52
+          skip iprot _t46
           read_Match_args_fields iprot record
       _ -> do
-        skip iprot _t52
+        skip iprot _t46
         readFieldEnd iprot
         read_Match_args_fields iprot record
 read_Match_args iprot = do
@@ -247,22 +247,22 @@ write_Match_result oprot record = do
   writeStructBegin oprot "Match_result"
   case f_Match_result_success record of {Nothing -> return (); Just _v -> do
     writeFieldBegin oprot ("success",T_LIST,0)
-    (let f = Vector.mapM_ (\_viter56 -> Types_Types.write_DMatch oprot _viter56) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
+    (let f = Vector.mapM_ (\_viter50 -> Types_Types.write_DMatch oprot _viter50) in do {writeListBegin oprot (T_STRUCT,fromIntegral $ Vector.length _v); f _v;writeListEnd oprot})
     writeFieldEnd oprot}
   writeFieldStop oprot
   writeStructEnd oprot
 read_Match_result_fields iprot record = do
-  (_,_t58,_id59) <- readFieldBegin iprot
-  if _t58 == T_STOP then return record else
-    case _id59 of 
-      0 -> if _t58 == T_LIST then do
-        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_DMatch iprot)) in do {(_etype63,_size60) <- readListBegin iprot; f _size60})
+  (_,_t52,_id53) <- readFieldBegin iprot
+  if _t52 == T_STOP then return record else
+    case _id53 of 
+      0 -> if _t52 == T_LIST then do
+        s <- (let f n = Vector.replicateM (fromIntegral n) ((read_DMatch iprot)) in do {(_etype57,_size54) <- readListBegin iprot; f _size54})
         read_Match_result_fields iprot record{f_Match_result_success=Just s}
         else do
-          skip iprot _t58
+          skip iprot _t52
           read_Match_result_fields iprot record
       _ -> do
-        skip iprot _t58
+        skip iprot _t52
         readFieldEnd iprot
         read_Match_result_fields iprot record
 read_Match_result iprot = do

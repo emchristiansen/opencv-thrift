@@ -16,7 +16,7 @@ class Features2DIf {
  public:
   virtual ~Features2DIf() {}
   virtual void detect(std::vector< ::KeyPoint> & _return, const std::string& detectorType, const  ::Mat& image) = 0;
-  virtual void extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) = 0;
+  virtual void extract(ExtractorResponse& _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) = 0;
   virtual void match(std::vector< ::DMatch> & _return, const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors) = 0;
 };
 
@@ -50,7 +50,7 @@ class Features2DNull : virtual public Features2DIf {
   void detect(std::vector< ::KeyPoint> & /* _return */, const std::string& /* detectorType */, const  ::Mat& /* image */) {
     return;
   }
-  void extract(std::vector<ExtractorResponse> & /* _return */, const std::string& /* descriptorExtractorType */, const  ::Mat& /* image */, const std::vector< ::KeyPoint> & /* keyPoints */) {
+  void extract(ExtractorResponse& /* _return */, const std::string& /* descriptorExtractorType */, const  ::Mat& /* image */, const std::vector< ::KeyPoint> & /* keyPoints */) {
     return;
   }
   void match(std::vector< ::DMatch> & /* _return */, const std::string& /* descriptorMatcherType */, const  ::Mat& /* queryDescriptors */, const  ::Mat& /* trainDescriptors */) {
@@ -270,19 +270,19 @@ typedef struct _Features2D_extract_result__isset {
 class Features2D_extract_result {
  public:
 
-  static const char* ascii_fingerprint; // = "D9021558691AC7D37C249D7FECB43771";
-  static const uint8_t binary_fingerprint[16]; // = {0xD9,0x02,0x15,0x58,0x69,0x1A,0xC7,0xD3,0x7C,0x24,0x9D,0x7F,0xEC,0xB4,0x37,0x71};
+  static const char* ascii_fingerprint; // = "4D75183AAB229310C68B4B6A56CC2C44";
+  static const uint8_t binary_fingerprint[16]; // = {0x4D,0x75,0x18,0x3A,0xAB,0x22,0x93,0x10,0xC6,0x8B,0x4B,0x6A,0x56,0xCC,0x2C,0x44};
 
   Features2D_extract_result() {
   }
 
   virtual ~Features2D_extract_result() throw() {}
 
-  std::vector<ExtractorResponse>  success;
+  ExtractorResponse success;
 
   _Features2D_extract_result__isset __isset;
 
-  void __set_success(const std::vector<ExtractorResponse> & val) {
+  void __set_success(const ExtractorResponse& val) {
     success = val;
   }
 
@@ -311,13 +311,13 @@ typedef struct _Features2D_extract_presult__isset {
 class Features2D_extract_presult {
  public:
 
-  static const char* ascii_fingerprint; // = "D9021558691AC7D37C249D7FECB43771";
-  static const uint8_t binary_fingerprint[16]; // = {0xD9,0x02,0x15,0x58,0x69,0x1A,0xC7,0xD3,0x7C,0x24,0x9D,0x7F,0xEC,0xB4,0x37,0x71};
+  static const char* ascii_fingerprint; // = "4D75183AAB229310C68B4B6A56CC2C44";
+  static const uint8_t binary_fingerprint[16]; // = {0x4D,0x75,0x18,0x3A,0xAB,0x22,0x93,0x10,0xC6,0x8B,0x4B,0x6A,0x56,0xCC,0x2C,0x44};
 
 
   virtual ~Features2D_extract_presult() throw() {}
 
-  std::vector<ExtractorResponse> * success;
+  ExtractorResponse* success;
 
   _Features2D_extract_presult__isset __isset;
 
@@ -491,9 +491,9 @@ class Features2DClient : virtual public Features2DIf {
   void detect(std::vector< ::KeyPoint> & _return, const std::string& detectorType, const  ::Mat& image);
   void send_detect(const std::string& detectorType, const  ::Mat& image);
   void recv_detect(std::vector< ::KeyPoint> & _return);
-  void extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints);
+  void extract(ExtractorResponse& _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints);
   void send_extract(const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints);
-  void recv_extract(std::vector<ExtractorResponse> & _return);
+  void recv_extract(ExtractorResponse& _return);
   void match(std::vector< ::DMatch> & _return, const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors);
   void send_match(const std::string& descriptorMatcherType, const  ::Mat& queryDescriptors, const  ::Mat& trainDescriptors);
   void recv_match(std::vector< ::DMatch> & _return);
@@ -559,7 +559,7 @@ class Features2DMultiface : virtual public Features2DIf {
     return;
   }
 
-  void extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) {
+  void extract(ExtractorResponse& _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {

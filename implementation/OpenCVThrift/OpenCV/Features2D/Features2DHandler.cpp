@@ -16,7 +16,8 @@ void Features2DHandler::detect(std::vector<KeyPoint> & _return, const std::strin
   // Your implementation goes here
   printf("detect\n");
 
-  const cv::Ptr<cv::FeatureDetector> detector = cv::FeatureDetector::create(detectorType);
+  const cv::Ptr<cv::FeatureDetector> detector = 
+    cv::FeatureDetector::create(detectorType);
   
   vector<cv::KeyPoint> cvKeyPoints;
   detector->detect(matToCVMat(image), cvKeyPoints);
@@ -28,8 +29,38 @@ void Features2DHandler::detect(std::vector<KeyPoint> & _return, const std::strin
     cvKeyPointToKeyPoint);
 }
 
-void Features2DHandler::extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) {
-  // TODO
+void Features2DHandler::extract(ExtractorResponse& _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) {
+  const cv::Ptr<cv::DescriptorExtractor> extractor = 
+    cv::DescriptorExtractor::create(descriptorExtractorType);
+
+  vector<cv::KeyPoint> cvKeyPoints;
+  transform(
+    keyPoints.begin(),
+    keyPoints.end(),
+    cvKeyPoints.begin(),
+    keyPointToCVKeyPoint);
+  // We are assuming `class_id` isn't used for anything, and we're clobbering it
+  // here.
+  for (size_t i = 0; i < cvKeyPoints.size(); ++i) {
+    cvKeyPoints.at(i).class_id = i;
+  }
+
+  cv::Mat cvDescriptors;
+  extractor->compute(matToCVMat(image), cvKeyPoints, cvDescriptors);
+
+  // The ith keyPoint was computed iff a keyPoint with class_id == i is in the
+  // returned keyPoints.
+  std::vector<bool> keyPointMask;
+  keyPointMask.assign(keyPoints.size(), false);
+  for (auto cvKeyPoint : cvKeyPoints) {
+    keyPointMask.at(cvKeyPoint.class_id) = true;
+  }
+
+  ExtractorResponse extractorResponse;
+  extractorResponse.descriptors = cvMatToMat(cvDescriptors);
+  extractorResponse.keyPointMask = keyPointMask;
+
+  _return = extractorResponse;
 }
 
 

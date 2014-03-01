@@ -365,20 +365,8 @@ uint32_t Features2D_extract_result::read(::apache::thrift::protocol::TProtocol* 
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            this->success.clear();
-            uint32_t _size24;
-            ::apache::thrift::protocol::TType _etype27;
-            xfer += iprot->readListBegin(_etype27, _size24);
-            this->success.resize(_size24);
-            uint32_t _i28;
-            for (_i28 = 0; _i28 < _size24; ++_i28)
-            {
-              xfer += this->success[_i28].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->success.read(iprot);
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -403,16 +391,8 @@ uint32_t Features2D_extract_result::write(::apache::thrift::protocol::TProtocol*
   xfer += oprot->writeStructBegin("Features2D_extract_result");
 
   if (this->__isset.success) {
-    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
-    {
-      xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->success.size()));
-      std::vector<ExtractorResponse> ::const_iterator _iter29;
-      for (_iter29 = this->success.begin(); _iter29 != this->success.end(); ++_iter29)
-      {
-        xfer += (*_iter29).write(oprot);
-      }
-      xfer += oprot->writeListEnd();
-    }
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRUCT, 0);
+    xfer += this->success.write(oprot);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -441,20 +421,8 @@ uint32_t Features2D_extract_presult::read(::apache::thrift::protocol::TProtocol*
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_LIST) {
-          {
-            (*(this->success)).clear();
-            uint32_t _size30;
-            ::apache::thrift::protocol::TType _etype33;
-            xfer += iprot->readListBegin(_etype33, _size30);
-            (*(this->success)).resize(_size30);
-            uint32_t _i34;
-            for (_i34 = 0; _i34 < _size30; ++_i34)
-            {
-              xfer += (*(this->success))[_i34].read(iprot);
-            }
-            xfer += iprot->readListEnd();
-          }
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += (*(this->success)).read(iprot);
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -594,14 +562,14 @@ uint32_t Features2D_match_result::read(::apache::thrift::protocol::TProtocol* ip
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             this->success.clear();
-            uint32_t _size35;
-            ::apache::thrift::protocol::TType _etype38;
-            xfer += iprot->readListBegin(_etype38, _size35);
-            this->success.resize(_size35);
-            uint32_t _i39;
-            for (_i39 = 0; _i39 < _size35; ++_i39)
+            uint32_t _size24;
+            ::apache::thrift::protocol::TType _etype27;
+            xfer += iprot->readListBegin(_etype27, _size24);
+            this->success.resize(_size24);
+            uint32_t _i28;
+            for (_i28 = 0; _i28 < _size24; ++_i28)
             {
-              xfer += this->success[_i39].read(iprot);
+              xfer += this->success[_i28].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -632,10 +600,10 @@ uint32_t Features2D_match_result::write(::apache::thrift::protocol::TProtocol* o
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_LIST, 0);
     {
       xfer += oprot->writeListBegin(::apache::thrift::protocol::T_STRUCT, static_cast<uint32_t>(this->success.size()));
-      std::vector< ::DMatch> ::const_iterator _iter40;
-      for (_iter40 = this->success.begin(); _iter40 != this->success.end(); ++_iter40)
+      std::vector< ::DMatch> ::const_iterator _iter29;
+      for (_iter29 = this->success.begin(); _iter29 != this->success.end(); ++_iter29)
       {
-        xfer += (*_iter40).write(oprot);
+        xfer += (*_iter29).write(oprot);
       }
       xfer += oprot->writeListEnd();
     }
@@ -670,14 +638,14 @@ uint32_t Features2D_match_presult::read(::apache::thrift::protocol::TProtocol* i
         if (ftype == ::apache::thrift::protocol::T_LIST) {
           {
             (*(this->success)).clear();
-            uint32_t _size41;
-            ::apache::thrift::protocol::TType _etype44;
-            xfer += iprot->readListBegin(_etype44, _size41);
-            (*(this->success)).resize(_size41);
-            uint32_t _i45;
-            for (_i45 = 0; _i45 < _size41; ++_i45)
+            uint32_t _size30;
+            ::apache::thrift::protocol::TType _etype33;
+            xfer += iprot->readListBegin(_etype33, _size30);
+            (*(this->success)).resize(_size30);
+            uint32_t _i34;
+            for (_i34 = 0; _i34 < _size30; ++_i34)
             {
-              xfer += (*(this->success))[_i45].read(iprot);
+              xfer += (*(this->success))[_i34].read(iprot);
             }
             xfer += iprot->readListEnd();
           }
@@ -757,7 +725,7 @@ void Features2DClient::recv_detect(std::vector< ::KeyPoint> & _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "detect failed: unknown result");
 }
 
-void Features2DClient::extract(std::vector<ExtractorResponse> & _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints)
+void Features2DClient::extract(ExtractorResponse& _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints)
 {
   send_extract(descriptorExtractorType, image, keyPoints);
   recv_extract(_return);
@@ -779,7 +747,7 @@ void Features2DClient::send_extract(const std::string& descriptorExtractorType, 
   oprot_->getTransport()->flush();
 }
 
-void Features2DClient::recv_extract(std::vector<ExtractorResponse> & _return)
+void Features2DClient::recv_extract(ExtractorResponse& _return)
 {
 
   int32_t rseqid = 0;
