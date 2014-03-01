@@ -12,9 +12,10 @@ library
     OpenCVThrift/OpenCV/Features2D/gen-hs
 
   exposed-modules:
+    OpenCVThrift
+    OpenCVThrift.OpenCV
     OpenCVThrift.OpenCV.Core.MatUtil
     OpenCVThrift.OpenCV.Features2D.Features2D
-    OpenCVThrift.OpenCV
 
   build-depends:
     base >=4, 

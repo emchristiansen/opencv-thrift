@@ -23,9 +23,9 @@
 
 {-import OpenCV-}
 {-import OpenCVTypes-}
-import qualified OpenCV.Core.MatUtil
 {-import OpenCV.Core.MatUtil-}
 
+import OpenCVLocalhost
 import qualified OpenCVLocalhost
 
 import Thrift
@@ -39,10 +39,14 @@ import Text.Printf
 import Network
 import Data.Vector
 
-import OpenCV.Core.MatUtil
-import OpenCV.Features2D.Features2D
+import OpenCVThrift
+import OpenCVThrift.OpenCV
+import OpenCVThrift.OpenCV.Core
 
-cvType = CV_32FC1
+import OpenCVThrift.OpenCV.Core.MatUtil
+import OpenCVThrift.OpenCV.Features2D.Features2D
+
+cvType = T32FC1
 
 matUnpacked = MatUnpacked 
   (Just 3) 

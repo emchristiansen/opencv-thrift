@@ -27,16 +27,17 @@ import qualified Features2D_Client
   {-cast (Client protocol transport) = -}
     {-(protocol transport, protocol transport)-}
 
-data Client p t = (Protocol p, Transport t) => Client { value :: (p t, p t) }
+data Client p t = (Protocol p, Transport t) => Client (p t, p t)
 
-class (Protocol p, Transport t) => ToClient a p t | a -> p t where
+class ToClient a p t | a -> p t where
   toClient :: a -> Client p t
 
-instance (Protocol p, Transport t) => ToClient (Client p t) p t where
+instance ToClient (Client p t) p t where
   toClient = id  
 
 detect :: ToClient a p t => a -> Text -> Mat_Types.Mat -> IO (Vector KeyPoint) 
-detect client = Features2D_Client.detect $ value $ toClient client 
+detect client = detect' $ toClient client 
+detect' (Client value) = Features2D_Client.detect value
 
 {-detect :: IsClient c p t => c -> Text -> Mat_Types.Mat -> IO (Vector KeyPoint) -}
 {-detect client = Features2D_Client.detect $ cast client-}

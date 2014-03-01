@@ -1,6 +1,5 @@
 module OpenCVLocalhost where
 
-import qualified OpenCV
 {-import qualified Internal.Util-}
 
 {-import qualified OpenCV.Core.MatUtil-}
@@ -23,8 +22,10 @@ import Control.Applicative
 {-import qualified GHC.IO.Handle.Types-}
 import GHC.IO.Handle.Types (Handle)
 
-import qualified OpenCV.Core.MatUtil
-import qualified OpenCV.Features2D.Features2D
+import qualified OpenCVThrift
+import qualified OpenCVThrift.OpenCV
+import qualified OpenCVThrift.OpenCV.Core.MatUtil
+import qualified OpenCVThrift.OpenCV.Features2D.Features2D
 
 type ClientValue = 
   ( BinaryProtocol Handle
@@ -44,27 +45,26 @@ getService name port = do
 {-matUtilService = OpenCV.Core.MatUtil.Client $ getService "MatUtil" $ PortNumber 9090-}
 
 matUtilPort :: PortID
-matUtilPort = PortNumber 9090
+matUtilPort = PortNumber $ fromIntegral $ 
+  OpenCVThrift.basePort + OpenCVThrift.matUtilPortOffset
 
 features2DPort :: PortID
-features2DPort = PortNumber 9091
+features2DPort = PortNumber $ fromIntegral $ 
+  OpenCVThrift.basePort + OpenCVThrift.features2DPortOffset
 
-matUtilClient :: IO (OpenCV.Core.MatUtil.Client BinaryProtocol Handle)
-matUtilClient = OpenCV.Core.MatUtil.Client <$> getService 
+matUtilClient :: IO (OpenCVThrift.OpenCV.Core.MatUtil.Client BinaryProtocol Handle)
+matUtilClient = OpenCVThrift.OpenCV.Core.MatUtil.Client <$> getService 
   "MatUtil" 
   matUtilPort
 
-features2DClient :: IO (OpenCV.Features2D.Features2D.Client BinaryProtocol Handle)
-features2DClient = OpenCV.Features2D.Features2D.Client <$> getService 
+features2DClient :: IO (OpenCVThrift.OpenCV.Features2D.Features2D.Client BinaryProtocol Handle)
+features2DClient = OpenCVThrift.OpenCV.Features2D.Features2D.Client <$> getService 
   "Features2D" 
   features2DPort
 
-openCVClient :: IO (OpenCV.Client BinaryProtocol Handle)
-openCVClient = OpenCV.Client 
+openCVClient :: IO (OpenCVThrift.OpenCV.Client BinaryProtocol Handle)
+openCVClient = OpenCVThrift.OpenCV.Client 
   <$> matUtilClient 
   <*> features2DClient
 
-{-openCVLocalhostProtocol = do-}
-  {-matUtil <- getService "MatUtil" 9090-}
-  {-return $ OpenCV.OpenCVProtocol matUtil-}
 
