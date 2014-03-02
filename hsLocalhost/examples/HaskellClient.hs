@@ -1,21 +1,4 @@
---
--- Licensed to the Apache Software Foundation (ASF) under one
--- or more contributor license agreements. See the NOTICE file
--- distributed with this work for additional information
--- regarding copyright ownership. The ASF licenses this file
--- to you under the Apache License, Version 2.0 (the
--- "License"); you may not use this file except in compliance
--- with the License. You may obtain a copy of the License at
---
---   http://www.apache.org/licenses/LICENSE-2.0
---
--- Unless required by applicable law or agreed to in writing,
--- software distributed under the License is distributed on an
--- "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
--- KIND, either express or implied. See the License for the
--- specific language governing permissions and limitations
--- under the License.
---
+{-# LANGUAGE OverloadedStrings #-}
 
 {-import qualified MatUtil_Client as MatUtil-}
 {-import qualified Features2D_Client as Features2D-}
@@ -109,8 +92,8 @@ main = do
   let 
     {-height = imageHeight image-}
     {-width = imageWidth image-}
-    height = 5
-    width = 6
+    height = 500
+    width = 600
     pixels :: [Double]
     pixels = concat $ do
       row <- [0 .. height - 1]
@@ -127,14 +110,16 @@ main = do
 
   
 
-  putStrLn $ show imageMat
+  {-putStrLn $ show imageMat-}
 
   packed <- pack client cvType imageMat
-  unpacked <- unpack client packed
+  {-unpacked <- unpack client packed-}
 
-  putStrLn $ show unpacked
+  {-putStrLn $ show unpacked-}
 
-  putStrLn $ show $ imageMat == unpacked
+  {-putStrLn $ show $ imageMat == unpacked-}
+
+  keyPoints <- detect client "SIFT" packed  
 
   putStrLn "Done"
 

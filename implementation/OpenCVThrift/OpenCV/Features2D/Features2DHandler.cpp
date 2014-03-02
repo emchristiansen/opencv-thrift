@@ -18,7 +18,7 @@ void Features2DHandler::detect(std::vector<KeyPoint> & _return, const std::strin
 
   const cv::Ptr<cv::FeatureDetector> detector = 
     cv::FeatureDetector::create(detectorType);
-  
+
   vector<cv::KeyPoint> cvKeyPoints;
   detector->detect(matToCVMat(image), cvKeyPoints);
 
