@@ -13,15 +13,22 @@ Features2DHandler::Features2DHandler() {
 }
 
 void Features2DHandler::detect(std::vector<KeyPoint> & _return, const std::string& detectorType, const  ::Mat& image) {
-  // Your implementation goes here
   printf("detect\n");
 
-  const cv::Ptr<cv::FeatureDetector> detector = 
+  printf("Creating feature detector: %s\n", detectorType.c_str());
+  const cv::Ptr<cv::FeatureDetector> detector =
     cv::FeatureDetector::create(detectorType);
+  if (detector.empty()) {
+    printf(
+      "Failed to create feature detector: %s. Perhaps you are using the wrong name.\n",
+      detectorType.c_str());
+    assert(!detector.empty());
+  }
 
   vector<cv::KeyPoint> cvKeyPoints;
   detector->detect(matToCVMat(image), cvKeyPoints);
 
+  _return.resize(cvKeyPoints.size());
   transform(
     cvKeyPoints.begin(), 
     cvKeyPoints.end(), 
@@ -30,10 +37,18 @@ void Features2DHandler::detect(std::vector<KeyPoint> & _return, const std::strin
 }
 
 void Features2DHandler::extract(ExtractorResponse& _return, const std::string& descriptorExtractorType, const  ::Mat& image, const std::vector< ::KeyPoint> & keyPoints) {
-  const cv::Ptr<cv::DescriptorExtractor> extractor = 
+  printf("Creating descriptor extractor: %s\n", descriptorExtractorType.c_str());
+  const cv::Ptr<cv::DescriptorExtractor> extractor =
     cv::DescriptorExtractor::create(descriptorExtractorType);
+  if (extractor.empty()) {
+    printf(
+      "Failed to create descriptor extractor: %s. Perhaps you are using the wrong name.\n",
+      descriptorExtractorType.c_str());
+    assert(!extractor.empty());
+  }
 
   vector<cv::KeyPoint> cvKeyPoints;
+  cvKeyPoints.resize(keyPoints.size());
   transform(
     keyPoints.begin(),
     keyPoints.end(),

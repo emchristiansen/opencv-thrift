@@ -54,7 +54,11 @@ void MatUtilHandler::unpack( ::MatUnpacked& _return, const  ::Mat& mat) {
   _return.cols = mat.cols;
   _return.channels = mat.channels;
   _return.data.assign(
-    cvMatUnpacked.begin<double>(),
-    cvMatUnpacked.end<double>());
+    reinterpret_cast<double*>(cvMatUnpacked.datastart),
+    reinterpret_cast<double*>(cvMatUnpacked.dataend));
+//  _return.data.assign(
+//    cvMatUnpacked.begin<double>(),
+//    cvMatUnpacked.end<double>());
 }
+
 

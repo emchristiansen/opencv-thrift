@@ -43,5 +43,9 @@ extract :: ToClient a p t => a -> Text -> Mat_Types.Mat -> Vector KeyPoint -> IO
 extract client = extract' $ toClient client
 extract' (Client value) = Features2D_Client.extract value
 
+match :: ToClient a p t => a -> Text -> Mat -> Mat -> IO (Vector DMatch)
+match client = match' $ toClient client
+match' (Client value) = Features2D_Client.match value
+
 {-detect :: IsClient c p t => c -> Text -> Mat_Types.Mat -> IO (Vector KeyPoint) -}
 {-detect client = Features2D_Client.detect $ cast client-}

@@ -150,7 +150,7 @@ CVType::type doubleTypeToCVType(const int numChannels) {
     case 2: 
       return CVType::type::T64FC2;
     case 3: 
-      return CVType::type::T64FC2;
+      return CVType::type::T64FC3;
     case 4: 
       return CVType::type::T64FC4;
     default: 
@@ -181,7 +181,9 @@ Mat cvMatToMat(const cv::Mat& cvMat) {
   mat.type = cvMacroToCVType(cvMat.type());
   //mat.data.assign(cvMat.begin<char>(), cvMat.end<char>());
   //mat.data.assign(cvMat.datastart, cvMat.dataend);
-  mat.data.assign((char*)cvMat.datastart, (char*)cvMat.dataend);  
+  mat.data.assign(
+    reinterpret_cast<char*>(cvMat.datastart),
+    reinterpret_cast<char*>(cvMat.dataend));
 
   return mat;
 }

@@ -73,7 +73,7 @@ readImageSafe filePath = do
   	  putStrLn $ printf formatString filePath errorMessage
   	  return Nothing
 
-cvType = T64FC1
+cvType = T8UC3
 
 {-matUnpacked = MatUnpacked -}
   {-(Just 3) -}
@@ -92,20 +92,22 @@ main = do
   let 
     {-height = imageHeight image-}
     {-width = imageWidth image-}
-    height = 500
-    width = 600
+    height = 200
+    width = 300
     pixels :: [Double]
     pixels = concat $ do
       row <- [0 .. height - 1]
       column <- [0 .. width - 1]
       let (PixelRGBA8 r g b a) = pixelAt image column row
-      {-return [fromIntegral r, fromIntegral g, fromIntegral b] -}
+      return [fromIntegral r, fromIntegral g, fromIntegral b] 
       {-return [fromIntegral r] -}
-      return [fromIntegral $ row * width + column] 
+      {-return [fromIntegral $ row * width + column] -}
+      {-let c = fromIntegral $ row * width + column-}
+      {-return [c, c, c] -}
     imageMat = MatUnpacked
       (Just $ fromIntegral height)
       (Just $ fromIntegral width)
-      (Just 1)
+      (Just 3)
       (Just $ V.fromList pixels)
 
   
@@ -113,13 +115,22 @@ main = do
   {-putStrLn $ show imageMat-}
 
   packed <- pack client cvType imageMat
-  {-unpacked <- unpack client packed-}
+  unpacked <- unpack client packed
 
   {-putStrLn $ show unpacked-}
 
-  {-putStrLn $ show $ imageMat == unpacked-}
+  putStrLn $ show $ imageMat == unpacked
 
-  keyPoints <- detect client "SIFT" packed  
+  keyPoints <- detect client "FAST" packed  
+
+  {-keyPoint <- keyPoints-}
+  {-putStrLn $ show keyPoint-}
+
+  {-matches <- match client "Hi" packed packed-}
+
+  descriptorResponses <- extract client "BRISK" packed keyPoints
+
+  putStrLn $ show descriptorResponses
 
   putStrLn "Done"
 
