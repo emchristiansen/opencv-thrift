@@ -14,8 +14,31 @@ library
   exposed-modules:
     OpenCVThrift
     OpenCVThrift.OpenCV
+    OpenCVThrift.OpenCV.Core
     OpenCVThrift.OpenCV.Core.MatUtil
+    OpenCVThrift.OpenCV.Features2D
     OpenCVThrift.OpenCV.Features2D.Features2D
+
+  -- I'm not sure why this is necessary.
+  other-modules:
+    Ports_Consts
+    Ports_Types
+    CVDef_Consts
+    CVDef_Types
+    Mat_Consts
+    Mat_Types
+    MatUtil
+    MatUtil_Client
+    MatUtil_Consts
+    MatUtil_Iface
+    MatUtil_Types
+    Types_Consts
+    Types_Types
+    Features2D
+    Features2D_Client
+    Features2D_Consts
+    Features2D_Iface
+    Features2D_Types
 
   build-depends:
     base >=4, 
