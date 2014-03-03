@@ -8,15 +8,16 @@ library
   hs-source-dirs:
     lib
     -- Poor man's project dependency.
-    ../hs
-    ../hs/OpenCVThrift/gen-hs
-    ../hs/OpenCVThrift/OpenCV/Core/gen-hs
-    ../hs/OpenCVThrift/OpenCV/Features2D/gen-hs
+    --../hs
+    --../hs/OpenCVThrift/gen-hs
+    --../hs/OpenCVThrift/OpenCV/Core/gen-hs
+    --../hs/OpenCVThrift/OpenCV/Features2D/gen-hs
 
   exposed-modules:
     OpenCVLocalhost
 
   build-depends:
+    OpenCVThrift >= 0.1.1,
     base >=4, 
     network, 
     ghc-prim, 
@@ -44,44 +45,44 @@ library
   --ghc-options:
     ---fglasgow-exts
 
-executable Client
-  main-is: HaskellClient.hs
+--executable Client
+  --main-is: HaskellClient.hs
 
-  hs-source-dirs:
-    examples 
-    lib
-    -- Poor man's project dependency.
-    ../hs
-    ../hs/OpenCVThrift/gen-hs
-    ../hs/OpenCVThrift/OpenCV/Core/gen-hs
-    ../hs/OpenCVThrift/OpenCV/Features2D/gen-hs
+  --hs-source-dirs:
+    --examples 
+    --lib
+    ---- Poor man's project dependency.
+    --../hs
+    --../hs/OpenCVThrift/gen-hs
+    --../hs/OpenCVThrift/OpenCV/Core/gen-hs
+    --../hs/OpenCVThrift/OpenCV/Features2D/gen-hs
 
-  build-depends:
-    --OpenCVThrift,
-    --OpenCVThriftLocalhost,
-    base >=4, 
-    network, 
-    ghc-prim, 
-    containers, 
-    thrift, 
-    vector, 
-    unordered-containers, 
-    text, 
-    hashable, 
-    bytestring,
-    JuicyPixels
+  --build-depends:
+    ----OpenCVThrift,
+    ----OpenCVThriftLocalhost,
+    --base >=4, 
+    --network, 
+    --ghc-prim, 
+    --containers, 
+    --thrift, 
+    --vector, 
+    --unordered-containers, 
+    --text, 
+    --hashable, 
+    --bytestring,
+    --JuicyPixels
 
-  default-language: 
-    Haskell2010
+  --default-language: 
+    --Haskell2010
 
-  default-extensions:
-    DeriveDataTypeable
-    ExistentialQuantification
-    ConstraintKinds
-    UndecidableInstances
-    MultiParamTypeClasses
-    FunctionalDependencies
-    FlexibleInstances
+  --default-extensions:
+    --DeriveDataTypeable
+    --ExistentialQuantification
+    --ConstraintKinds
+    --UndecidableInstances
+    --MultiParamTypeClasses
+    --FunctionalDependencies
+    --FlexibleInstances
 
   --ghc-options:
     ---fglasgow-exts

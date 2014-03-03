@@ -1,5 +1,5 @@
 name:           OpenCVThrift 
-version:        0.1.0
+version:        0.1.1
 cabal-version:  >= 1.16
 category:       Foreign
 build-Type:     Simple
@@ -35,8 +35,8 @@ library
   default-extensions:
     DeriveDataTypeable
     ExistentialQuantification
-    ConstraintKinds
-    UndecidableInstances
+    --ConstraintKinds
+    --UndecidableInstances
     MultiParamTypeClasses
     FunctionalDependencies
     FlexibleInstances

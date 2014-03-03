@@ -90,10 +90,10 @@ main = do
   putStrLn $ show image
 
   let 
-    {-height = imageHeight image-}
-    {-width = imageWidth image-}
-    height = 200
-    width = 300
+    height = imageHeight image
+    width = imageWidth image
+    {-height = 200-}
+    {-width = 300-}
     pixels :: [Double]
     pixels = concat $ do
       row <- [0 .. height - 1]
