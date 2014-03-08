@@ -35,6 +35,7 @@ import Codec.Picture.Types
 import OpenCVThrift
 import OpenCVThrift.OpenCV
 import OpenCVThrift.OpenCV.Core
+import OpenCVThrift.OpenCV.Features2D
 
 import OpenCVThrift.OpenCV.Core.MatUtil
 import OpenCVThrift.OpenCV.Features2D.Features2D
@@ -81,6 +82,18 @@ cvType = T8UC3
   {-(Just 1) -}
   {-(Just $ V.fromList [1, 2, 3, 4, 5, 6])-}
 
+testPacking :: MatUnpacked -> OpenCVComputation Bool
+testPacking imageUnpacked = do
+  packed <- convert2 pack cvType imageUnpacked
+  unpacked <- convert1 unpack packed
+  return $ imageUnpacked == unpacked  
+
+testDescriptors :: MatUnpacked -> OpenCVComputation ExtractorResponse
+testDescriptors imageUnpacked = do
+  packed <- convert2 pack cvType imageUnpacked
+  keyPoints <- convert2 detect "FAST" packed
+  convert3 extract "BRISK" packed keyPoints
+
 main = do
   putStrLn "Start"
 
@@ -96,8 +109,8 @@ main = do
     {-width = 300-}
     pixels :: [Double]
     pixels = concat $ do
-      row <- [0 .. height - 1]
-      column <- [0 .. width - 1]
+      row <- [0 .. height `div` 2]
+      column <- [0 .. width `div` 2]
       let (PixelRGBA8 r g b a) = pixelAt image column row
       return [fromIntegral r, fromIntegral g, fromIntegral b] 
       {-return [fromIntegral r] -}
@@ -110,27 +123,31 @@ main = do
       (Just 3)
       (Just $ V.fromList pixels)
 
-  
+  bool <- runOpenCVComputation (testPacking imageMat) client
+  putStrLn $ show bool
+
+  response <- runOpenCVComputation (testDescriptors imageMat) client
+  putStrLn $ show response
 
   {-putStrLn $ show imageMat-}
 
-  packed <- pack client cvType imageMat
-  unpacked <- unpack client packed
+  {-packed <- pack client cvType imageMat-}
+  {-unpacked <- unpack client packed-}
 
   {-putStrLn $ show unpacked-}
 
-  putStrLn $ show $ imageMat == unpacked
+  {-putStrLn $ show $ imageMat == unpacked-}
 
-  keyPoints <- detect client "FAST" packed  
+  {-keyPoints <- detect client "FAST" packed  -}
 
   {-keyPoint <- keyPoints-}
   {-putStrLn $ show keyPoint-}
 
   {-matches <- match client "Hi" packed packed-}
 
-  descriptorResponses <- extract client "BRISK" packed keyPoints
+  {-descriptorResponses <- extract client "BRISK" packed keyPoints-}
 
-  putStrLn $ show descriptorResponses
+  {-putStrLn $ show descriptorResponses-}
 
   putStrLn "Done"
 

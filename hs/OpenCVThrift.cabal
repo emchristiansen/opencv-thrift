@@ -63,4 +63,5 @@ library
     MultiParamTypeClasses
     FunctionalDependencies
     FlexibleInstances
+    RankNTypes
 
